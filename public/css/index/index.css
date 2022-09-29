@@ -4,6 +4,7 @@
   --text-width: 800px;
   --each-project-width: 180px;
   --each-how-to-stake-width: 300px;
+  --calculator-line-item-width: 100px;
 }
 
 .all-wrapper {
@@ -156,7 +157,7 @@
   height: auto;
 }
 
-.x {
+.start-page-transparent-cover {
   height: 100vh;
   min-height: 100vh;
   width: 100vw;
@@ -330,7 +331,7 @@
 }
 .calculator-each-project-title-selected {
   color: initial !important;
-  background: conic-gradient(from 166.41deg at 36.98% 14.86%, #9985EB -35.62deg, #8EDDF9 24.38deg, #9985EB 324.38deg, #8EDDF9 384.38deg);
+  background: linear-gradient(45deg, rgba(142, 243, 249, 1), rgba(153, 133, 235, 1));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -341,22 +342,28 @@
 .calculator-each-line-wrapper {
   display: flex;
   align-items: center;
+  justify-content: center;
   margin-top: 100px;
 }
 .calculator-each-line-name {
   font-size: var(--title-font-size);
   font-weight: 600;
   color: var(--text-color);
-  margin-right: 20px;
+  width: var(--calculator-line-item-width);
+  min-width: var(--calculator-line-item-width);
 }
 .calculator-each-line {
   height: 10px;
   width: 50vw;
-  background: linear-gradient(90deg, rgb(142, 221, 249) 7.59%, rgb(118, 130, 205) 27.32%, rgb(62, 206, 150) 59.97%, rgb(112, 174, 211) 93.55%);
+  min-width: 50vw;
   border-radius: 5px;
   display: flex;
   align-items: center;
   cursor: pointer;
+  background: linear-gradient(90deg, rgb(142, 221, 249) 7.59%, rgb(118, 130, 205) 27.32%, rgb(62, 206, 150) 59.97%, rgb(112, 174, 211) 93.55%);
+  background-size: 300% 300%;
+  animation: calculatorLineAnimation 30s ease infinite;
+  -webkit-animation: calculatorLineAnimation 30s ease infinite;
 }
 .calculator-each-line-button {
   display: flex;
@@ -396,7 +403,34 @@
   font-size: var(--title-font-size);
   font-weight: 700;
   color: var(--text-color);
-  margin-left: 20px;
+  width: var(--calculator-line-item-width);
+  min-width: var(--calculator-line-item-width);
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+@keyframes calculatorLineAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+@-webkit-keyframes calculatorLineAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 .calculator-earn-title {

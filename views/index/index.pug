@@ -28,7 +28,7 @@ block content
           .learn-more-button-text= __('LEARN MORE')
           svg.learn-more-button-icon(viewBox='0 0 31 17' fill='none' xmlns='http://www.w3.org/2000/svg')
             path(d='M0.43934 0.43934C0.971873 -0.0931933 1.8052 -0.141605 2.39242 0.294104L2.56066 0.43934L15.5 13.378L28.4393 0.43934C28.9719 -0.0931933 29.8052 -0.141605 30.3924 0.294104L30.5607 0.43934C31.0932 0.971873 31.1416 1.8052 30.7059 2.39242L30.5607 2.56066L16.5607 16.5607C16.0281 17.0932 15.1948 17.1416 14.6076 16.7059L14.4393 16.5607L0.43934 2.56066C-0.146447 1.97487 -0.146447 1.02513 0.43934 0.43934Z' fill='var(--text-color)')
-      .x
+      .start-page-transparent-cover
       .projects-wrapper
         .projects-title= __('OUR PROJECTS')
         .projects-subtitle= __('You may stake on us on the following projects. We will be holding validators for you in other networks in the near future.')
@@ -53,27 +53,27 @@ block content
         .calculator-projects-wrapper
           each project, i in projects
             if project.is_stakable
-              .calculator-each-project-title(id='calculator-' + project.name class=(i == 0 ? 'calculator-each-project-title-selected' : ''))= project.name.toUpperCase()
-        .calculator-each-line-wrapper
+              .calculator-each-project-title(id='calculator-' + project._id class=(i == 0 ? 'calculator-each-project-title-selected' : ''))= project.name.toUpperCase()
+        .calculator-each-line-wrapper#token-calculator-line
           .calculator-each-line-name= projects[0].name.toUpperCase()
           .calculator-each-line
             .calculator-each-line-button(style='margin-left: calc(50% - 10px)')
               .calculator-each-line-button-text 50.000
           .calculator-each-line-ammount 50.000
-        .calculator-each-line-wrapper
+        .calculator-each-line-wrapper#time-calculator-line
           .calculator-each-line-name= __('TIME')
           .calculator-each-line
             .calculator-each-line-button(style='margin-left: calc(30% - 10px)')
-              .calculator-each-line-button-text 28 #{__('DAY')}
-          .calculator-each-line-ammount 28 #{__('DAY')}
+              .calculator-each-line-button-text 27 #{__('DAY')}
+          .calculator-each-line-ammount 27 #{__('DAY')}
         .calculator-earn-title= __('YOUR EARN')
         .calculator-earn-wrapper
-          .calculator-each-earn-item#calculator-earn-token-item
+          .calculator-each-earn-item
             img.calculator-each-earn-item-icon(src=projects[0].image alt=(projects[0].name + __(' stake')))
-            .calculator-each-earn-item-text= Math.round((50000 * 28 / 365 * parseFloat(projects[0].apr)))
-          .calculator-each-earn-item#calculator-earn-dollars-item
+            .calculator-each-earn-item-text#calculator-earn-token-text= Math.round((50000 * 27 / 365 * parseFloat(projects[0].apr)))
+          .calculator-each-earn-item
             .calculator-each-earn-item-icon $
-            .calculator-each-earn-item-text= Math.round((50000 * 28 / 365 * parseFloat(projects[0].apr)) * projects[0].market_price)
+            .calculator-each-earn-item-text#calculator-earn-dollars-text= Math.round((50000 * 27 / 365 * parseFloat(projects[0].apr)) * projects[0].market_price)
         .calculator-text= __('The amount you will be awarded is calculated using daily interest. Your actual gain may vary slightly from the numbers shown here. Please feel free to contact our team to learn more.')
       .how-to-stake-wrapper
         .how-to-stake-subtitle= __('HOW CAN YOU')
@@ -116,6 +116,6 @@ block content
                       .each-team-member-information= __(info)
                     .each-team-member-links-wrapper
                       each link in Object.keys(team[j].links)
-                        a.each-team-member-link(href=team[j].links[link])
+                        a.each-team-member-link(href=team[j].links[link] target='_blank')
                           svg(fill='var(--text-color)' xmlns='http://www.w3.org/2000/svg' viewBox=getSocialMediaIconPathAndViewBox(link).viewBox)
                             path(d=getSocialMediaIconPathAndViewBox(link).path)

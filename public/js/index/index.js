@@ -1,5 +1,11 @@
+const MAX_TOKEN = 100000;
+const MAX_TIME = 90;
+
 let projects;
 let clickedCalculatorButton = null;
+let selectedCalculatorProject;
+let calculatorToken = 50000;
+let calculatorDay = 27;
 
 function smoothScroll(element, amount) {
   if (amount < 10)
@@ -16,8 +22,44 @@ function getScrollDistance(element) {
   return window.pageYOffset + element.getBoundingClientRect().top;
 }
 
+function updateCalculatorInfo(button) {
+  if (!button.classList.contains('calculator-each-line-button'))
+    return;
+
+  const type = button.parentNode.parentNode.id.replace('-calculator-line', '');
+  const percent = Math.min(1, Math.max(0, button.getBoundingClientRect().left - button.parentNode.getBoundingClientRect().left) / button.parentNode.offsetWidth);
+  const amount = Math.round((type == 'token' ? MAX_TOKEN : MAX_TIME) * percent);
+
+  if (type == 'token')
+    calculatorToken = amount;
+  else
+    calculatorDay = amount;
+
+  let text = (type == 'token' ? (amount >= 1000 ? parseInt(amount / 1000) + '.' + (amount % 1000) : amount) : amount + ' DAY')
+  while (amount >= 1000 && text.includes('.') && text.split('.')[1].length != 3)
+    text += '0';
+
+  button.childNodes[0].innerHTML = text;
+  button.parentNode.parentNode.childNodes[2].innerHTML = text;
+
+  updateCalculatorResult();
+}
+
+function updateCalculatorResult() {
+  let amount = calculatorToken;
+
+  for (let i = 0; i < calculatorDay; i++)
+    amount += amount * selectedCalculatorProject.apr / 30;
+
+  amount -= calculatorToken;
+
+  document.getElementById('calculator-earn-token-text').innerHTML = Math.round(amount);
+  document.getElementById('calculator-earn-dollars-text').innerHTML = Math.round(amount * selectedCalculatorProject.market_price);
+}
+
 window.addEventListener('load', () => {
   projects = JSON.parse(document.getElementById('projects').value);
+  selectedCalculatorProject = projects.find(each => each._id.toString() == document.querySelector('.calculator-each-project-title-selected').id.replace('calculator-', ''));
 
   const projectsWrapper = document.querySelector('.projects-wrapper');
   const calculatorWrapper = document.querySelector('.calculator-wrapper');
@@ -84,9 +126,33 @@ window.addEventListener('load', () => {
 
     if (event.target.classList.contains('calculator-each-line')) {
       event.target.querySelector('.calculator-each-line-button').style.marginLeft = (event.clientX - event.target.getBoundingClientRect().left - (event.target.querySelector('.calculator-each-line-button').offsetWidth / 2)) + 'px';
+      updateCalculatorInfo(event.target.querySelector('.calculator-each-line-button'));
     }
 
-    // if (event.target.classList.contains('calculator-each-line-button'))
+    if (event.target.classList.contains('calculator-each-project-title') && !event.target.classList.contains('calculator-each-project-title-selected')) {
+      document.querySelector('.calculator-each-project-title-selected').classList.remove('calculator-each-project-title-selected');
+      selectedCalculatorProject = projects.find(each => each._id.toString() == event.target.id.replace('calculator-', ''));
+      event.target.classList.add('calculator-each-project-title-selected');
+    }
+  });
+
+  document.addEventListener('mousemove', event => {
+    if (clickedCalculatorButton) {
+      clickedCalculatorButton.style.marginLeft = Math.max(0, Math.min(event.clientX - clickedCalculatorButton.parentNode.getBoundingClientRect().left - clickedCalculatorButton.offsetWidth / 2, clickedCalculatorButton.parentNode.offsetWidth - clickedCalculatorButton.offsetWidth)) + 'px';
+      updateCalculatorInfo(clickedCalculatorButton);
+    }
+  });
+
+  document.addEventListener('mousedown', event => {
+    if (event.target.classList.contains('calculator-each-line-button')) {
+      clickedCalculatorButton = event.target;
+    }
+  });
+
+  document.addEventListener('mouseup', event => {
+    if (clickedCalculatorButton) {
+      clickedCalculatorButton = null;
+    }
   });
 
   document.addEventListener('mouseover', event => {

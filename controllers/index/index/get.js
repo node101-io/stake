@@ -75,6 +75,7 @@ module.exports = (req, res) => {
     },
     projects: [
       {
+        _id: '12341234343',
         name: 'UMEE',
         image: '/res/images/umee.png',
         apr: 0.4423,
@@ -84,6 +85,7 @@ module.exports = (req, res) => {
         is_stakable: true
       },
       {
+        _id: '798471579848',
         name: 'NYM',
         image: '/res/images/nym.png',
         apr: 0.3466,

@@ -1,0 +1,121 @@
+extends ../partials/head
+block content
+  input.display-none#projects(value=JSON.stringify(projects))
+  .all-wrapper
+    .header-wrapper
+      a.header-logo
+        svg.header-logo-icon(viewBox='0 0 3263 617' fill='var(--border-color)' xmlns='http://www.w3.org/2000/svg')
+          path(d='M2457.32 118.678H2400.36C2392.14 118.678 2385.47 125.235 2385.47 133.324V602.166C2385.47 610.254 2392.14 616.812 2400.36 616.812H2457.32C2465.55 616.812 2472.22 610.254 2472.22 602.166V133.324C2472.22 125.235 2465.55 118.678 2457.32 118.678Z')
+          path(d='M3247.81 118.678H3190.85C3182.63 118.678 3175.96 125.235 3175.96 133.324V602.166C3175.96 610.254 3182.63 616.812 3190.85 616.812H3247.81C3256.03 616.812 3262.7 610.254 3262.7 602.166V133.324C3262.7 125.235 3256.03 118.678 3247.81 118.678Z')
+          path(d='M419.151 409.744V596.348C419.151 604.599 423.807 608.725 433.077 608.725H483.41C493.351 608.725 498.175 604.187 497.839 595.028V409.744H419.151ZM467.975 246.326C460.769 233.564 452.447 221.443 443.102 210.103C432.469 197.003 420.478 185.029 407.323 174.374C398.934 167.856 391.468 162.479 384.924 158.243C344.51 132.371 297.328 118.599 249.108 118.599C200.888 118.599 153.705 132.371 113.291 158.243C106.664 162.506 99.1976 167.883 90.8926 174.374C77.7246 185.029 65.7197 197.003 55.0719 210.103C45.7406 221.454 37.4189 233.573 30.1988 246.326C17.9087 268.747 9.18103 292.887 4.31893 317.906H85.2301C90.4384 300.064 98.54 283.165 109.222 267.862C114.402 260.841 120.005 254.132 126 247.77C132.76 240.842 140.083 234.468 147.895 228.709C177.246 207.713 212.606 196.403 248.898 196.403C285.19 196.403 320.55 207.713 349.901 228.709C357.706 234.46 365.016 240.835 371.754 247.77C377.759 254.123 383.362 260.833 388.532 267.862C399.214 283.165 407.316 300.064 412.524 317.906H493.309C488.577 292.928 480.036 268.795 467.975 246.326ZM0.292249 409.744V594.203C-0.0433079 603.362 4.78032 607.9 14.7212 607.9H65.0547C74.3245 607.9 78.9803 603.774 78.9803 595.523V409.744H0.292249Z')
+          path(d='M1606.43 409.744C1601.8 425.226 1595.08 440.03 1586.47 453.765C1580.72 462.303 1574.24 470.337 1567.09 477.777C1560.83 484.723 1553.8 490.951 1546.12 496.342C1539.77 501.392 1532.95 505.827 1525.73 509.585C1500.17 523.519 1471.4 530.751 1442.18 530.585C1403.56 530.577 1366.12 517.462 1336.18 493.454C1326.43 485.488 1317.44 476.649 1309.34 467.05C1295.96 449.91 1285.9 430.5 1279.64 409.785H1198.69C1205.75 445.297 1220.61 478.865 1242.23 508.142C1249.46 517.562 1257.26 526.545 1265.59 535.041C1274.78 544.359 1284.77 552.876 1295.46 560.496C1305.14 567.752 1315.45 574.145 1326.29 579.598C1365.53 600.22 1409.69 610.099 1454.14 608.205C1498.59 606.311 1541.72 592.713 1579 568.83C1589.57 561.744 1599.71 554.057 1609.37 545.809C1617.04 539.169 1624.19 531.97 1630.76 524.273C1640.1 513.566 1648.52 502.112 1655.93 490.03C1671.03 465.266 1681.66 438.117 1687.35 409.785L1606.43 409.744ZM1677.99 0.188721H1627.28C1617.3 0.188721 1612.52 5.42833 1612.85 15.8663V119.008H1445.28C1384.92 118.537 1326.43 139.567 1280.61 178.211C1271.22 186.431 1262.4 195.266 1254.23 204.657C1245.88 214.248 1238.24 224.409 1231.37 235.063C1215.63 260.568 1204.62 288.618 1198.86 317.907H1279.77C1287.92 291.025 1302.54 266.471 1322.39 246.326C1338.51 230.174 1357.8 217.419 1379.1 208.837C1400.39 200.255 1423.24 196.025 1446.25 196.406H1613.06V317.907H1691.92V13.886C1692.25 4.76822 1687.64 0.188721 1677.99 0.188721Z')
+          path(d='M2210.73 517.383L2177.43 484.13C2175.94 481.902 2173.95 480.038 2171.62 478.68C2169.28 477.322 2166.67 476.505 2163.96 476.291C2160.51 476.345 2157.19 477.553 2154.53 479.716C2150.33 483.841 2146.39 487.389 2141.94 490.979C2134.22 497.593 2125.9 503.49 2117.07 508.595C2084.11 527.451 2045.64 534.81 2007.9 529.478C1970.15 524.147 1935.34 506.438 1909.11 479.221C1903.11 472.874 1897.51 466.178 1892.33 459.17C1881.8 443.98 1873.72 427.28 1868.38 409.662H1787.64C1792.57 434.43 1801.21 458.343 1813.26 480.623C1820.47 493.372 1828.79 505.478 1838.14 516.805C1848.76 529.924 1860.77 541.9 1873.96 552.534C1882.35 559.052 1889.81 564.443 1896.36 568.706C1936.86 594.742 1984.25 608.513 2032.64 608.313C2069.6 608.224 2106.1 600.213 2139.59 584.838C2153.45 577.831 2166.75 569.819 2179.4 560.868C2188.28 554.705 2196.6 547.804 2204.27 540.239C2210.23 535.33 2213.25 530.626 2213.25 526.047V524.562C2213.2 521.969 2212.31 519.457 2210.73 517.383ZM2278.89 330.49C2274.68 301.732 2265.43 273.911 2251.54 248.265C2245.27 236.67 2238.12 225.554 2230.15 215.012C2224.84 208.494 2217.71 200.504 2208.76 191.042C2200.23 182.723 2191.09 175.029 2181.41 168.021C2172.1 161.172 2164.13 155.795 2157.5 151.89C2142.95 143.738 2127.63 137.008 2111.74 131.798C2087.39 123.757 2061.92 119.47 2036.24 119.091H2031.29C2004.57 119.178 1978.03 123.468 1952.69 131.798C1936.71 136.985 1921.3 143.715 1906.68 151.89C1898.44 156.87 1890.46 162.254 1882.77 168.021C1873.09 175.029 1863.95 182.723 1855.42 191.042C1846.48 200.49 1839.31 208.494 1834.03 215.012C1826.05 225.544 1818.89 236.661 1812.64 248.265C1800.82 270.138 1792.34 293.603 1787.47 317.907H1868.25C1870.22 311.211 1872.56 304.628 1875.26 298.186C1888.4 268.209 1910.11 242.632 1937.75 224.563C1965.39 206.494 1997.77 196.712 2030.96 196.406C2036.56 196.413 2042.17 196.743 2047.74 197.396C2064.44 199.122 2080.84 203.063 2096.47 209.113C2137.88 225.719 2170.95 257.729 2188.5 298.186C2192.13 306.936 2195.13 315.924 2197.48 325.085H2107.67V402.896H2267.06C2276.38 403.226 2281.03 398.66 2281.03 389.198V339.278C2281.12 336.214 2280.38 333.182 2278.89 330.49Z')
+          path(d='M2824.09 114.676C2763.81 114.696 2705.51 135.854 2659.67 174.351C2613.83 212.848 2583.44 266.161 2573.97 324.714H2664.24C2673.92 286.326 2697.56 252.752 2730.68 230.325C2763.81 207.897 2804.13 198.166 2844.05 202.967C2883.96 207.768 2920.71 226.769 2947.36 256.386C2974.02 286.003 2988.73 324.19 2988.73 363.743C2988.73 403.297 2974.02 441.483 2947.36 471.1C2920.71 500.718 2883.96 519.719 2844.05 524.519C2804.13 529.32 2763.81 519.589 2730.68 497.162C2697.56 474.734 2673.92 441.16 2664.24 402.772H2573.97C2581.55 449.776 2602.67 493.66 2634.82 529.228C2666.96 564.796 2708.8 590.561 2755.37 603.471C2801.94 616.381 2851.3 615.897 2897.6 602.076C2943.9 588.254 2985.21 561.675 3016.63 525.483C3048.05 489.291 3068.27 445.002 3074.89 397.858C3081.52 350.715 3074.28 302.69 3054.02 259.47C3033.77 216.249 3001.34 179.642 2960.59 153.981C2919.84 128.321 2872.47 114.681 2824.09 114.676Z')
+          path(d='M838.052 114.676C777.772 114.687 719.471 135.843 673.627 174.341C627.782 212.84 597.399 266.158 587.936 324.714H678.201C687.89 286.326 711.526 252.752 744.65 230.325C777.773 207.897 818.095 198.166 858.011 202.967C897.927 207.768 934.677 226.769 961.33 256.386C987.984 286.003 1002.7 324.19 1002.7 363.743C1002.7 403.297 987.984 441.483 961.33 471.1C934.677 500.718 897.927 519.719 858.011 524.519C818.095 529.32 777.773 519.589 744.65 497.162C711.526 474.734 687.89 441.16 678.201 402.772H587.936C595.518 449.776 616.633 493.66 648.781 529.228C680.93 564.796 722.765 590.561 769.337 603.471C815.908 616.381 865.265 615.897 911.565 602.076C957.866 588.254 999.171 561.675 1030.59 525.483C1062.01 489.291 1082.23 445.002 1088.86 397.858C1095.49 350.715 1088.24 302.69 1067.99 259.47C1047.73 216.249 1015.31 179.642 974.559 153.981C933.809 128.321 886.437 114.681 838.052 114.676Z')
+      .header-buttons-wrapper
+        .each-header-button#projects-header-button= __('PROJECTS')
+        .each-header-button#calculator-header-button= __('CALCULATOR')
+        .each-header-button#how-to-stake-header-button= __('INFO')
+        .each-header-button#about-us-header-button= __('ABOUT US')
+    .background-wrapper
+      img.background-image(src='/res/images/background.gif')
+    .content-wrapper
+      .start-page-wrapper
+        .start-page-title
+          .start-page-title-text= __('STAKE YOUR ASSETS')
+        .start-page-text= __('Stake your assets with the industry\'s most user-friendly organization! node101 accompanies you on your staking journey from start to finish and offers a privileged service where you can safely stake your assets and get support from experts whenever you want.')
+        .learn-more-button
+          .learn-more-button-text= __('LEARN MORE')
+          svg.learn-more-button-icon(viewBox='0 0 31 17' fill='none' xmlns='http://www.w3.org/2000/svg')
+            path(d='M0.43934 0.43934C0.971873 -0.0931933 1.8052 -0.141605 2.39242 0.294104L2.56066 0.43934L15.5 13.378L28.4393 0.43934C28.9719 -0.0931933 29.8052 -0.141605 30.3924 0.294104L30.5607 0.43934C31.0932 0.971873 31.1416 1.8052 30.7059 2.39242L30.5607 2.56066L16.5607 16.5607C16.0281 17.0932 15.1948 17.1416 14.6076 16.7059L14.4393 16.5607L0.43934 2.56066C-0.146447 1.97487 -0.146447 1.02513 0.43934 0.43934Z' fill='var(--text-color)')
+      .x
+      .projects-wrapper
+        .projects-title= __('OUR PROJECTS')
+        .projects-subtitle= __('You may stake on us on the following projects. We will be holding validators for you in other networks in the near future.')
+        .projects-text= __('Please feel free to reach us in our social media accounts if you have any questions.')
+        .projects-inner-wrapper
+          each project in projects
+            .each-project-wrapper
+              .each-project-image(style='background-image: url(' + project.image + ')' )
+              .each-project-name= project.name.toUpperCase()
+              .each-project-apr APR ~#{parseInt(project.apr * 10000) / 100}%
+              if project.is_stakable
+                a.each-project-stake-button(href=project.stake_url target='_blank')
+                  svg.each-project-stake-button-icon(viewBox='0 0 31 32' fill='none' xmlns='http://www.w3.org/2000/svg')
+                    path(d='M14.2525 7.33968C13.9624 7.33968 13.6842 7.4549 13.4791 7.66C13.274 7.8651 13.1588 8.14327 13.1588 8.43333C13.1588 8.72338 13.274 9.00156 13.4791 9.20665C13.6842 9.41175 13.9624 9.52698 14.2525 9.52698H20.3266L11.2559 18.5955C11.1542 18.6972 11.0735 18.8179 11.0185 18.9508C10.9635 19.0836 10.9351 19.226 10.9351 19.3698C10.9351 19.5136 10.9635 19.656 11.0185 19.7889C11.0735 19.9217 11.1542 20.0425 11.2559 20.1441C11.3575 20.2458 11.4783 20.3265 11.6111 20.3815C11.744 20.4365 11.8864 20.4649 12.0302 20.4649C12.174 20.4649 12.3164 20.4365 12.4492 20.3815C12.5821 20.3265 12.7028 20.2458 12.8045 20.1441L21.873 11.0734V17.1475C21.873 17.4376 21.9882 17.7158 22.1933 17.9209C22.3984 18.126 22.6766 18.2412 22.9667 18.2412C23.2567 18.2412 23.5349 18.126 23.74 17.9209C23.9451 17.7158 24.0603 17.4376 24.0603 17.1475V8.43333C24.0603 8.14327 23.9451 7.8651 23.74 7.66C23.5349 7.4549 23.2567 7.33968 22.9667 7.33968H14.2525ZM21.3612 31.4C22.6638 31.4003 23.9238 30.9356 24.9143 30.0895C25.9047 29.2434 26.5606 28.0715 26.7638 26.7848C27.8812 26.4402 28.8588 25.7467 29.5532 24.8058C30.2476 23.865 30.6222 22.7265 30.6222 21.5571V6.24603C30.6222 4.79575 30.0461 3.40488 29.0206 2.37939C27.9951 1.35389 26.6042 0.777771 25.154 0.777771H9.84286C8.66062 0.77771 7.51018 1.16065 6.56382 1.86923C5.61746 2.57782 4.92612 3.57392 4.59333 4.70835C3.311 4.9162 2.14455 5.57379 1.3029 6.56333C0.461247 7.55287 -0.000626768 8.80973 6.38356e-07 10.1088V23.7444C6.38356e-07 25.7748 0.806566 27.722 2.24226 29.1577C3.67796 30.5934 5.62518 31.4 7.65556 31.4H21.3612ZM2.1873 10.1088C2.18649 9.42965 2.39646 8.76698 2.78824 8.21223C3.18002 7.65747 3.73429 7.23796 4.3746 7.01158V21.5571C4.3746 23.0074 4.95072 24.3983 5.97622 25.4238C7.00171 26.4493 8.39259 27.0254 9.84286 27.0254H24.454C24.2279 27.665 23.8091 28.2188 23.2552 28.6105C22.7013 29.0022 22.0396 29.2126 21.3612 29.2127H7.65556C6.20529 29.2127 4.81441 28.6366 3.78892 27.6111C2.76342 26.5856 2.1873 25.1947 2.1873 23.7444V10.1088ZM9.84286 2.96507H25.154C26.0241 2.96507 26.8587 3.31074 27.474 3.92604C28.0893 4.54134 28.4349 5.37586 28.4349 6.24603V21.5571C28.4349 22.4273 28.0893 23.2618 27.474 23.8771C26.8587 24.4924 26.0241 24.8381 25.154 24.8381H9.84286C8.9727 24.8381 8.13817 24.4924 7.52287 23.8771C6.90758 23.2618 6.56191 22.4273 6.56191 21.5571V6.24603C6.56191 5.37586 6.90758 4.54134 7.52287 3.92604C8.13817 3.31074 8.9727 2.96507 9.84286 2.96507Z' fill='white')
+                  .each-project-stake-button-text Stake Now
+                a.each-project-how-to-stake-button(href=project.how_to_stake_url target='_blank')= __('How to Stake?')
+              else
+                .each-project-will-be-stakable-button= __('Coming Soon')
+      .calculator-wrapper
+        .calculator-title= __('CALCULATOR')
+        .calculator-subtitle= __('Calculate how much you will gain with node101.')
+        .calculator-projects-wrapper
+          each project, i in projects
+            if project.is_stakable
+              .calculator-each-project-title(id='calculator-' + project.name class=(i == 0 ? 'calculator-each-project-title-selected' : ''))= project.name.toUpperCase()
+        .calculator-each-line-wrapper
+          .calculator-each-line-name= projects[0].name.toUpperCase()
+          .calculator-each-line
+            .calculator-each-line-button(style='margin-left: calc(50% - 10px)')
+              .calculator-each-line-button-text 50.000
+          .calculator-each-line-ammount 50.000
+        .calculator-each-line-wrapper
+          .calculator-each-line-name= __('TIME')
+          .calculator-each-line
+            .calculator-each-line-button(style='margin-left: calc(30% - 10px)')
+              .calculator-each-line-button-text 28 #{__('DAY')}
+          .calculator-each-line-ammount 28 #{__('DAY')}
+        .calculator-earn-title= __('YOUR EARN')
+        .calculator-earn-wrapper
+          .calculator-each-earn-item#calculator-earn-token-item
+            img.calculator-each-earn-item-icon(src=projects[0].image alt=(projects[0].name + __(' stake')))
+            .calculator-each-earn-item-text= Math.round((50000 * 28 / 365 * parseFloat(projects[0].apr)))
+          .calculator-each-earn-item#calculator-earn-dollars-item
+            .calculator-each-earn-item-icon $
+            .calculator-each-earn-item-text= Math.round((50000 * 28 / 365 * parseFloat(projects[0].apr)) * projects[0].market_price)
+        .calculator-text= __('The amount you will be awarded is calculated using daily interest. Your actual gain may vary slightly from the numbers shown here. Please feel free to contact our team to learn more.')
+      .how-to-stake-wrapper
+        .how-to-stake-subtitle= __('HOW CAN YOU')
+        .how-to-stake-title= __('STAKE A PROJECT?')
+        .how-to-stake-text= __('It is quite easy and very profitable with node101 to stake on projects you choose and have a passive-income. Just follow the three simple steps below. Always feel free to contact us on your questions!')
+        .how-to-stake-steps-wrapper
+          .each-how-to-stake-step
+            .each-how-to-stake-icon-wrapper
+              img.each-how-to-stake-icon(src='/res/images/step_icons/search_and_decide.png' alt=__('How to stake with node101? Search and Decide icon.'))
+            .each-how-to-stake-title.color-one= __('SEARCH & DECIDE')
+            .each-how-to-stake-text= __('See the projects in which we have a validator and choose which projects you want to start with. Just read or watch our writings, videos, and podcats about the projects to learn more.')
+          .each-how-to-stake-step
+            .each-how-to-stake-icon-wrapper
+              img.each-how-to-stake-icon(src='/res/images/step_icons/stake_your_coin.png' alt=__('How to stake with node101? Stake your Coin icon.'))
+            .each-how-to-stake-title.color-two= __('STAKE YOUR COIN')
+            .each-how-to-stake-text= __('Click \'How to Stake?\' link below the project you choose to learn how you should stake. We will guide and inform you through the process. We hope you will find our guide quite easy to follow and very quick to perform.')
+          .each-how-to-stake-step
+            .each-how-to-stake-icon-wrapper
+              img.each-how-to-stake-icon(src='/res/images/step_icons/earn_regularly.png' alt=__('How to stake with node101? Earn regularly icon.'))
+            .each-how-to-stake-title.color-three= __('EARN REGULARY')
+            .each-how-to-stake-text= __('Now all you have to do is to wait and see how your capital grows day by day. Once you stake, you do not have to do anything else. Our team will reach you if you need to take another action in any way. It is a true passive income!')
+      .about-us-wrapper
+        .about-us-title= __('ABOUT US')
+        .about-us-subtitle= __('node101 describes promising projects in the blockchain ecosystem in a pure language. In addition, it offers a service to users with products that provide financial returns such as node, testnet, staking, and validation.')
+        .about-us-text= __('The node101 team, consisting of a group of young software developers and content producers graduated from the world\'s leading schools such as the University of Michigan, Ludwig-Maximillian, University of Sorbonne, and Bogazici University, provides solutions to the accessibility and scalability problems in the industry.')
+        a.about-us-join-button= __('JOIN US')
+        .team-wrapper
+          - for (let i = 0; i < team.length; i += 3)
+            .each-team-line
+              - for (let j = i; j < Math.min(i + 3, team.length); j++)
+                .each-team-member-wrapper
+                  img.each-team-member-background(src=team[j].image loading='lazy' alt='node101' + team[j].name)
+                  .each-team-member-info
+                    .each-team-member-name= team[j].name
+                    .each-team-member-position= __(team[j].position)
+                  .each-team-member-details(style='display: none')
+                    .each-team-member-name= team[j].name
+                    .each-team-member-position= __(team[j].position)
+                    each info in team[j].information
+                      .each-team-member-information= __(info)
+                    .each-team-member-links-wrapper
+                      each link in Object.keys(team[j].links)
+                        a.each-team-member-link(href=team[j].links[link])
+                          svg(fill='var(--text-color)' xmlns='http://www.w3.org/2000/svg' viewBox=getSocialMediaIconPathAndViewBox(link).viewBox)
+                            path(d=getSocialMediaIconPathAndViewBox(link).path)

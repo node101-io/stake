@@ -594,6 +594,28 @@
   color: var(--text-color);
   text-align: center;
 }
+.about-us-social-media-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: fit-content;
+  min-height: fit-content;
+  margin-top: 20px;
+}
+.about-us-each-social-media-icon {
+  margin: 0 10px;
+  cursor: pointer;
+  text-decoration: none;
+  opacity: 0.8;
+}
+.about-us-each-social-media-icon svg {
+  height: 18px;
+  width: auto;
+}
+.about-us-each-social-media-icon:hover {
+  opacity: 1;
+}
 
 .about-us-join-button {
   width: 170px;
@@ -606,7 +628,7 @@
   font-size: var(--title-font-size);
   color: var(--color-three);
   font-weight: 700;
-  margin-top: 20px;
+  margin-top: 25px;
   cursor: pointer;
   text-decoration: none;
   box-shadow: 0 0 10px rgba(142, 243, 249, 0.3);

@@ -93,6 +93,28 @@
   flex-direction: column;
 }
 
+.social-media-wrapper {
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  left: 30px;
+  bottom: 30px;
+}
+.each-social-media-icon {
+  margin-top: 10px;
+  cursor: pointer;
+  text-decoration: none;
+  opacity: 0.8;
+}
+.each-social-media-icon svg {
+  height: 18px;
+  width: auto;
+}
+.each-social-media-icon:hover {
+  opacity: 1;
+}
+
 .start-page-wrapper {
   z-index: -1;
   position: absolute;
@@ -104,7 +126,6 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* background-color: rgba(1, 1, 1, 0.8); */
 }
 .start-page-title {
   width: 100%;
@@ -131,30 +152,29 @@
   text-align: center;
 }
 
-.learn-more-button {
-  position: absolute;
-  z-index: 2;
-  left: 50vw;
-  bottom: 20px;
+.start-page-learn-more-button {
+  margin-left: 50%;
   transform: translateX(-50%);
+  margin-top: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   cursor: pointer;
-  opacity: 0.8;
-}
-.learn-more-button:hover {
-  opacity: 1;
-}
-.learn-more-button-text {
-  font-size: var(--title-font-size);
+  background-color: var(--text-color);
+  color: rgba(125, 128, 218, 1);
   font-weight: 800;
-  line-height: var(--title-line-height);
-  color: var(--text-color);
+  font-size: 16px;
+  width: 150px;
+  height: 50px;
+  border-radius: var(--border-radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(18, 18, 18, 0.3);
 }
-.learn-more-button-icon {
-  width: 25px;
-  height: auto;
+.start-page-learn-more-button-hovered {
+  box-shadow: 0 0 10px rgba(18, 18, 18, 0.8) !important;
 }
 
 .start-page-transparent-cover {
@@ -247,7 +267,7 @@
   align-items: center;
   justify-content: center;
   background: radial-gradient(73.74% 241.74% at 40.91% -26.67%, rgba(153, 133, 235, 0.8) 17.71%, rgba(153, 133, 235, 0.8) 32.29%, rgba(147, 191, 242, 0.8) 79.69%, rgba(144, 220, 246, 0.8) 96.35%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
-  border-radius: 18px;
+  border-radius: var(--border-radius);
   text-decoration: none;
   box-shadow: 0 0 10px rgba(1, 1, 1, 0.7);
   cursor: pointer;

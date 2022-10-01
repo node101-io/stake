@@ -84,6 +84,7 @@ textarea {
   --background-color: rgb(18, 18, 18);
 
   --border-width: 2px;
+  --border-radius: 18px;
 }
 
 .bold {

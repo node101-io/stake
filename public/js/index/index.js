@@ -2,19 +2,20 @@ const MAX_TOKEN = 100000;
 const MAX_TIME = 90;
 
 let projects;
+let isOnStartPageButton = false;
 let clickedCalculatorButton = null;
 let selectedCalculatorProject;
 let calculatorToken = 50000;
 let calculatorDay = 27;
 
 function smoothScroll(element, amount) {
-  if (amount < 10)
+  if (amount < 0)
     return;
 
-  element.scrollBy(0, 10);
+  element.scrollBy(0, Math.min(amount, 15));
 
   setTimeout(() => {
-    smoothScroll(element, amount - 10);
+    smoothScroll(element, amount - 15);
   }, 5);
 }
 
@@ -71,15 +72,17 @@ window.addEventListener('load', () => {
   const howToStakeScrollDistance = getScrollDistance(howToStakeWrapper) - 500;
   const aboutUsScrollDistance = getScrollDistance(aboutUsWrapper) - 500;
 
+  const startPageLearnMoreButton = document.querySelector('.start-page-learn-more-button');
+
   document.querySelector('.content-wrapper').addEventListener('scroll', event => {
     document.querySelector('.header-wrapper').style.backgroundColor = `rgba(18, 18, 18, ${Math.min(2 * event.target.scrollTop, window.innerHeight) / window.innerHeight})`;
     document.querySelector('.header-wrapper').style.borderBottomColor = `rgba(254, 254, 254, ${Math.min(event.target.scrollTop, window.innerHeight) / window.innerHeight})`;
     document.querySelector('.header-wrapper').style.boxShadow = `0 0 10px rgba(254, 254, 254, ${Math.min(event.target.scrollTop, window.innerHeight) / window.innerHeight * 0.4})`;
-    document.querySelector('.learn-more-button').style.opacity = (1 - Math.min(event.target.scrollTop, 100) / 100) * 0.8;
+    document.querySelector('.social-media-wrapper').style.opacity = (1 - Math.min(event.target.scrollTop, 100) / 100) * 0.8;
     if (event.target.scrollTop >= 100)
-      document.querySelector('.learn-more-button').style.display = 'none';
+      document.querySelector('.social-media-wrapper').style.display = 'none';
     else
-      document.querySelector('.learn-more-button').style.display = 'flex';
+      document.querySelector('.social-media-wrapper').style.display = 'flex';
 
     if (event.target.scrollTop >= projectsScrollDistance && event.target.scrollTop < calculatorScrollDistance) {
       if (document.querySelector('.each-header-button-selected') && document.querySelector('.each-header-button-selected') != document.querySelector('.projects-wrapper')) {
@@ -115,10 +118,6 @@ window.addEventListener('load', () => {
   });
 
   document.addEventListener('click', event => {
-    if (ancestorWithClassName(event.target, 'learn-more-button')) {
-      smoothScroll(document.querySelector('.content-wrapper'), window.innerHeight - 100);
-    }
-
     if (event.target.classList.contains('each-header-button') && !event.target.classList.contains('each-header-button-selected')) {
       const wrapper = document.querySelector(`.${event.target.id.replace('-header-button', '')}-wrapper`);
       document.querySelector('.content-wrapper').scrollBy(0, getScrollDistance(wrapper) - 100);
@@ -134,12 +133,28 @@ window.addEventListener('load', () => {
       selectedCalculatorProject = projects.find(each => each._id.toString() == event.target.id.replace('calculator-', ''));
       event.target.classList.add('calculator-each-project-title-selected');
     }
+
+    if (isOnStartPageButton) {
+      smoothScroll(document.querySelector('.content-wrapper'), window.innerHeight - 80);
+      startPageLearnMoreButton.classList.remove('start-page-learn-more-button-hovered');
+      document.body.style.cursor = 'unset';
+    }
   });
 
   document.addEventListener('mousemove', event => {
     if (clickedCalculatorButton) {
       clickedCalculatorButton.style.marginLeft = Math.max(0, Math.min(event.clientX - clickedCalculatorButton.parentNode.getBoundingClientRect().left - clickedCalculatorButton.offsetWidth / 2, clickedCalculatorButton.parentNode.offsetWidth - clickedCalculatorButton.offsetWidth)) + 'px';
       updateCalculatorInfo(clickedCalculatorButton);
+    }
+
+    if (event.clientX >= startPageLearnMoreButton.getBoundingClientRect().left && event.clientX <= startPageLearnMoreButton.getBoundingClientRect().right && event.clientY >= startPageLearnMoreButton.getBoundingClientRect().top && event.clientY <= startPageLearnMoreButton.getBoundingClientRect().bottom) {
+      startPageLearnMoreButton.classList.add('start-page-learn-more-button-hovered');
+      document.body.style.cursor = 'pointer';
+      isOnStartPageButton = true;
+    } else {
+      startPageLearnMoreButton.classList.remove('start-page-learn-more-button-hovered');
+      document.body.style.cursor = 'unset';
+      isOnStartPageButton = false;
     }
   });
 

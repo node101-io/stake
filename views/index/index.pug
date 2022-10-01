@@ -154,3 +154,21 @@ block content
                         a.each-team-member-link(href=team[j].links[link] target='_blank')
                           svg(fill='var(--text-color)' xmlns='http://www.w3.org/2000/svg' viewBox=getSocialMediaIconPathAndViewBox(link).viewBox)
                             path(d=getSocialMediaIconPathAndViewBox(link).path)
+        .responsive-team-wrapper
+          - for (let j = 0; j < team.length; j += 1)
+            .each-team-member-wrapper
+                  img.each-team-member-background(src=team[j].image loading='lazy' alt='node101' + team[j].name)
+                  .each-team-member-info
+                    .each-team-member-name= team[j].name
+                    .each-team-member-position= __(team[j].position)
+                  .each-team-member-details(style='display: none')
+                    .each-team-member-name= team[j].name
+                    .each-team-member-position= __(team[j].position)
+                    each info in team[j].information
+                      .each-team-member-information= __(info)
+                    .each-team-member-links-wrapper
+                      each link in Object.keys(team[j].links)
+                        a.each-team-member-link(href=team[j].links[link])
+                          svg(fill='var(--text-color)' xmlns='http://www.w3.org/2000/svg' viewBox=getSocialMediaIconPathAndViewBox(link).viewBox)
+                            path(d=getSocialMediaIconPathAndViewBox(link).path)
+

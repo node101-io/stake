@@ -5,6 +5,7 @@
   --each-project-width: 180px;
   --each-how-to-stake-width: 300px;
   --calculator-line-item-width: 100px;
+  --text-margin: 0px
 }
 
 .all-wrapper {
@@ -132,6 +133,7 @@
   display: flex; 
   flex-direction: column;
   align-items: center;
+  text-align: center;
 }
 .start-page-title-text {
   font-size: var(--header-font-size);
@@ -144,11 +146,15 @@
   height: auto;
 }
 .start-page-text {
+  width: calc(100% - 50px);
   margin-top: 30px;
+  margin-left: 25px;
   font-size: var(--title-font-size);
   font-weight: 600;
   line-height: var(--title-line-height);
   color: var(--text-color);
+  align-content: center;
+  justify-content: center;
   text-align: center;
 }
 
@@ -204,6 +210,7 @@
   -webkit-text-fill-color: transparent;
   background-clip: text;
   text-fill-color: transparent;
+  text-align: center;
 }
 .projects-subtitle {
   width: var(--projects-width);
@@ -317,6 +324,7 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  text-align: center;
   text-fill-color: transparent;
 }
 .calculator-subtitle {
@@ -328,15 +336,16 @@
   margin-bottom: 10px;
 }
 .calculator-text {
-  width: 600px;
+  width: var(--text-width);
   font-size: var(--text-font-size);
   font-weight: 500;
   line-height: var(--text-line-height);
   color: var(--text-color);
   text-align: center;
   margin-top: 60px;
+  margin-left: var(--text-margin);
+  margin-right: var(--text-margin)
 }
-
 .calculator-projects-wrapper {
   margin-top: 40px;
   display: flex;
@@ -521,6 +530,7 @@
   -webkit-text-fill-color: transparent;
   background-clip: text;
   text-fill-color: transparent;
+  text-align: center;
 }
 .how-to-stake-text {
   margin-top: 20px;
@@ -607,6 +617,8 @@
 }
 .about-us-text {
   margin-top: 10px;
+  margin-left: var(--text-margin);
+  margin-right: var(--text-margin);
   width: var(--text-width);
   font-size: var(--text-font-size);
   font-weight: 400;
@@ -664,6 +676,17 @@
   margin-top: 100px;
   margin-bottom: 30px;
 }
+
+.responsive-team-wrapper {
+  display: none;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  margin-top: 100px;
+  margin-bottom: 30px;
+}
+
 .each-team-line {
   display: flex;
   align-items: center;
@@ -750,4 +773,83 @@
 }
 .each-team-member-link:hover {
   opacity: 1;
+}
+
+@media only screen and (max-width: 1200px) {
+  .team-wrapper {
+    display: none;
+  }
+  .responsive-team-wrapper {
+    display: flex;
+  }
+  .each-team-member-wrapper {
+    margin-bottom: 30px;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .each-how-to-stake-step {
+    margin: 10px 10px;
+  }
+  .how-to-stake-steps-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  :root {
+    --projects-width: 600px;
+    --text-width: 600px;
+    --text-margin: 50px
+  }
+  
+}
+
+@media only screen and (max-width: 700px) {
+  :root {
+    --projects-width: 500px;
+    --text-width: 500px;
+  }
+}
+
+@media only screen and (max-width: 600px){
+  :root {
+    --projects-width: 450px;
+    --text-width: 450px;
+    
+  }
+}
+
+@media only screen and (max-width: 500px){
+  :root {
+    --projects-width: 400px;
+    --text-width: 400px;
+  }
+}
+
+@media only screen and (max-width: 450px){
+  :root {
+    --projects-width: 290px;
+    --text-width: 290px;
+    --calculator-line-item-width: 50px;
+  }
+  .calculator-each-line-wrapper {
+    display: flex;
+    justify-content: space-evenly;
+  }
+  .calculator-each-line-ammount {
+    margin-left: 10px;
+  }
+}
+
+@media only screen and (max-width: 400px){
+  :root {
+    --projects-width: 260px;
+    --text-width: 290px;
+     
+  }
+  .each-project-wrapper {
+    margin: 0px 50px;
+  }
 }

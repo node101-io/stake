@@ -13,12 +13,18 @@ block content
           path(d='M2824.09 114.676C2763.81 114.696 2705.51 135.854 2659.67 174.351C2613.83 212.848 2583.44 266.161 2573.97 324.714H2664.24C2673.92 286.326 2697.56 252.752 2730.68 230.325C2763.81 207.897 2804.13 198.166 2844.05 202.967C2883.96 207.768 2920.71 226.769 2947.36 256.386C2974.02 286.003 2988.73 324.19 2988.73 363.743C2988.73 403.297 2974.02 441.483 2947.36 471.1C2920.71 500.718 2883.96 519.719 2844.05 524.519C2804.13 529.32 2763.81 519.589 2730.68 497.162C2697.56 474.734 2673.92 441.16 2664.24 402.772H2573.97C2581.55 449.776 2602.67 493.66 2634.82 529.228C2666.96 564.796 2708.8 590.561 2755.37 603.471C2801.94 616.381 2851.3 615.897 2897.6 602.076C2943.9 588.254 2985.21 561.675 3016.63 525.483C3048.05 489.291 3068.27 445.002 3074.89 397.858C3081.52 350.715 3074.28 302.69 3054.02 259.47C3033.77 216.249 3001.34 179.642 2960.59 153.981C2919.84 128.321 2872.47 114.681 2824.09 114.676Z')
           path(d='M838.052 114.676C777.772 114.687 719.471 135.843 673.627 174.341C627.782 212.84 597.399 266.158 587.936 324.714H678.201C687.89 286.326 711.526 252.752 744.65 230.325C777.773 207.897 818.095 198.166 858.011 202.967C897.927 207.768 934.677 226.769 961.33 256.386C987.984 286.003 1002.7 324.19 1002.7 363.743C1002.7 403.297 987.984 441.483 961.33 471.1C934.677 500.718 897.927 519.719 858.011 524.519C818.095 529.32 777.773 519.589 744.65 497.162C711.526 474.734 687.89 441.16 678.201 402.772H587.936C595.518 449.776 616.633 493.66 648.781 529.228C680.93 564.796 722.765 590.561 769.337 603.471C815.908 616.381 865.265 615.897 911.565 602.076C957.866 588.254 999.171 561.675 1030.59 525.483C1062.01 489.291 1082.23 445.002 1088.86 397.858C1095.49 350.715 1088.24 302.69 1067.99 259.47C1047.73 216.249 1015.31 179.642 974.559 153.981C933.809 128.321 886.437 114.681 838.052 114.676Z')
       .header-buttons-wrapper
-        .each-header-button#projects-header-button= __('PROJECTS')
-        .each-header-button#calculator-header-button= __('CALCULATOR')
-        .each-header-button#how-to-stake-header-button= __('INFO')
-        .each-header-button#about-us-header-button= __('ABOUT US')
+        .each-header-button.each-nav-button#projects-header-button= __('PROJECTS')
+        .each-header-button.each-nav-button#calculator-header-button= __('CALCULATOR')
+        .each-header-button.each-nav-button#how-to-stake-header-button= __('INFO')
+        .each-header-button.each-nav-button#about-us-header-button= __('ABOUT US')
+      i.fas.fa-bars.hamburger-menu-wrapper
     .background-wrapper
       img.background-image(src='/res/images/background.gif')
+      .sidenav-wrapper()
+        .each-header-button.each-sidenav-button#projects-header-button= __('PROJECTS')
+        .each-header-button.each-sidenav-button#calculator-header-button= __('CALCULATOR')
+        .each-header-button.each-sidenav-button#how-to-stake-header-button= __('INFO')
+        .each-header-button.each-sidenav-button#about-us-header-button= __('ABOUT US')
     .content-wrapper
       .social-media-wrapper
         a.each-social-media-icon(href='https://t.me/node101' target='_blank') 
@@ -171,4 +177,5 @@ block content
                         a.each-team-member-link(href=team[j].links[link])
                           svg(fill='var(--text-color)' xmlns='http://www.w3.org/2000/svg' viewBox=getSocialMediaIconPathAndViewBox(link).viewBox)
                             path(d=getSocialMediaIconPathAndViewBox(link).path)
+
 

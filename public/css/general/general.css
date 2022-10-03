@@ -107,8 +107,18 @@ textarea {
   }
 }
 
+@media only screen and (max-width: 800px) {
+  :root {
+    --page-horizontal-padding: 40px;
+    --content-margin: 20px;
+  }
+
+}
+
 @media only screen and (max-width: 500px) {
   :root {
+    --page-horizontal-padding: 20px;
+
     --header-font-size: 45px;
     --title-font-size: 16px;
     --text-font-size: 15px;

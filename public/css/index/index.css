@@ -50,6 +50,7 @@
   color: var(--text-color);
   font-weight: 700;
   cursor: pointer;
+  text-align: center;
 }
 .each-header-button:hover {
   margin-bottom: calc(-2 * var(--border-width));
@@ -65,6 +66,16 @@
   margin-bottom: 0 !important;
   border-bottom: 0 !important;
   padding-bottom: 0 !important;
+}
+.hamburger-menu-wrapper {
+  display: none !important;
+  font-size: 24px;
+  margin-left: var(--content-margin);
+  line-height: var(--text-line-height);
+  color: var(--text-color);
+  font-weight: 700;
+  cursor: pointer;
+  text-align: center;
 }
 
 .background-wrapper {
@@ -775,6 +786,55 @@
   opacity: 1;
 }
 
+.sidenav-wrapper {
+  display: flex;
+  transform: translateX(250px);
+  z-index: 12;
+  background-color: rgb(18, 18, 18);
+  height: 100%;
+  width: 250px;
+  position: absolute;
+  right: 0px;
+  padding-top: 7%;
+  border-left: 0.5px solid rgba(255, 255, 255, 1);
+  flex-direction: column;
+}
+
+@keyframes open {
+  from {margin-right: 0px;}
+  to {margin-right: 250px;}
+}
+@keyframes close {
+  from {margin-right: 250px;}
+  to {margin-right: 0px;}
+}
+
+.open-sidenav-wrapper {
+  animation-name: open;
+  animation-duration: 0.5s;
+}
+
+.close-sidenav-wrapper {
+  animation-name: close;
+  animation-duration: 0.5s;
+}
+
+.each-sidenav-button {
+  height: 4%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-right: 20px;
+  font-size: var(--title-font-size);
+  line-height: var(--text-line-height);
+  color: var(--text-color);
+  font-weight: 700;
+  cursor: pointer;
+  border-top: 0.5px solid rgb(255, 255, 255);
+  text-align: center;
+}
+
 @media only screen and (max-width: 1200px) {
   .team-wrapper {
     display: none;
@@ -804,12 +864,19 @@
     --text-margin: 50px
   }
   
+  
 }
 
 @media only screen and (max-width: 700px) {
   :root {
     --projects-width: 500px;
     --text-width: 500px;
+  }
+  .each-nav-button {
+    display: none
+  }
+  .hamburger-menu-wrapper {
+    display: flex !important;
   }
 }
 

@@ -7,6 +7,7 @@ let clickedCalculatorButton = null;
 let selectedCalculatorProject;
 let calculatorToken = 50000;
 let calculatorDay = 27;
+let firstClick = false;
 
 function smoothScroll(element, amount) {
   if (amount < 0)
@@ -118,6 +119,8 @@ window.addEventListener('load', () => {
   });
 
   document.addEventListener('click', event => {
+
+
     if (event.target.classList.contains('each-header-button') && !event.target.classList.contains('each-header-button-selected')) {
       const wrapper = document.querySelector(`.${event.target.id.replace('-header-button', '')}-wrapper`);
       document.querySelector('.content-wrapper').scrollBy(0, getScrollDistance(wrapper) - 100);
@@ -139,6 +142,30 @@ window.addEventListener('load', () => {
       startPageLearnMoreButton.classList.remove('start-page-learn-more-button-hovered');
       document.body.style.cursor = 'unset';
     }
+
+    if (event.target.classList.contains('hamburger-menu-wrapper')) {
+      const sidenav = document.querySelector('.sidenav-wrapper');
+      sidenav.classList.add('open-sidenav-wrapper')
+      sidenav.classList.remove('close-sidenav-wrapper')
+      sidenav.style.marginRight = '250px'
+      menuOn = true;
+    }
+
+    if (!event.target.classList.contains('sidenav-wrapper')) {
+      if(menuOn && firstClick){
+        const sidenav = document.querySelector('.sidenav-wrapper');
+        sidenav.classList.remove('open-sidenav-wrapper')
+        sidenav.classList.add('close-sidenav-wrapper')
+        sidenav.style.marginRight = '0px'
+
+        firstClick = false
+        menuOn = false;
+      }
+      else {
+        firstClick = true;
+      }
+    }
+
   });
 
   document.addEventListener('mousemove', event => {

@@ -35,7 +35,7 @@
 }
 .header-logo-icon {
   width: auto;
-  height: 30px;
+  height: 25px;
 }
 
 .header-buttons-wrapper {
@@ -44,7 +44,7 @@
   align-items: center;
 }
 .each-header-button {
-  margin-left: var(--content-margin);
+  margin-right: var(--content-margin);
   font-size: var(--text-font-size);
   line-height: var(--text-line-height);
   color: var(--text-color);
@@ -66,6 +66,25 @@
   margin-bottom: 0 !important;
   border-bottom: 0 !important;
   padding-bottom: 0 !important;
+}
+.header-language-seperator {
+  width: 2px;
+  height: 35px;
+  border-radius: 1px;
+  background-color: var(--text-color);
+}
+.header-language-button {
+  margin-left: var(--content-margin);
+  font-size: var(--text-font-size);
+  line-height: var(--text-line-height);
+  color: var(--text-color);
+  font-weight: 800;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+}
+.header-language-button:hover {
+  color: var(--color-three);
 }
 .hamburger-menu-wrapper {
   display: none;

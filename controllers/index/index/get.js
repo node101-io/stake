@@ -16,6 +16,7 @@ module.exports = (req, res) => {
         }
       },
       lang: req.query.lang,
+      page_lang,
       getSocialMediaIconPathAndViewBox: function (link) {
         if (link == 'web')
           return ({

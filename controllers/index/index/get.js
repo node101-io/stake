@@ -6,7 +6,7 @@ module.exports = (req, res) => {
     title: res.__('Stake your assets with node101!'),
     includes: {
       external: {
-        css: ['general', 'page', 'fontawesome'],
+        css: ['general', 'page'],
         js: ['ancestorWithClassName', 'page']
       }
     },

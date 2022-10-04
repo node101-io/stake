@@ -7,6 +7,7 @@ let clickedCalculatorButton = null;
 let selectedCalculatorProject;
 let calculatorToken = 50000;
 let calculatorDay = 27;
+let isMenuOn = false;
 let firstClick = false;
 
 function smoothScroll(element, amount) {
@@ -76,9 +77,10 @@ window.addEventListener('load', () => {
   const startPageLearnMoreButton = document.querySelector('.start-page-learn-more-button');
 
   document.querySelector('.content-wrapper').addEventListener('scroll', event => {
-    document.querySelector('.header-wrapper').style.backgroundColor = `rgba(18, 18, 18, ${Math.min(2 * event.target.scrollTop, window.innerHeight) / window.innerHeight})`;
-    document.querySelector('.header-wrapper').style.borderBottomColor = `rgba(254, 254, 254, ${Math.min(event.target.scrollTop, window.innerHeight) / window.innerHeight})`;
-    document.querySelector('.header-wrapper').style.boxShadow = `0 0 10px rgba(254, 254, 254, ${Math.min(event.target.scrollTop, window.innerHeight) / window.innerHeight * 0.4})`;
+    document.querySelector('.header-wrapper').style.backgroundColor = `rgba(18, 18, 18, ${Math.min(2 * event.target.scrollTop, window.innerHeight) / window.innerHeight * 0.4})`;
+    document.querySelector('.header-wrapper').style.boxShadow = `0 0 10px rgba(254, 254, 254, ${Math.min(event.target.scrollTop, window.innerHeight) / window.innerHeight * 0.3})`;
+    document.querySelector('.header-wrapper').style.backdropFilter = `blur(${Math.min(2 * event.target.scrollTop, window.innerHeight) / window.innerHeight * 30}px)`;
+    
     document.querySelector('.social-media-wrapper').style.opacity = (1 - Math.min(event.target.scrollTop, 100) / 100) * 0.8;
     if (event.target.scrollTop >= 100)
       document.querySelector('.social-media-wrapper').style.display = 'none';
@@ -119,8 +121,6 @@ window.addEventListener('load', () => {
   });
 
   document.addEventListener('click', event => {
-
-
     if (event.target.classList.contains('each-header-button') && !event.target.classList.contains('each-header-button-selected')) {
       const wrapper = document.querySelector(`.${event.target.id.replace('-header-button', '')}-wrapper`);
       document.querySelector('.content-wrapper').scrollBy(0, getScrollDistance(wrapper) - 100);
@@ -143,23 +143,23 @@ window.addEventListener('load', () => {
       document.body.style.cursor = 'unset';
     }
 
-    if (event.target.classList.contains('hamburger-menu-wrapper')) {
-      const sidenav = document.querySelector('.sidenav-wrapper');
-      sidenav.classList.add('open-sidenav-wrapper')
-      sidenav.classList.remove('close-sidenav-wrapper')
-      sidenav.style.marginRight = '250px'
-      menuOn = true;
+    if (ancestorWithClassName(event.target, 'hamburger-menu-wrapper')) {
+      const responsiveNavigationMenu = document.querySelector('.responsive-navigation-menu-wrapper');
+      responsiveNavigationMenu.classList.add('responsive-navigation-menu-wrapper-open')
+      responsiveNavigationMenu.classList.remove('responsive-navigation-menu-wrapper-close')
+      responsiveNavigationMenu.style.marginRight = '250px'
+      isMenuOn = true;
     }
 
-    if (!event.target.classList.contains('sidenav-wrapper')) {
-      if(menuOn && firstClick){
-        const sidenav = document.querySelector('.sidenav-wrapper');
-        sidenav.classList.remove('open-sidenav-wrapper')
-        sidenav.classList.add('close-sidenav-wrapper')
-        sidenav.style.marginRight = '0px'
+    if (!event.target.classList.contains('responsive-navigation-menu-wrapper')) {
+      if (isMenuOn && firstClick){
+        const responsiveNavigationMenu = document.querySelector('.responsive-navigation-menu-wrapper');
+        responsiveNavigationMenu.classList.remove('responsive-navigation-menu-wrapper-open')
+        responsiveNavigationMenu.classList.add('responsive-navigation-menu-wrapper-close')
+        responsiveNavigationMenu.style.marginRight = '0px'
 
         firstClick = false
-        menuOn = false;
+        isMenuOn = false;
       }
       else {
         firstClick = true;

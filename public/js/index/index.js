@@ -2,13 +2,12 @@ const MAX_TOKEN = 100000;
 const MAX_TIME = 90;
 
 let projects;
+let isResponsiveMenuOn = false;
 let isOnStartPageButton = false;
 let clickedCalculatorButton = null;
 let selectedCalculatorProject;
 let calculatorToken = 50000;
 let calculatorDay = 27;
-let isMenuOn = false;
-let firstClick = false;
 
 function smoothScroll(element, amount) {
   if (amount < 0)
@@ -63,6 +62,8 @@ function updateCalculatorResult() {
 window.addEventListener('load', () => {
   projects = JSON.parse(document.getElementById('projects').value);
   selectedCalculatorProject = projects.find(each => each._id.toString() == document.querySelector('.calculator-each-project-title-selected').id.replace('calculator-', ''));
+
+  const responsiveMenu = document.getElementById('responsive-menu');
 
   const projectsWrapper = document.querySelector('.projects-wrapper');
   const calculatorWrapper = document.querySelector('.calculator-wrapper');
@@ -126,6 +127,14 @@ window.addEventListener('load', () => {
       document.querySelector('.content-wrapper').scrollBy(0, getScrollDistance(wrapper) - 100);
     }
 
+    if (event.target.classList.contains('each-responsive-navigation-menu-button') && !event.target.classList.contains('each-header-button-selected')) {
+      const wrapper = document.querySelector(`.${event.target.id.replace('-header-button', '').replace('responsive-', '')}-wrapper`);
+      document.querySelector('.content-wrapper').scrollBy(0, getScrollDistance(wrapper) - 100);
+      responsiveMenu.classList.remove('responsive-navigation-menu-wrapper-open');
+      responsiveMenu.classList.add('responsive-navigation-menu-wrapper-close');
+      isResponsiveMenuOn = false;
+    }
+
     if (event.target.classList.contains('calculator-each-line')) {
       event.target.querySelector('.calculator-each-line-button').style.marginLeft = (event.clientX - event.target.getBoundingClientRect().left - (event.target.querySelector('.calculator-each-line-button').offsetWidth / 2)) + 'px';
       updateCalculatorInfo(event.target.querySelector('.calculator-each-line-button'));
@@ -137,35 +146,25 @@ window.addEventListener('load', () => {
       event.target.classList.add('calculator-each-project-title-selected');
     }
 
+    if (ancestorWithClassName(event.target, 'hamburger-menu-wrapper')) {
+      responsiveMenu.classList.add('responsive-navigation-menu-wrapper-open');
+      responsiveMenu.classList.remove('responsive-navigation-menu-wrapper-close');
+      isResponsiveMenuOn = true;
+    } else if (ancestorWithClassName(event.target, 'responsive-navigation-menu-close-button')) {
+      responsiveMenu.classList.remove('responsive-navigation-menu-wrapper-open');
+      responsiveMenu.classList.add('responsive-navigation-menu-wrapper-close');
+      isResponsiveMenuOn = false;
+    } else if (isResponsiveMenuOn && !ancestorWithClassName(event.target, 'responsive-navigation-menu-wrapper')) {
+      responsiveMenu.classList.remove('responsive-navigation-menu-wrapper-open');
+      responsiveMenu.classList.add('responsive-navigation-menu-wrapper-close');
+      isResponsiveMenuOn = false;
+    }
+
     if (isOnStartPageButton) {
       smoothScroll(document.querySelector('.content-wrapper'), window.innerHeight - 80);
       startPageLearnMoreButton.classList.remove('start-page-learn-more-button-hovered');
       document.body.style.cursor = 'unset';
     }
-
-    if (ancestorWithClassName(event.target, 'hamburger-menu-wrapper')) {
-      const responsiveNavigationMenu = document.querySelector('.responsive-navigation-menu-wrapper');
-      responsiveNavigationMenu.classList.add('responsive-navigation-menu-wrapper-open')
-      responsiveNavigationMenu.classList.remove('responsive-navigation-menu-wrapper-close')
-      responsiveNavigationMenu.style.marginRight = '250px'
-      isMenuOn = true;
-    }
-
-    if (!event.target.classList.contains('responsive-navigation-menu-wrapper')) {
-      if (isMenuOn && firstClick){
-        const responsiveNavigationMenu = document.querySelector('.responsive-navigation-menu-wrapper');
-        responsiveNavigationMenu.classList.remove('responsive-navigation-menu-wrapper-open')
-        responsiveNavigationMenu.classList.add('responsive-navigation-menu-wrapper-close')
-        responsiveNavigationMenu.style.marginRight = '0px'
-
-        firstClick = false
-        isMenuOn = false;
-      }
-      else {
-        firstClick = true;
-      }
-    }
-
   });
 
   document.addEventListener('mousemove', event => {

@@ -481,6 +481,8 @@
   color: var(--text-color);
   text-align: center;
   margin-bottom: 10px;
+  margin-left: var(--text-margin);
+  margin-right: var(--text-margin);
 }
 .calculator-text {
   width: var(--text-width);
@@ -730,6 +732,8 @@
   line-height: var(--text-line-height);
   font-weight: 400;
   width: 100%;
+  margin-left: var(--text-margin);
+  margin-right: var(--text-margin);
   text-align: center;
 }
 
@@ -755,6 +759,8 @@
 }
 .about-us-subtitle {
   margin-top: 10px;
+  margin-left: var(--text-margin);
+  margin-right: var(--text-margin);
   font-size: var(--title-font-size);
   width: var(--text-width);
   font-weight: 800;
@@ -1005,5 +1011,14 @@
   }
   .each-project-wrapper {
     margin: 0px 50px;
+  }
+  .calculator-each-line-ammount {
+    font-size: var(--text-font-size);
+  }
+  .calculator-each-line-name {
+    font-size: var(--text-font-size);
+  }
+  .each-how-to-stake-step {
+    margin: 20px 20px;
   }
 }

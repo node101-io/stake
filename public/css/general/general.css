@@ -132,13 +132,15 @@ textarea {
 
 @media only screen and (max-width: 400px) {
   :root {
-    --header-font-size: 45px;
-    --title-font-size: 16px;
-    --text-font-size: 14px;
-    --small-text-font-size: 13px;
-    --header-line-height: 60px;
-    --big-title-line-height: 50px;
-    --title-line-height: 25px;
-    --text-line-height: 18px;
+    --header-font-size: 34px;
+    --title-font-size: 15px;
+    --text-font-size: 13px;
+    --small-text-font-size: 12px;
+    --header-line-height: 50px;
+    --big-title-line-height: 45px;
+    --title-line-height: 21px;
+    --text-line-height: 16px;
+
+    --content-margin: 15px;
   }
 }

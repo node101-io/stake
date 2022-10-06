@@ -58,9 +58,9 @@ textarea {
   --page-horizontal-padding: 90px;
   --page-vertical-padding: 90px;
 
-  --content-margin: 30px;
+  --content-margin: 35px;
 
-  --header-height: 80px;
+  --header-height: 90px;
 
   --header-font-size: 64px;
   --big-title-font-size: 40px;
@@ -80,6 +80,7 @@ textarea {
   --color-four: rgba(67, 75, 216, 1);
 
   --text-color: rgba(254, 254, 254, 1);
+  --text-color-two: rgba(241, 241, 241, 0.8);
   --border-color: rgba(254, 254, 254, 1);
   --background-color: rgb(18, 18, 18);
 
@@ -106,41 +107,74 @@ textarea {
     --page-horizontal-padding: calc((100vw - 1500px) / 2 + 90px);
   }
 }
-
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 1000px) {
   :root {
-    --page-horizontal-padding: 40px;
-    --content-margin: 20px;
-  }
-
-}
-
-@media only screen and (max-width: 500px) {
-  :root {
-    --page-horizontal-padding: 20px;
-
-    --header-font-size: 45px;
-    --title-font-size: 16px;
+    --header-font-size: 50px;
+    --big-title-font-size: 35px;
+    --subtitle-font-size: 25px;
+    --title-font-size: 18px;
     --text-font-size: 15px;
     --small-text-font-size: 14px;
+  }
+}
+@media only screen and (max-width: 850px) {
+  :root {
+    --header-font-size: 45px;
+    --subtitle-font-size: 20px;
+    --title-font-size: 17px;
+
+    --page-horizontal-padding: 40px;
+    --page-vertical-padding: 40px;
+    --content-margin: 20px;
+  }
+}
+@media only screen and (max-width: 600px) {
+  :root {
+    --header-font-size: 35px;
+    --big-title-font-size: 30px;
+    --subtitle-font-size: 16px;
+    --title-font-size: 15px;
+    --text-font-size: 14px;
+    --small-text-font-size: 13px;
+
     --header-line-height: 60px;
     --big-title-line-height: 50px;
     --title-line-height: 25px;
-    --text-line-height: 18px;
+    --text-line-height: 20px;
   }
 }
+@media only screen and (max-width: 460px) {
+  :root {
+    --page-horizontal-padding: 20px;
+    --page-vertical-padding: 20px;
 
+    --header-font-size: 27px;
+    --big-title-font-size: 22px;
+    --subtitle-font-size: 15px;
+    --title-font-size: 15px;
+    --text-font-size: 14px;
+    --small-text-font-size: 13px;
+
+    --header-line-height: 50px;
+    --big-title-line-height: 50px;
+    --title-line-height: 25px;
+    --text-line-height: 20px;
+  }
+}
 @media only screen and (max-width: 400px) {
   :root {
-    --header-font-size: 34px;
-    --title-font-size: 15px;
-    --text-font-size: 13px;
-    --small-text-font-size: 12px;
-    --header-line-height: 50px;
-    --big-title-line-height: 45px;
-    --title-line-height: 21px;
-    --text-line-height: 16px;
-
     --content-margin: 15px;
+
+    --header-font-size: 27px;
+    --big-title-font-size: 22px;
+    --subtitle-font-size: 15px;
+    --title-font-size: 15px;
+    --text-font-size: 14px;
+    --small-text-font-size: 13px;
+
+    --header-line-height: 50px;
+    --big-title-line-height: 50px;
+    --title-line-height: 25px;
+    --text-line-height: 20px;
   }
 }

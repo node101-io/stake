@@ -1,3 +1,4 @@
+const CALCULATOR_INFO_SHOW_TIME = 2000;
 const MAX_TOKEN = 100000;
 const MAX_TIME = 90;
 
@@ -6,8 +7,9 @@ let isResponsiveMenuOn = false;
 let isOnStartPageButton = false;
 let clickedCalculatorButton = null;
 let selectedCalculatorProject;
-let calculatorToken = 50000;
-let calculatorDay = 27;
+let calculatorToken = 10000;
+let calculatorDay = 30;
+let showCalculatorButtonActiveList = [];
 
 function smoothScroll(element, amount) {
   if (amount < 0)
@@ -24,7 +26,25 @@ function getScrollDistance(element) {
   return window.pageYOffset + element.getBoundingClientRect().top;
 }
 
-function updateCalculatorInfo(button) {
+function showCalculatorButton(id, isRecursive) {
+  if (showCalculatorButtonActiveList.includes(id) && !isRecursive)
+    return;
+  if (!isRecursive)
+    showCalculatorButtonActiveList.push(id);
+
+  setTimeout(() => {
+    if (clickedCalculatorButton || document.getElementById(id) == document.activeElement) {
+      showCalculatorButton(id, true);
+    } else {
+      document.getElementById(id).style.display = 'none';
+      showCalculatorButtonActiveList = showCalculatorButtonActiveList.filter(each => each != id);
+    }
+  }, CALCULATOR_INFO_SHOW_TIME);
+};
+
+function updateCalculatorInfo(_button) {
+  const button = _button;
+
   if (!button.classList.contains('calculator-each-line-button'))
     return;
 
@@ -41,8 +61,11 @@ function updateCalculatorInfo(button) {
   while (amount >= 1000 && text.includes('.') && text.split('.')[1].length != 3)
     text += '0';
 
+  button.childNodes[0].style.display = 'flex';
   button.childNodes[0].innerHTML = text;
   button.parentNode.parentNode.childNodes[2].innerHTML = text;
+
+  showCalculatorButton(button.childNodes[0].id, false);
 
   updateCalculatorResult();
 }
@@ -64,6 +87,7 @@ window.addEventListener('load', () => {
   selectedCalculatorProject = projects.find(each => each._id.toString() == document.querySelector('.calculator-each-project-title-selected').id.replace('calculator-', ''));
 
   const responsiveMenu = document.getElementById('responsive-menu');
+  const contentWrapper = document.querySelector('.content-wrapper');
 
   const projectsWrapper = document.querySelector('.projects-wrapper');
   const calculatorWrapper = document.querySelector('.calculator-wrapper');
@@ -77,11 +101,11 @@ window.addEventListener('load', () => {
 
   const startPageLearnMoreButton = document.querySelector('.start-page-learn-more-button');
 
-  document.querySelector('.content-wrapper').addEventListener('scroll', event => {
-    document.querySelector('.header-wrapper').style.backgroundColor = `rgba(18, 18, 18, ${Math.min(2 * event.target.scrollTop, window.innerHeight) / window.innerHeight * 0.4})`;
-    document.querySelector('.header-wrapper').style.boxShadow = `0 0 10px rgba(254, 254, 254, ${Math.min(event.target.scrollTop, window.innerHeight) / window.innerHeight * 0.3})`;
-    document.querySelector('.header-wrapper').style.backdropFilter = `blur(${Math.min(2 * event.target.scrollTop, window.innerHeight) / window.innerHeight * 30}px)`;
-    
+  contentWrapper.addEventListener('scroll', event => {
+    // document.querySelector('.header-wrapper').style.backgroundColor = `rgba(18, 18, 18, ${Math.min(2 * event.target.scrollTop, window.innerHeight) / window.innerHeight * 0.4})`;
+    // document.querySelector('.header-wrapper').style.boxShadow = `0 0 10px rgba(254, 254, 254, ${Math.min(event.target.scrollTop, window.innerHeight) / window.innerHeight * 0.3})`;
+    // document.querySelector('.header-wrapper').style.backdropFilter = `blur(${Math.min(2 * event.target.scrollTop, window.innerHeight) / window.innerHeight * 30}px)`;
+
     document.querySelector('.social-media-wrapper').style.opacity = (1 - Math.min(event.target.scrollTop, 100) / 100) * 0.8;
     if (event.target.scrollTop >= 100)
       document.querySelector('.social-media-wrapper').style.display = 'none';
@@ -124,7 +148,7 @@ window.addEventListener('load', () => {
   document.addEventListener('click', event => {
     if (event.target.classList.contains('each-header-button') && !event.target.classList.contains('each-header-button-selected')) {
       const wrapper = document.querySelector(`.${event.target.id.replace('-header-button', '')}-wrapper`);
-      document.querySelector('.content-wrapper').scrollBy(0, getScrollDistance(wrapper) - 100);
+      document.querySelector('.content-wrapper').scrollBy(0, getScrollDistance(wrapper));
     }
 
     if (event.target.classList.contains('each-responsive-navigation-menu-button') && !event.target.classList.contains('each-header-button-selected')) {
@@ -143,7 +167,9 @@ window.addEventListener('load', () => {
     if (event.target.classList.contains('calculator-each-project-title') && !event.target.classList.contains('calculator-each-project-title-selected')) {
       document.querySelector('.calculator-each-project-title-selected').classList.remove('calculator-each-project-title-selected');
       selectedCalculatorProject = projects.find(each => each._id.toString() == event.target.id.replace('calculator-', ''));
+      document.getElementById('calculator-earn-token-icon').src = selectedCalculatorProject.image;
       event.target.classList.add('calculator-each-project-title-selected');
+      updateCalculatorResult();
     }
 
     if (ancestorWithClassName(event.target, 'hamburger-menu-wrapper')) {
@@ -161,7 +187,7 @@ window.addEventListener('load', () => {
     }
 
     if (isOnStartPageButton) {
-      smoothScroll(document.querySelector('.content-wrapper'), window.innerHeight - 80);
+      smoothScroll(contentWrapper, getScrollDistance(projectsWrapper));
       startPageLearnMoreButton.classList.remove('start-page-learn-more-button-hovered');
       document.body.style.cursor = 'unset';
     }
@@ -173,7 +199,7 @@ window.addEventListener('load', () => {
       updateCalculatorInfo(clickedCalculatorButton);
     }
 
-    if (event.clientX >= startPageLearnMoreButton.getBoundingClientRect().left && event.clientX <= startPageLearnMoreButton.getBoundingClientRect().right && event.clientY >= startPageLearnMoreButton.getBoundingClientRect().top && event.clientY <= startPageLearnMoreButton.getBoundingClientRect().bottom) {
+    if (event.target.classList.contains('start-page-transparent-cover') && event.clientX >= startPageLearnMoreButton.getBoundingClientRect().left && event.clientX <= startPageLearnMoreButton.getBoundingClientRect().right && event.clientY >= startPageLearnMoreButton.getBoundingClientRect().top && event.clientY <= startPageLearnMoreButton.getBoundingClientRect().bottom) {
       startPageLearnMoreButton.classList.add('start-page-learn-more-button-hovered');
       document.body.style.cursor = 'pointer';
       isOnStartPageButton = true;

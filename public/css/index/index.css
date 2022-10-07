@@ -983,7 +983,6 @@
   height: 25px;
   margin-left: 32px;
 }
-
 .footer-subtitle-wrapper {
   margin: 30px 32px;
   font-size: var(--small-text-font-size);
@@ -1007,10 +1006,17 @@
   display: flex;
   flex-direction: column;
   width: 25%;
-  margin-right: 25px;
+  margin-right: var(--footer-margin);
 }
 .each-footer-category-title {
   width: 100%;
+  font-size: var(--small-text-font-size);
+  color: var(--text-color);
+  margin-bottom: 20px;
+}
+.each-responsive-footer-category-title {
+  width: 100%;
+  display: none;
   font-size: var(--small-text-font-size);
   color: var(--text-color);
   margin-bottom: 20px;
@@ -1061,12 +1067,60 @@
     flex-wrap: wrap;
   }
 }
+@media only screen and (max-width: 900px) {
+  .footer-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .footer-logo-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .footer-logo-icon {
+    height: 40px;
+    margin-left: 0px;
+    margin-bottom: 4px;
+  }
+  .footer-subtitle-wrapper {
+    margin: 0px 0px;
+    font-size: 10px;
+    color: var(--text-color)
+  }
+  .footer-text-wrapper {
+    margin-top: 40px;
+    margin-bottom: 40px;
+    color: var(--text-color);
+  }
+  .footer-responsive-social-media-wrapper {
+    align-items: center;
+    justify-content: center;
+  }
+  .each-footer-category-wrapper {
+    width: 140px;
+  }
+  .each-footer-category-link {
+    font-size: 12px;
+  }
+  .each-footer-category-title {
+    display: none;
+  }
+  .each-responsive-footer-category-title {
+    display: flex;
+    font-size: 12px;
+  }
+}
 @media only screen and (max-width: 800px) {
   :root {
     --projects-width: 600px;
     --text-width: 600px;
-    --text-margin: 50px
+    --text-margin: 50px;
   } 
+  .each-footer-category-wrapper {
+    width: 140px;
+  }
 }
 @media only screen and (max-width: 700px) {
   :root {
@@ -1079,17 +1133,31 @@
   .hamburger-menu-wrapper {
     display: flex;
   }
+  .footer-bottom-wrapper {
+    width: 100%;
+    margin: 0px 0px;
+  }
+  .each-footer-category-wrapper {
+    width: 120px;
+  }
 }
 @media only screen and (max-width: 600px){
   :root {
     --projects-width: 450px;
     --text-width: 450px;
   }
+  .each-footer-category-wrapper {
+    width: 100px;
+  }
 }
 @media only screen and (max-width: 500px){
   :root {
     --projects-width: 400px;
     --text-width: 400px;
+    --footer-margin: 10px;
+  }
+  .footer-text-wrapper {
+    width: 330px;
   }
 }
 @media only screen and (max-width: 450px){
@@ -1104,6 +1172,15 @@
   }
   .calculator-each-line-ammount {
     margin-left: 10px;
+  }
+  .each-footer-category-wrapper {
+    width: 70px;
+  }
+  .each-footer-category-link {
+    font-size: 10px;
+  }
+  .each-responsive-footer-category-title {
+    font-size: 10px;
   }
 }
 @media only screen and (max-width: 400px){
@@ -1122,5 +1199,8 @@
   }
   .each-how-to-stake-step {
     margin-top: 20px;
+  }
+  .each-footer-category-wrapper {
+    width: 60px;
   }
 }

@@ -83,7 +83,8 @@ textarea {
   --text-color: rgba(254, 254, 254, 1);
   --text-color-two: rgba(241, 241, 241, 0.8);
   --border-color: rgba(254, 254, 254, 1);
-  --background-color: rgb(18, 18, 18);
+  --background-color: rgb(21, 21, 21);
+  --footer-color: rgb(18, 18, 18);
 
   --border-width: 2px;
   --border-radius: 18px;

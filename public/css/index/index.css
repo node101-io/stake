@@ -964,12 +964,23 @@
 .each-team-member-link:hover {
   opacity: 1;
 }
+
+.footer-outer-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  min-height: fit-content;
+  width: 100vw;
+  background-color: var(--footer-color);
+  padding-top: var(--header-height);
+}
+
 .footer-wrapper {
   width: 100vw;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  align-items: center;
+  align-items: flex-start;
 }
 .footer-logo-wrapper {
   display: flex;
@@ -1035,13 +1046,16 @@
   align-items: flex-start;
   justify-content: flex-start;
 }
+
 .footer-bottom-wrapper {
   width: calc(100% - 60px);
+  height: var(--header-height);
   margin: 0px 30px;
   border-top: 2px solid rgba(55, 65, 81, 1);
   padding-top: 2px;
   display: flex;
   text-align: center;
+  padding-top: 20px;
 }
 
 @media only screen and (max-width: 1000px) {

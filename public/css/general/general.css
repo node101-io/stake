@@ -59,6 +59,7 @@ textarea {
   --page-vertical-padding: 90px;
 
   --content-margin: 35px;
+  --footer-margin: 25px;
 
   --header-height: 90px;
 
@@ -115,6 +116,7 @@ textarea {
     --title-font-size: 18px;
     --text-font-size: 15px;
     --small-text-font-size: 14px;
+    --footer-margin: 15px;
   }
 }
 @media only screen and (max-width: 850px) {

@@ -21,6 +21,10 @@ const StakeSchema = new Schema({
     type: Number,
     required: true
   },
+  is_stakable: {
+    type: Boolean,
+    default: false
+  },
   is_active: {
     type: Boolean,
     default: false
@@ -119,34 +123,57 @@ StakeSchema.statics.createStake = function (data, callback) {
           apr_url: data.apr_api_url,
           market_price_url: data.market_price_url
         }, (err, stake_data) => {
-          if (err) return callback(err);
-  
-          const newStakeData = {
-            order,
-            is_active: data.is_active ? true : false,
-            language: data.language,
-            name: data.name.trim(),
-            image: image.url,
-            stake_url: data.stake_url.toString(),
-            how_to_stake_url: data.how_to_stake_url.toString(),
-            apr_api_url: data.apr_api_url,
-            market_price_url: data.market_price_url,
-            apr: stake_data.apr,
-            market_price: stake_data.market_price,
-            last_update_time_in_ms: parseInt((new Date()).getTime())
-          };
+
+          if (err || !data.stake_url || !validator.isURL(data.stake_url) || !data.how_to_stake_url || !validator.isURL(data.how_to_stake_url.toString())) {
+            const newStakeData = {
+              order,
+              is_stakable: false,
+              is_active: data.is_active ? true : false,
+              language: data.language,
+              name: data.name.trim(),
+              image: image.url
+            };
+          
+            const newStake = new Stake(newStakeData);
+          
+            newStake.save((err, stake) => {
+              if (err) return callback('database_error');
         
-          const newStake = new Stake(newStakeData);
+              Image.findImageByUrlAndSetAsUsed(stake.image, err => {
+                if (err) return callback(err);
         
-          newStake.save((err, stake) => {
-            if (err) return callback('database_error');
-      
-            Image.findImageByUrlAndSetAsUsed(stake.image, err => {
-              if (err) return callback(err);
-      
-              return callback(null, stake._id.toString());
-            });  
-          });
+                return callback(null, stake._id.toString());
+              });  
+            });
+          } else {
+            const newStakeData = {
+              order,
+              is_stakable: true,
+              is_active: data.is_active ? true : false,
+              language: data.language,
+              name: data.name.trim(),
+              image: image.url,
+              stake_url: data.stake_url.toString(),
+              how_to_stake_url: data.how_to_stake_url.toString(),
+              apr_api_url: data.apr_api_url,
+              market_price_url: data.market_price_url,
+              apr: stake_data.apr,
+              market_price: stake_data.market_price,
+              last_update_time_in_ms: parseInt((new Date()).getTime())
+            };
+          
+            const newStake = new Stake(newStakeData);
+          
+            newStake.save((err, stake) => {
+              if (err) return callback('database_error');
+        
+              Image.findImageByUrlAndSetAsUsed(stake.image, err => {
+                if (err) return callback(err);
+        
+                return callback(null, stake._id.toString());
+              });  
+            });
+          }
         });
       });
     });
@@ -201,6 +228,9 @@ StakeSchema.statics.findStakesByFilters = function (data, callback) {
   const Stake = this;
 
   const filters = { is_deleted: { $ne: true } };
+
+  if ('is_stakable' in data)
+    filters.is_stakable = data.is_stakable ? true : false;
 
   if ('is_active' in data)
     filters.is_active = data.is_active ? true : false;

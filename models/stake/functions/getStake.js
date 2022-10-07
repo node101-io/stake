@@ -7,6 +7,7 @@ module.exports = (project, callback) => {
 
   return callback(null, {
     _id: project._id.toString(),
+    is_stakable: project.is_stakable,
     is_active: project.is_active,
     language: project.language,
     name: project.name,

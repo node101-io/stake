@@ -3,7 +3,7 @@ block content
   input.display-none#projects(value=JSON.stringify(projects))
   .all-wrapper
     .header-wrapper
-      a.header-logo
+      a.header-logo(href='/' + (lang && lang.length ? '?lang=' + lang : ''))
         svg.header-logo-icon(viewBox='0 0 3263 617' fill='var(--border-color)' xmlns='http://www.w3.org/2000/svg')
           path(d='M2457.32 118.678H2400.36C2392.14 118.678 2385.47 125.235 2385.47 133.324V602.166C2385.47 610.254 2392.14 616.812 2400.36 616.812H2457.32C2465.55 616.812 2472.22 610.254 2472.22 602.166V133.324C2472.22 125.235 2465.55 118.678 2457.32 118.678Z')
           path(d='M3247.81 118.678H3190.85C3182.63 118.678 3175.96 125.235 3175.96 133.324V602.166C3175.96 610.254 3182.63 616.812 3190.85 616.812H3247.81C3256.03 616.812 3262.7 610.254 3262.7 602.166V133.324C3262.7 125.235 3256.03 118.678 3247.81 118.678Z')

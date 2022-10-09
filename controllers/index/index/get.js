@@ -13,6 +13,12 @@ module.exports = (req, res) => {
         external: {
           css: ['general', 'page'],
           js: ['ancestorWithClassName', 'page']
+        },
+        meta: {
+          description: res.__('Stake your assets with the industry\'s most user-friendly organization! node101 accompanies you on your staking journey from start to finish and offers a privileged service where you can safely stake your assets and get support from experts whenever you want.'),
+          image: '/res/images/meta.jpeg',
+          keywords: projects.map(each => each.name.toLocaleLowerCase()).concat(['node101', 'stake', 'blockchain', 'passive', 'income', 'earn', 'APR', 'APY', 'price', 'market', 'coin']),
+          title: 'Stake with node101!'
         }
       },
       lang: req.query.lang,

@@ -1,6 +1,7 @@
 const CALCULATOR_INFO_SHOW_TIME = 2000;
 const MAX_TOKEN = 100000;
 const MAX_TIME = 90;
+const RESPONSIVE_NAVIGATION_MENU_ANIMATON_TIME = 400; // 0.4s
 
 let projects;
 let isResponsiveMenuOn = false;
@@ -113,35 +114,46 @@ window.addEventListener('load', () => {
       document.querySelector('.social-media-wrapper').style.display = 'flex';
 
     if (event.target.scrollTop >= projectsScrollDistance && event.target.scrollTop < calculatorScrollDistance) {
-      if (document.querySelector('.each-header-button-selected') && document.querySelector('.each-header-button-selected') != document.querySelector('.projects-wrapper')) {
-        document.querySelector('.each-header-button-selected').classList.remove('each-header-button-selected');
-        document.getElementById('projects-header-button').classList.add('each-header-button-selected');
-      } else if (!document.querySelector('.each-header-button-selected')) {
-        document.getElementById('projects-header-button').classList.add('each-header-button-selected');
-      }
+      const selectedHeaderButtons = document.querySelectorAll('.each-header-button-selected');
+
+      for (let i = 0; i < selectedHeaderButtons.length; i++)
+        if (selectedHeaderButtons[i].id != 'projects-header-button' && selectedHeaderButtons[i].id != 'responsive-projects-header-button')
+          selectedHeaderButtons[i].classList.remove('each-header-button-selected');
+      
+      document.getElementById('projects-header-button').classList.add('each-header-button-selected');
+      document.getElementById('responsive-projects-header-button').classList.add('each-header-button-selected');
     } else if (event.target.scrollTop >= calculatorScrollDistance && event.target.scrollTop < howToStakeScrollDistance) {
-      if (document.querySelector('.each-header-button-selected') && document.querySelector('.each-header-button-selected') != document.querySelector('.projects-wrapper')) {
-        document.querySelector('.each-header-button-selected').classList.remove('each-header-button-selected');
-        document.getElementById('calculator-header-button').classList.add('each-header-button-selected');
-      } else if (!document.querySelector('.each-header-button-selected')) {
-        document.getElementById('calculator-header-button').classList.add('each-header-button-selected');
-      }
+      const selectedHeaderButtons = document.querySelectorAll('.each-header-button-selected');
+
+      for (let i = 0; i < selectedHeaderButtons.length; i++)
+        if (selectedHeaderButtons[i].id != 'calculator-header-button' && selectedHeaderButtons[i].id != 'responsive-calculator-header-button')
+          selectedHeaderButtons[i].classList.remove('each-header-button-selected');
+      
+      document.getElementById('calculator-header-button').classList.add('each-header-button-selected');
+      document.getElementById('responsive-calculator-header-button').classList.add('each-header-button-selected');
     } else if (event.target.scrollTop >= howToStakeScrollDistance && event.target.scrollTop < aboutUsScrollDistance) {
-      if (document.querySelector('.each-header-button-selected') && document.querySelector('.each-header-button-selected') != document.querySelector('.projects-wrapper')) {
-        document.querySelector('.each-header-button-selected').classList.remove('each-header-button-selected');
-        document.getElementById('how-to-stake-header-button').classList.add('each-header-button-selected');
-      } else if (!document.querySelector('.each-header-button-selected')) {
-        document.getElementById('how-to-stake-header-button').classList.add('each-header-button-selected');
-      }
+      const selectedHeaderButtons = document.querySelectorAll('.each-header-button-selected');
+
+      for (let i = 0; i < selectedHeaderButtons.length; i++)
+        if (selectedHeaderButtons[i].id != 'how-to-stake-header-button' && selectedHeaderButtons[i].id != 'responsive-how-to-stake-header-button')
+          selectedHeaderButtons[i].classList.remove('each-header-button-selected');
+      
+      document.getElementById('how-to-stake-header-button').classList.add('each-header-button-selected');
+      document.getElementById('responsive-how-to-stake-header-button').classList.add('each-header-button-selected');
     } else if (event.target.scrollTop >= aboutUsScrollDistance) {
-      if (document.querySelector('.each-header-button-selected') && document.querySelector('.each-header-button-selected') != document.querySelector('.projects-wrapper')) {
-        document.querySelector('.each-header-button-selected').classList.remove('each-header-button-selected');
-        document.getElementById('about-us-header-button').classList.add('each-header-button-selected');
-      } else if (!document.querySelector('.each-header-button-selected')) {
-        document.getElementById('about-us-header-button').classList.add('each-header-button-selected');
-      }
-    } else if (document.querySelector('.each-header-button-selected') && document.querySelector('.each-header-button-selected') != document.querySelector('.projects-wrapper')) {
-      document.querySelector('.each-header-button-selected').classList.remove('each-header-button-selected');
+      const selectedHeaderButtons = document.querySelectorAll('.each-header-button-selected');
+
+      for (let i = 0; i < selectedHeaderButtons.length; i++)
+        if (selectedHeaderButtons[i].id != 'about-us-header-button' && selectedHeaderButtons[i].id != 'responsive-about-us-header-button')
+          selectedHeaderButtons[i].classList.remove('each-header-button-selected');
+      
+      document.getElementById('about-us-header-button').classList.add('each-header-button-selected');
+      document.getElementById('responsive-about-us-header-button').classList.add('each-header-button-selected');
+    } else if (document.querySelectorAll('.each-header-button-selected') && document.querySelectorAll('.each-header-button-selected').length) {
+      const selectedHeaderButtons = document.querySelectorAll('.each-header-button-selected');
+
+      for (let i = 0; i < selectedHeaderButtons.length; i++)
+        selectedHeaderButtons[i].classList.remove('each-header-button-selected');
     } 
   });
 
@@ -153,7 +165,7 @@ window.addEventListener('load', () => {
 
     if (event.target.classList.contains('each-responsive-navigation-menu-button') && !event.target.classList.contains('each-header-button-selected')) {
       const wrapper = document.querySelector(`.${event.target.id.replace('-header-button', '').replace('responsive-', '')}-wrapper`);
-      document.querySelector('.content-wrapper').scrollBy(0, getScrollDistance(wrapper) - 100);
+      document.querySelector('.content-wrapper').scrollBy(0, getScrollDistance(wrapper));
       responsiveMenu.classList.remove('responsive-navigation-menu-wrapper-open');
       responsiveMenu.classList.add('responsive-navigation-menu-wrapper-close');
       isResponsiveMenuOn = false;
@@ -173,6 +185,7 @@ window.addEventListener('load', () => {
     }
 
     if (ancestorWithClassName(event.target, 'hamburger-menu-wrapper')) {
+      responsiveMenu.style.display = 'flex';
       responsiveMenu.classList.add('responsive-navigation-menu-wrapper-open');
       responsiveMenu.classList.remove('responsive-navigation-menu-wrapper-close');
       isResponsiveMenuOn = true;
@@ -180,10 +193,16 @@ window.addEventListener('load', () => {
       responsiveMenu.classList.remove('responsive-navigation-menu-wrapper-open');
       responsiveMenu.classList.add('responsive-navigation-menu-wrapper-close');
       isResponsiveMenuOn = false;
+      setTimeout(() => {
+        responsiveMenu.style.display = 'none';
+      }, RESPONSIVE_NAVIGATION_MENU_ANIMATON_TIME);
     } else if (isResponsiveMenuOn && !ancestorWithClassName(event.target, 'responsive-navigation-menu-wrapper')) {
       responsiveMenu.classList.remove('responsive-navigation-menu-wrapper-open');
       responsiveMenu.classList.add('responsive-navigation-menu-wrapper-close');
       isResponsiveMenuOn = false;
+      setTimeout(() => {
+        responsiveMenu.style.display = 'none';
+      }, RESPONSIVE_NAVIGATION_MENU_ANIMATON_TIME);
     }
 
     if (isOnStartPageButton) {

@@ -143,7 +143,7 @@ block content
           .calculator-each-earn-item
             .calculator-each-earn-item-icon $
             .calculator-each-earn-item-text#calculator-earn-dollars-text= Math.round((50000 * 27 / 365 * parseFloat(projects[0].apr)) * projects[0].market_price)
-        .calculator-text= __('The amount you will be awarded is calculated using daily interest. Your actual gain may vary slightly from the numbers shown here. Please feel free to contact our team to learn more.')
+        .calculator-text *#{__('The amount you will be awarded is calculated using daily interest. Your actual gain may vary slightly from the numbers shown here. Please feel free to contact our team to learn more.')}
       .how-to-stake-wrapper#how-to-stake
         .how-to-stake-subtitle= __('HOW CAN YOU')
         .how-to-stake-title= __('STAKE A PROJECT?')
@@ -164,7 +164,7 @@ block content
               img.each-how-to-stake-icon(loading='lazy' src='/res/images/step_icons/earn_regularly.png' alt=__('How to stake with node101? Earn regularly icon.'))
             .each-how-to-stake-title.color-three= __('EARN REGULARY')
             .each-how-to-stake-text= __('Now all you have to do is to wait and see how your capital grows day by day. It is a true passive income!')
-        .how-to-stake-time-text= __('The best options in some projects may require you to lock your coins for a minimum time period. Please feel free to contact our team to learn more.')
+        .how-to-stake-time-text *#{__('The best options in some projects may require you to lock your coins for a given time period. Please feel free to contact our team to learn more.')}
       .about-us-wrapper#about-us
         .about-us-title= __('ABOUT US')
         .about-us-subtitle= __('node101 describes promising projects in the blockchain ecosystem in a pure language. In addition, it offers a service to users with products that provide financial returns such as node, testnet, staking, and validation.')

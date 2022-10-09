@@ -84,7 +84,7 @@ function updateCalculatorResult() {
 }
 
 window.addEventListener('load', () => {
-  projects = JSON.parse(document.getElementById('projects').value);
+  projects = JSON.parse(document.getElementById('projects-json').value);
   selectedCalculatorProject = projects.find(each => each._id.toString() == document.querySelector('.calculator-each-project-title-selected').id.replace('calculator-', ''));
 
   const responsiveMenu = document.getElementById('responsive-menu');
@@ -101,6 +101,11 @@ window.addEventListener('load', () => {
   const aboutUsScrollDistance = getScrollDistance(aboutUsWrapper) - 500;
 
   const startPageLearnMoreButton = document.querySelector('.start-page-learn-more-button');
+
+  if (window.location.hash)
+    contentWrapper.scrollBy(0, getScrollDistance(document.getElementById(window.location.hash.replace('#', ''))));
+  else
+    contentWrapper.scrollBy(0, 0);
 
   contentWrapper.addEventListener('scroll', event => {
     // document.querySelector('.header-wrapper').style.backgroundColor = `rgba(18, 18, 18, ${Math.min(2 * event.target.scrollTop, window.innerHeight) / window.innerHeight * 0.4})`;
@@ -160,15 +165,25 @@ window.addEventListener('load', () => {
   document.addEventListener('click', event => {
     if (event.target.classList.contains('each-header-button') && !event.target.classList.contains('each-header-button-selected')) {
       const wrapper = document.querySelector(`.${event.target.id.replace('-header-button', '')}-wrapper`);
-      document.querySelector('.content-wrapper').scrollBy(0, getScrollDistance(wrapper));
+      window.location.hash = '#' + wrapper.id;
+      contentWrapper.scrollBy(0, getScrollDistance(wrapper));
     }
 
     if (event.target.classList.contains('each-responsive-navigation-menu-button') && !event.target.classList.contains('each-header-button-selected')) {
       const wrapper = document.querySelector(`.${event.target.id.replace('-header-button', '').replace('responsive-', '')}-wrapper`);
-      document.querySelector('.content-wrapper').scrollBy(0, getScrollDistance(wrapper));
+      window.location.hash = '#' + wrapper.id;
+      contentWrapper.scrollBy(0, getScrollDistance(wrapper));
       responsiveMenu.classList.remove('responsive-navigation-menu-wrapper-open');
       responsiveMenu.classList.add('responsive-navigation-menu-wrapper-close');
       isResponsiveMenuOn = false;
+    }
+
+    if (event.target.classList.contains('header-language-button')) {
+      window.location = window.location.pathname + '?lang=' + event.target.lang + window.location.hash;
+    }
+
+    if (event.target.classList.contains('responsive-menu-language-button')) {
+      window.location = window.location.pathname + '?lang=' + event.target.lang + window.location.hash;
     }
 
     if (event.target.classList.contains('calculator-each-line')) {
@@ -180,6 +195,7 @@ window.addEventListener('load', () => {
       document.querySelector('.calculator-each-project-title-selected').classList.remove('calculator-each-project-title-selected');
       selectedCalculatorProject = projects.find(each => each._id.toString() == event.target.id.replace('calculator-', ''));
       document.getElementById('calculator-earn-token-icon').src = selectedCalculatorProject.image;
+      document.getElementById('calculator-token-line-name').innerHTML = selectedCalculatorProject.name;
       event.target.classList.add('calculator-each-project-title-selected');
       updateCalculatorResult();
     }
@@ -257,3 +273,10 @@ window.addEventListener('load', () => {
     }
   });
 });
+
+window.addEventListener('hashchange', () => {
+  if (window.location.hash && window.location.hash.length)
+    document.querySelector('.content-wrapper').scrollBy(0, getScrollDistance(document.getElementById(window.location.hash.replace('#', ''))));
+  else
+    document.querySelector('.content-wrapper').scrollBy(0, 0);
+})

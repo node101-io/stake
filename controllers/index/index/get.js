@@ -122,10 +122,10 @@ module.exports = (req, res) => {
             github: 'https://github.com/MechuLm'
           },
           information: [
-            '33 years old',
-            'Worked in real estate for a decade',
-            'Known in Web3 as "Metchul"',
-            'Loves people, eating and joking'
+            'Known as @mechul_eth in the blockchain ecosystem',
+            'Validator and community builder in multiple projects for 2+ years',
+            'Hosted several blockchain events in Turkey',
+            'Fluent in English'
           ]
         },
         {
@@ -138,10 +138,10 @@ module.exports = (req, res) => {
             telegram: 'https://t.me/usersmagic'
           },
           information: [
-            '19 years old',
+            'Full-stack JS developer, experienced in Rust and TypeScript',
+            'C/C++ programmer, ranked 5th place in Turkey CS Olympics 2019',
             'Sorbonne University - Physics',
-            'Full stake web and app developer',
-            'Loves reading and playing the piano'
+            'Fluent in English and French'
           ]
         },
         {
@@ -155,15 +155,16 @@ module.exports = (req, res) => {
             telegram: 'https://t.me/yasin_berk'
           },
           information: [
-            '24 years old',
-            'LMU University -  Economics',
-            'Particularly fan of ZK',
-            'Loves talking, listening and smiling'
+            'Mina - Developer Growth Manager',
+            'Experienced in Developer Relationship',
+            'Community and event manager in various projects',
+            'LMU - Economics and business',
+            'Fluent in German and English'
           ]
         },
         {
           name: 'Aleyna Özyurt',
-          position: 'Designer & Brand Creator',
+          position: 'Head of Design',
           image: '/res/images/team/aleyna.jpeg',
           links: {
             linkedin: 'https://www.linkedin.com/in/aleyna-%C3%B6zyurt-688772163/',
@@ -173,10 +174,10 @@ module.exports = (req, res) => {
             telegram: 'https://t.me/laleyna',
           },
           information: [
-            '25 years old',
-            'Experienced in logo drawing and brandbook creation.',
-            'Old in design, new in Web3',
-            'Loves reading and listening to music'
+            'Professional artistic graphic designer',
+            'Expert in brand book creation, experienced UI, UX and content designer',
+            '+5 years of experience in design',
+            'Newbie in the blockchain ecosystem'
           ]
         },
         {
@@ -191,10 +192,10 @@ module.exports = (req, res) => {
             telegram: 'https://t.me/mtgergin'
           },
           information: [
-            '22 years old',
-            'Boğaziçi University - Business Administration',
-            'Experienced in people administration and task management',
-            'He is a storyteller and a trojan'
+            '+4 years of experience in business and various sectors',
+            'Funded by Dutch and Canadian Governments on his NGO projects.',
+            'Boğazici University - Business Administration',
+            'Fluent in English, intermediate in French'
           ]
         },
         {
@@ -210,10 +211,11 @@ module.exports = (req, res) => {
             github: 'https://t.me/Akins0k'
           },
           information: [
-            '22 years old',
-            'Boğaziçi University - Business Administration',
-            'Early adapter in NFT market and an expert on the chain',
-            'Motor sport enthusiast and a true film guru'
+            'Early Adopter in the NFT ecosystem​',
+            'Co-founder of the "Turkish NFT Community"',
+            'Boğazici University - Business Administration​',
+            'Harvard College Asia Program Social Chair Leader',
+            'Fluent in English'
           ]
         },
         {
@@ -227,10 +229,10 @@ module.exports = (req, res) => {
             telegram: 'https://t.me/d0x471b'
           },
           information: [
-            '17 years old',
-            'Crypto genious',
-            'Backend developer and senior web security manager',
-            'Loves hacking, learning, and german'
+            'Certified Cybersecurity Specialist',
+            'Backend Developer - Primarly on Rust & Go',
+            'BJK-Kabataş Foundation Schools IB Programme',
+            'Fluent in English, intermediate in German'
           ]
         },
         {
@@ -241,10 +243,10 @@ module.exports = (req, res) => {
   
           },
           information: [
-            '23 years old',
-            'University of Michigan - Computer Science',
-            'Reader and writer in Web3',
-            'Loves sport and nature'
+            '3+ years of content creation experience',
+            'University of Michigan - Computer Science & Engineering',
+            'Business Minor in Ross School of Business',
+            'Fluent in English, Spanish, and Portuguese'
           ]
         },
         {
@@ -259,10 +261,10 @@ module.exports = (req, res) => {
             telegram: 'https://t.me/Yeettus'
           },
           information: [
-            '17 years old',
-            'Uskudar American Academy',
+            'Full-Stack JS software developer',
             'New in coding, eager to learn and use his talent',
-            'Loves travelling and listening to music'
+            'Uskudar American Academy',
+            'Fluent in English, intermediate in Germen'
           ]
         },
         {
@@ -277,10 +279,10 @@ module.exports = (req, res) => {
             telegram: 'https://t.me/ErrolDrummond'
           },
           information: [
-            '27 years old',
-            'Studied Mathematics, Philosophy, Biochemistry, and Education',
+            'Cryptograph and a Zero-Knowledge Guru',
             'Works in Ethereum Foundation',
-            'Likes to listen Avril Lavigne'
+            'Studied Mathematics, Philosophy, Biochemistry, and Education',
+            'Native in English, intermediate in Turkish'
           ]
         },
         {
@@ -294,10 +296,24 @@ module.exports = (req, res) => {
             telegram: 'https://t.me/damndam'
           },
           information: [
-            '26 years old',
             'The "Move Guy"',
-            'Works in Sui as a senior crypto developer',
-            'Into film photos'
+            'Master in Move Language, writer of the Move Book',
+            'Works in MystenLabs as a senior developer',
+            '+8 years of experience in different techs'
+          ]
+        },
+        {
+          name: 'Anthony Diprinzio',
+          position: 'Advisor',
+          image: '/res/images/team/anthony.jpeg',
+          links: {
+
+          },
+          information: [
+            'Head of Groth at Aleo',
+            'Worked in Aleo for more than 2 years',
+            'Co-President of Berkeley Blockchain',
+            'Native in English'
           ]
         }
       ]

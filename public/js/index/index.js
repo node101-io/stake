@@ -34,7 +34,7 @@ function showCalculatorButton(id, isRecursive) {
     showCalculatorButtonActiveList.push(id);
 
   setTimeout(() => {
-    if (clickedCalculatorButton || document.getElementById(id) == document.activeElement) {
+    if (clickedCalculatorButton) {
       showCalculatorButton(id, true);
     } else {
       document.getElementById(id).style.display = 'none';

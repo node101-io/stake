@@ -286,8 +286,8 @@
   display: flex;
   flex-direction: column;
   position: absolute;
-  left: 30px;
-  bottom: 30px;
+  left: var(--page-vertical-padding);
+  bottom: var(--page-horizontal-padding);
 }
 .each-social-media-icon {
   margin-top: 10px;
@@ -612,6 +612,9 @@
   justify-content: center;
   text-align: center;
   cursor: default !important;
+  user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
 }
 .calculator-each-line-amount {
   font-size: var(--title-font-size);
@@ -1063,6 +1066,7 @@
   font-size: var(--small-text-font-size);
   color: var(--text-color-two);
   margin-bottom: 20px;
+  text-decoration: none;
 }
 .footer-responsive-social-media-wrapper {
   width: 100%;

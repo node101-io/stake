@@ -1112,7 +1112,7 @@
 }
 @media only screen and (max-width: 900px) {
   .how-to-stake-time-text {
-    margin: 0px 30px;
+    margin: 30px 30px;
   } 
   .footer-wrapper {
     display: flex;

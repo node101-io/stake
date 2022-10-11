@@ -14,7 +14,7 @@ module.exports = (project, callback) => {
     image: project.image,
     stake_url: project.stake_url,
     how_to_stake_url: project.how_to_stake_url,
-    apr: project.apr,
+    apr: project.apr < 1 ? project.apr : project.apr / 100,
     market_price: project.market_price
   });
 }

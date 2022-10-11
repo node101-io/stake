@@ -288,7 +288,7 @@ module.exports = (req, res) => {
 
           },
           information: [
-            'Head of Groth at Aleo',
+            'Head of Growth at Aleo',
             'Worked in Aleo for more than 2 years',
             'Co-President of Berkeley Blockchain',
             'Native in English'

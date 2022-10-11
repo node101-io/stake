@@ -423,6 +423,9 @@
   width: 100vw;
   height: fit-content;
   min-height: fit-content;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
 }
 .each-project-wrapper {
   display: inline-flex;
@@ -1182,6 +1185,9 @@
   .hamburger-menu-wrapper, .responsive-navigation-menu-wrapper {
     display: flex;
   }
+  .calculator-each-project-title {
+    margin-top: 20px;
+  }
   .how-to-stake-steps-wrapper {
     width: 100%;
     display: flex;
@@ -1202,13 +1208,14 @@
     --projects-width: 450px;
     --text-width: 450px;
   }
-  .projects-inner-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
   .each-footer-category-wrapper {
     width: 100px;
+  }
+  .calculator-projects-wrapper {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: auto auto;
+    grid-row: auto auto;
   }
 }
 @media only screen and (max-width: 500px){
@@ -1230,6 +1237,9 @@
   .calculator-each-line-wrapper {
     display: flex;
     justify-content: space-evenly;
+  }
+  .calculator-each-line-name {
+    margin-right: 20px;
   }
   .calculator-each-line-amount {
     margin-left: 10px;

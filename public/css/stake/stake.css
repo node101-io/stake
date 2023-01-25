@@ -1,0 +1,330 @@
+/* Background Colors */
+/* Text Colors */
+/* Button Colors */
+/* Tag Colors */
+/* Link Colors */
+/* Icon Colors */
+/* Support Colors */
+/* Focus Colors */
+/* Focus border | Focus underline */
+/* Inset border between focus element and the component */
+/* Focus on high contrast moments */
+/* Layer Colors */
+/* Background color for layers on top of $background */
+/* Background color for layers on top of $layer-01 */
+/* Active state color for $layer-01 */
+/* Selected state color for $layer-01 */
+/* Hover stated color for $layer-selected-01 */
+/* Background color for layers on top of $layer-01 */
+/* Hover state color for $layer-01 */
+/* Active state color for $layer-02 */
+/* Selected state color for $layer-02 */
+/* Hover stated color for $layer-selected-02 */
+/* Background color for layers on top of $layer-02 */
+/* Hover state color for $layer-02 */
+/* Active state color for $layer-03 */
+/* Selected state color for $layer-03 */
+/* Hover stated color for $layer-selected-03 */
+/* Disabled state color for selected layers */
+/* Layer-accent Colors */
+/* Accent background color used along side $layer-01 */
+/* Hover background color for $layer-accent-01 */
+/* Hover background color for $layer-accent-01 */
+/* Accent background color used along side $layer-02 */
+/* Hover background color for $layer-accent-02 */
+/* Hover background color for $layer-accent-02 */
+/* Accent background color used along side $layer-03 */
+/* Hover background color for $layer-accent-03 */
+/* Hover background color for $layer-accent-03 */
+/* Field Colors */
+/* Input field color on top of $background */
+/* Hover background color for $field-01 */
+/* Input field color on top of $layer-01 */
+/* Input field color on top of $layer-02 */
+/* Input field color on top of $layer-02 */
+/* Input field color on top of $layer-03 */
+/* Border Colors */
+/* Subtle border color on $background */
+/* Subtle border color on $layer-01 */
+/* Selected state color for $border-subtle-01 */
+/* Subtle border color on $layer-02 */
+/* Selected state color for $border-subtle-02 */
+/* Subtle border color on $layer-03 */
+/* Selected state color for $border-subtle-03 */
+/* 3:1 AA color contrast border on $layer-01 || Border paired with $field-01 */
+/* 3:1 AA color contrast border on $layer-02 || Border paired with $field-02 */
+/* 3:1 AA color contrast border on $layer-03 || Border paired with $field-03 */
+/* Interactive or selected border color */
+/* Disabled state color for borders excluding border-subtles */
+/* Miscellaneous Colors */
+/* 3:1 AA contrast for emphasized selected or active elements. */
+/* Highlight color */
+/* Background overlay */
+/* Skeleton state of graphics */
+/* Skeleton state of texts */
+/* Toggle background color in the off state */
+.stake .shape-fixed.header-shape img:first-child {
+  width: 800px;
+  height: 800px;
+  margin-top: -250px;
+  margin-right: 10px;
+  z-index: 2; }
+
+.stake .shape-fixed.header-shape img:last-child {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  margin-top: 380px;
+  margin-right: 200px; }
+
+.our-projects .project-item {
+  margin-bottom: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 14px;
+  width: 100%;
+  background: linear-gradient(99.85deg, #131313 0%, #030303 100%); }
+  .our-projects .project-item:hover {
+    background: rgba(68, 68, 68, 0.16); }
+  .our-projects .project-item .header {
+    display: flex;
+    flex-flow: row;
+    width: 100%; }
+    .our-projects .project-item .header img {
+      width: 68px;
+      height: 68px; }
+    .our-projects .project-item .header .details {
+      width: 100%;
+      margin-left: 15px;
+      display: flex;
+      flex-flow: column;
+      padding-top: 5px;
+      justify-content: space-between; }
+      .our-projects .project-item .header .details h3 {
+        font-weight: 700;
+        font-size: 24px;
+        margin-bottom: 0; }
+      .our-projects .project-item .header .details span {
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 23px; }
+  .our-projects .project-item .btn-group {
+    width: 100%;
+    margin-top: 20px; }
+    .our-projects .project-item .btn-group .btn {
+      padding: .4rem 2rem .4rem .4rem; }
+
+.calculator {
+  display: flex;
+  flex-flow: column; }
+  .calculator > p {
+    font-size: 20px;
+    line-height: 150%;
+    font-weight: 500; }
+    .calculator > p > .token_name {
+      color: #78A9FF; }
+  .calculator button.dropdownMenuButton {
+    width: 100%;
+    height: 56px;
+    text-align: left;
+    background: rgba(0, 0, 0, 0.8);
+    border: none;
+    color: #FFFFFF;
+    font-weight: 500;
+    font-size: 46px;
+    line-height: 80%; }
+    .calculator button.dropdownMenuButton:focus {
+      outline: none;
+      box-shadow: none; }
+    .calculator button.dropdownMenuButton:active {
+      outline: none;
+      border: none;
+      box-shadow: none; }
+    .calculator button.dropdownMenuButton::after {
+      background-color: #0f62fe;
+      position: absolute;
+      top: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      content: url("data:image/svg+xml,%3Csvg width='10' height='12' viewBox='0 0 10 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M9.295 6.295L5.5 10.085V0H4.5V10.085L0.705 6.295L0 7L5 12L10 7L9.295 6.295Z' fill='white'/%3E%3C/svg%3E%0A");
+      width: 45px;
+      bottom: 5px;
+      border: none;
+      right: 5px;
+      line-height: 0; }
+  .calculator .dropdown-menu {
+    width: 100%;
+    max-height: 460px;
+    overflow-y: scroll;
+    background-color: rgba(0, 0, 0, 0.8);
+    border-bottom: 1px solid #505050;
+    border-right: 1px solid #505050;
+    border-left: 1px solid #505050; }
+    .calculator .dropdown-menu li a {
+      color: #FFFFFF;
+      font-weight: 400;
+      font-size: 24px;
+      line-height: 110%;
+      padding: .45rem 1rem;
+      transition: background-color 0.3s linear; }
+      .calculator .dropdown-menu li a:hover {
+        color: #646464; }
+      .calculator .dropdown-menu li a:active {
+        background-color: #FFFFFF; }
+  .calculator .yearly_return_head {
+    display: flex;
+    align-items: center;
+    flex-flow: row;
+    justify-content: space-between; }
+    .calculator .yearly_return_head > span:first-child {
+      font-weight: 500;
+      font-size: 20px;
+      line-height: 150%;
+      color: #FFFFFF; }
+    .calculator .yearly_return_head > span:last-child {
+      font-weight: 500;
+      font-size: 46px;
+      line-height: 110%;
+      color: #A7F0BA; }
+  .calculator .input_area {
+    position: relative;
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.8);
+    white-space: nowrap; }
+    .calculator .input_area .arrows {
+      width: 32px;
+      padding: 10px 0;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 10px;
+      z-index: 1; }
+      .calculator .input_area .arrows > button {
+        height: 50%;
+        color: #FFFFFF;
+        background: rgba(68, 68, 68, 0.24);
+        border: none;
+        font-size: 10px;
+        font-weight: 300; }
+        .calculator .input_area .arrows > button:hover {
+          background: rgba(101, 101, 101, 0.24); }
+    .calculator .input_area .token_name {
+      display: inline-block;
+      font-weight: 500;
+      font-size: 32px;
+      line-height: 110%;
+      padding: 0 15px; }
+    .calculator .input_area .input-group {
+      width: auto;
+      margin-left: 35px; }
+      .calculator .input_area .input-group input {
+        font-weight: 500;
+        font-size: 46px;
+        line-height: 110%; }
+      .calculator .input_area .input-group input[type=text] {
+        background-color: transparent;
+        border: none; }
+        .calculator .input_area .input-group input[type=text]:hover {
+          background-color: transparent; }
+  .calculator .range_area {
+    display: flex;
+    flex-flow: row;
+    margin-top: 50px;
+    align-items: center; }
+    .calculator .range_area > span {
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 20px;
+      color: #F4F4F4; }
+    .calculator .range_area > span:first-child {
+      margin-right: 20px; }
+    .calculator .range_area > span:last-child {
+      margin-left: 20px; }
+  .calculator table {
+    color: #FFFFFF; }
+    .calculator table tr td {
+      font-weight: 500;
+      font-size: 20px;
+      line-height: 150%;
+      padding-bottom: 15px; }
+    .calculator table tr td:first-child {
+      padding-left: 0;
+      text-align: left;
+      width: 200px; }
+    .calculator table tr td:nth-child(2) {
+      text-align: center; }
+    .calculator table tr td:last-child {
+      text-align: right;
+      padding-right: 0; }
+
+.staking > div {
+  padding: 15px; }
+
+.staking img {
+  width: 100px;
+  height: 100px; }
+
+.staking h3 {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 28px;
+  margin-top: auto; }
+
+.staking p {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26px; }
+
+@media (max-width: 767px) {
+  .first-view {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center; }
+    .first-view:before {
+      position: absolute;
+      content: '';
+      top: -90px;
+      visibility: visible;
+      bottom: 0;
+      z-index: -1;
+      right: 0;
+      left: 0;
+      width: auto;
+      height: auto;
+      background: linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0) 100%); }
+    .first-view h1 {
+      font-size: 62px;
+      line-height: 110%;
+      margin-bottom: 40px;
+      font-weight: 700; }
+    .first-view * > p {
+      font-size: 24px;
+      line-height: 28px; }
+    .first-view p:last-child {
+      font-size: 18px;
+      line-height: 26px; }
+  h2 {
+    font-size: 62px;
+    line-height: 110%; }
+  .stake .shape-fixed.header-shape img:first-child {
+    margin-top: -160px;
+    margin-right: -250px; }
+  .stake .shape-fixed.header-shape img:last-child {
+    width: 350px;
+    height: 350px;
+    margin-top: 450px;
+    margin-right: -100px; }
+  .our-projects .project-item {
+    margin-bottom: 30px; } }
+
+/*# sourceMappingURL=stake.css.map */

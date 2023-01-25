@@ -1,0 +1,55 @@
+doctype html
+html(lang='tr')
+  head
+    meta(name='viewport' content='width=device-width, initial-scale=1.0, shrink-to-fit=no, maximum-scale=1.0, user-scalable=0')
+    meta(charset='UTF-8')
+    if title
+      title #{title} | stake.node101
+    else
+      title stake.node101
+    if includes
+      if includes.meta
+        meta(property='og:type' content='website')
+        if includes.meta.author
+          meta(name='author' content=includes.meta.author)
+        if includes.meta.description
+          meta(name='description' content=includes.meta.description)
+        if includes.meta.image
+          meta(property='og:image' content=includes.meta.image)
+          meta(property='og:image:secure_url' content=includes.meta.image)
+          meta(property='og:image:type' content='image/png')
+          meta(property='og:image:alt' content=includes.meta.description)
+        if includes.meta.title
+          meta(property='og:title' content=includes.meta.title)
+        if includes.meta.twitter
+          mata(name='twitter:card' content='summary_large_image')
+          meta(name='twitter:site' content='@stake.node101')
+          meta(name='twitter:creator' content='@node101')
+          meta(name='twitter:title' content=includes.meta.title)
+          meta(name='twitter:description' content=includes.meta.description)
+          meta(name='twitter:image' content=includes.meta.image)
+          meta(name='twitter:image:alt' content=includes.meta.title)
+      if includes.external
+        if includes.external.css
+          each file_name in includes.external.css
+            if file_name == 'page'
+              link(rel='stylesheet' href=`/css/${page}.css`)
+            else
+              link(rel='stylesheet' href=`/css/general/${file_name}.css`)
+        if includes.external.js
+          each file_name in includes.external.js
+            if file_name == 'page'
+              script(src=`/js/${page}.js`)
+    body
+      block content
+      if includes && includes.external && includes.external.js
+        each file_name in includes.external.js
+          if file_name != 'page'
+            script(src=`/js/functions/${file_name}.js`)
+      script.
+        $(document).ready(function ($) {
+          $('.counter').counterUp({
+            delay: 10,
+            time: 1000
+          });
+        });

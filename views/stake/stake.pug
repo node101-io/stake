@@ -1,0 +1,690 @@
+extends ../partials/head
+block content
+    header.navbar.navbar-top.navbar-expand-lg.navbar-dark.navbar-fixed.blur
+        .container.header-container.justify-content-between
+            a.navbar-brand.order-1(href='/')
+                img(width='107', src='./images/logo.svg', alt='')
+            .d-flex.flex-row.order-2
+                a#nav-open.navbar-toggler.order-4(href='#')
+                    span
+                    span
+                    span
+                a.navbar-toggler.social.order-3(href='#')
+                    i.fa.fa-twitter(aria-hidden='true')
+                a.navbar-toggler.social.order-3(href='#')
+                    i.fa.fa-telegram(aria-hidden='true')
+            ul.nav.navbar-nav.order-2
+                li.nav-item
+                    a.nav-link(href='./stake')
+                        span.nav-link-name stake
+                li.nav-item
+                    a.nav-link(href='./testnet')
+                        span.nav-link-name testnet
+                li.nav-item.navbar-dropdown
+                    a.nav-link(href='#')
+                        span.nav-link-name library
+                    .dropdown-menu.library.w-100.mt-0(aria-labelledby='navbarDropdown', style='border-top-left-radius: 0; border-top-right-radius: 0;')
+                        .container-fluid.my-4
+                            .row
+                                .col-6.px-4
+                                    .d-flex.flex-row.justify-content-between.left-menu
+                                        div
+                                            ul
+                                                li Projects
+                                                li
+                                                    a(href='#') Aleo
+                                                li
+                                                    a(href='#') Axelar
+                                                li
+                                                    a(href='#') Brand Protocol
+                                                li
+                                                    a(href='#') DYDX
+                                                li
+                                                    a(href='#') Ignite
+                                                li
+                                                    a(href='#') NYM
+                                                li
+                                                    a(href='#') SEI
+                                                li
+                                                    a(href='#') SUI
+                                                li
+                                                    a(href='#') UMEE
+                                        div
+                                            ul
+                                                li terms
+                                        div
+                                            ul
+                                                li TechDocs
+                                                li
+                                                    a(href='#') SUI
+                                                li
+                                                    a(href='#') UMEE
+                                        div
+                                            ul
+                                                li exclusive content
+                                                li
+                                                    a(href='#') Zero-Knowledge
+                                                li
+                                                    a(href='#') by Errol Drummond
+                                                li -
+                                                li
+                                                    a(href='#') Dynamic
+                                                li
+                                                    a(href='#') Democracy by Errol
+                                                li
+                                                    a(href='#') Drummond
+                                        div
+                                            ul
+                                                li 101 news
+                                                li
+                                                    a(href='#') giveaway
+                                                li
+                                                    a(href='#') validator news
+                                                li
+                                                    a(href='#') testnet news
+                                                li
+                                                    a(href='#') product news
+                                .col-6.slider
+                                    .arrows
+                                        span.left-arrow
+                                            i.fa.fa-chevron-left
+                                        span.right-arrow
+                                            i.fa.fa-chevron-right
+                                    .swiper.headerSwiper
+                                        .swiper-wrapper
+                                            .swiper-slide
+                                                article.article-item-3
+                                                    img(src='images/dev/aleo.jpg', alt='')
+                                                    a(href='#')
+                                                        h3 101.000 $UMEE THE NEW YEAR #GIVEAWAY!&#x1F973;
+                                                        p node101 is giving away the ..
+                                            .swiper-slide
+                                                article.article-item-3
+                                                    img(src='images/dev/post3.jpg', alt='')
+                                                    a(href='#')
+                                                        h3 101.000 $UMEE THE NEW YEAR #GIVEAWAY!&#x1F973;
+                                                        p node101 is giving away the ..
+                                            .swiper-slide
+                                                article.article-item-3
+                                                    img(src='images/dev/post-item9.jpg', alt='')
+                                                    a(href='#')
+                                                        h3 101.000 $UMEE THE NEW YEAR #GIVEAWAY!&#x1F973;
+                                                        p node101 is giving away the ..
+                li.nav-item
+                    a.nav-link(href='#')
+                        span.nav-link-name events
+                li.nav-item
+                    a.nav-link(href='#')
+                        span.nav-link-name about us
+                li.nav-item.navbar-dropdown.community
+                    a.nav-link(href='#')
+                        span.nav-link-name community
+                    .dropdown-menu
+                        ul.nav.navbar-nav
+                            li.nav-item
+                                a.nav-link(href='#')
+                                    i.fa.fa-telegram(aria-hidden='true')
+                                    span.nav-link-name Telegram
+                            li.nav-item
+                                a.nav-link(href='#')
+                                    i.fa.fa-twitter(aria-hidden='true')
+                                    span.nav-link-name Twitter
+                            li.nav-item
+                                a.nav-link(href='#')
+                                    i.fa.fa-youtube-play(aria-hidden='true')
+                                    span.nav-link-name Youtube
+                            li.nav-item
+                                a.nav-link(href='#')
+                                    i.fa.fa-github(aria-hidden='true')
+                                    span.nav-link-name Github
+                            li.nav-item
+                                a.nav-link(href='#')
+                                    i.fa.fa-spotify(aria-hidden='true')
+                                    span.nav-link-name Spotify
+            ul.nav.navbar-nav.order-2.order-lg-3.m-0
+                li.nav-item.navbar-dropdown.language
+                    a.nav-link(href='#')
+                        span.nav-link-name language
+                        img(src='./images/other/en-flag.svg', alt='lang en')
+                    .dropdown-menu
+                        ul.nav.navbar-nav
+                            li.nav-item
+                                a.nav-link(href='?lang=en')
+                                    span.nav-link-name EN
+                                    img(src='./images/other/en-flag.svg', alt='lang en')
+                            li.nav-item
+                                a.nav-link(href='?lang=tr')
+                                    span.nav-link-name TR
+                                    img(src='./images/other/tr-flag.svg', alt='lang tr')
+                            li.nav-item
+                                a.nav-link(href='?lang=ru')
+                                    span.nav-link-name RU
+                                    img(src='./images/other/ru-flag.svg', alt='lang tr')
+    #navbar-mobile.navbar.navbar-mobile.navbar-dark
+        .navbar-head
+            .container.justify-content-between
+                span.navbar-brand
+                    img(width='107', src='./images/logo.svg', alt='')
+                a#nav-close.navbar-close(href='#')
+                    span Close
+                    span
+                        svg(width='15', height='15', viewBox='0 0 16 16', fill='none', xmlns='http://www.w3.org/2000/svg')
+                            path(d='M15.5 1.8125L14.1875 0.5L8 6.6875L1.8125 0.5L0.5 1.8125L6.6875 8L0.5 14.1875L1.8125 15.5L8 9.3125L14.1875 15.5L15.5 14.1875L9.3125 8L15.5 1.8125Z', fill='#F4F4F4')
+        .navbar-bottom
+            .navbar-body
+                ul#mobile-nav-parent.nav.navbar-nav.parent
+                    li.nav-item.active
+                        a.nav-link(href='#')
+                            span.nav-link-name Stake
+                    li.nav-item
+                        a.nav-link(href='#')
+                            span.nav-link-name Testnet
+                    li.nav-item.has-child
+                        button.nav-link(data-id='mobile-nav-library')
+                            span.nav-link-name Library
+                    li.nav-item
+                        a.nav-link(href='#')
+                            span.nav-link-name Events
+                    li.nav-item
+                        a.nav-link(href='#')
+                            span.nav-link-name About Us
+                ul#mobile-nav-library.nav.navbar-nav.nav-child(data-type='child')
+                    li.nav-item.back-btn
+                        button.nav-link(data-id='mobile-nav-parent')
+                            span.nav-link-name Menu
+                    li.nav-item
+                        button.nav-link(data-id='mobile-nav-library-projects')
+                            span.nav-link-name Projects
+                    li.nav-item
+                        a.nav-link(href='#')
+                            span.nav-link-name terms
+                    li.nav-item
+                        button.nav-link(data-id='mobile-nav-library-techDocs')
+                            span.nav-link-name TechDocs
+                    li.nav-item
+                        button.nav-link(data-id='mobile-nav-library-exclusiveContent')
+                            span.nav-link-name Exclusive Content
+                    li.nav-item
+                        a.nav-link(href='#')
+                            span.nav-link-name 101 news
+                // library subchilds
+                ul#mobile-nav-library-projects.nav.navbar-nav.nav-sub-child(data-type='child')
+                    li.nav-item.back-btn
+                        button.nav-link(data-id='mobile-nav-library')
+                            span.nav-link-name Library
+                    li.nav-item.head
+                        | Projects
+                    li.nav-item
+                        a.nav-link(href='#')
+                            span.nav-link-name Aleo
+                    li.nav-item
+                        a.nav-link(href='#')
+                            span.nav-link-name Axelar
+                    li.nav-item
+                        a.nav-link(href='#')
+                            span.nav-link-name Brand Protocol
+                    li.nav-item
+                        a.nav-link(href='#')
+                            span.nav-link-name DYDX
+                    li.nav-item
+                        a.nav-link(href='#')
+                            span.nav-link-name Ignite
+                    li.nav-item
+                        a.nav-link(href='#')
+                            span.nav-link-name NYM
+                    li.nav-item
+                        a.nav-link(href='#')
+                            span.nav-link-name SEI
+                    li.nav-item
+                        a.nav-link(href='#')
+                            span.nav-link-name SUI
+                    li.nav-item
+                        a.nav-link(href='#')
+                            span.nav-link-name UMEE
+                ul#mobile-nav-library-techDocs.nav.navbar-nav.nav-sub-child(data-type='child')
+                    li.nav-item.back-btn
+                        button.nav-link(data-id='mobile-nav-library')
+                            span.nav-link-name Library
+                    li.nav-item.head
+                        | Tech Docs
+                    li.nav-item
+                        a.nav-link(href='#')
+                            span.nav-link-name SUI
+                    li.nav-item
+                        a.nav-link(href='#')
+                            span.nav-link-name UMEE
+                ul#mobile-nav-library-exclusiveContent.nav.navbar-nav.nav-sub-child(data-type='child')
+                    li.nav-item.back-btn
+                        button.nav-link(data-id='mobile-nav-library')
+                            span.nav-link-name Library
+                    li.nav-item.head
+                        | Exclusive Content
+                    li.nav-item
+                        a.nav-link(href='#')
+                            span.nav-link-name Zero-Knowledge
+                    li.nav-item
+                        a.nav-link(href='#')
+                            span.nav-link-name by Errol Drummond
+                    li.nav-item
+                        a.nav-link(href='#')
+                            span.nav-link-name Dynamic
+                    li.nav-item
+                        a.nav-link(href='#')
+                            span.nav-link-name Democracy by Errol
+                    li.nav-item
+                        a.nav-link(href='#')
+                            span.nav-link-name Drummond
+            .footer
+                #header-social.social-icons-group.justify-content-between.px-4.mb-5
+                    a(href='#')
+                        i.fa.fa-telegram(aria-hidden='true')
+                    a(href='#')
+                        i.fa.fa-twitter(aria-hidden='true')
+                    a(href='#')
+                        i.fa.fa-youtube-play(aria-hidden='true')
+                    a(href='#')
+                        i.fa.fa-spotify(aria-hidden='true')
+                    a(href='#')
+                        i.fa.fa-github(aria-hidden='true')
+                .lan-area.mb-40
+                    a.active(href='#')
+                        span EN
+                        img(src='./images/other/en-flag.svg', alt='lang en')
+                    a(href='#')
+                        span TR
+                        img(src='./images/other/tr-flag.svg', alt='lang tr')
+                p &copy; 2022 All rights reserved.
+    .preloader
+        img(src='./images/loading.png', alt='loading')
+    main.content-wrap.stake
+        .pt-40.pt-md-90.shape-parent.overflow-hidden
+            .shape-fixed.justify-content-start.z-index-n1.halo.top-halo
+                img(src='images/halo1.png', alt='')
+            .shape-fixed.header-shape.z-index-n1.justify-content-end.mt-n160
+                img(src='images/stake/header-img1.png', alt='')
+                img.up-down-1-anim(src='images/stake/header-img2.png', alt='')
+            .container.pt-60.pt-md-130
+                .row.first-view.position-relative
+                    .col-12.col-md-7
+                        .d-flex.flex-column.align-items-center.align-items-md-start(data-aos='fade-up', data-aos-duration='1000')
+                            h1
+                                | Stake Your
+                                br
+                                | Assets
+                            p.mb-5
+                                | Stake your assets with the industry&apos;s most user-friendly organization!
+                            p
+                                | node101 accompanies you on your staking journey from start to finish and offers a privileged
+                                | service where you can safely stake your assets and get support from experts whenever you
+                                | want
+                .row.mt-60.mt-md-130(data-aos='fade-up', data-aos-duration='1000')
+                    .col-12
+                        .row.mb-3.mb-md-60.counter-up
+                            .col-12.col-md-4.mb-4.mb-md-0
+                                p
+                                    | $
+                                    span.counter 157,269,420
+                                span Total assets staked
+                            .col-12.col-md-4.mb-4.mb-md-0
+                                p.counter 22,041
+                                span Total delegators
+                            .col-12.col-md-4.mb-4.mb-md-0
+                                p
+                                    | $
+                                    span.counter 12,223,800
+                                span Total rewards paid
+                    .col-12.d-block.d-md-none.text-center
+                        a.btn.btn-primary.px-5.mt-5(href='#') Learn more
+                .row.mt-130.text-center.text-md-start(data-aos='fade-up', data-aos-duration='1000')
+                    .col-12
+                        h2.h1 Our Projects
+                    .col-12.col-md-9
+                        p
+                            | It has survived not only five centuries, but also the leap into electronic typesetting,
+                            | remaining essentially unchanged. It has survived
+                .row.our-projects.mt-60
+                    .col-md-4(data-aos='fade-up', data-aos-duration='1000')
+                        .project-item
+                            .header
+                                img(src='images/dev/aleo.jpg', alt='')
+                                .details
+                                    h3 ALEO
+                                    .d-flex.flex-row
+                                        span.me-4 APR
+                                        span -99.99%
+                            .btn-group
+                                a.btn.btn-primary.with-arrow(href='#') Stake Now
+                                a.btn.btn-grey.with-chain.chain-white.ms-4(href='#') How To Stake?
+                    .col-md-4(data-aos='fade-up', data-aos-duration='1000')
+                        .project-item
+                            .header
+                                img(src='images/dev/aleo.jpg', alt='')
+                                .details
+                                    h3 ALEO
+                                    .d-flex.flex-row
+                                        span.me-4 APR
+                                        span -99.99%
+                            .btn-group
+                                a.btn.btn-primary.with-arrow(href='#') Stake Now
+                                a.btn.btn-grey.with-chain.ms-4(href='#') How To Stake?
+                    .col-md-4(data-aos='fade-up', data-aos-duration='1000')
+                        .project-item
+                            .header
+                                img(src='images/dev/aleo.jpg', alt='')
+                                .details
+                                    h3 ALEO
+                                    .d-flex.flex-row
+                                        span.me-4 APR
+                                        span -99.99%
+                            .btn-group
+                                a.btn.btn-primary.with-arrow(href='#') Stake Now
+                                a.btn.btn-grey.with-chain.ms-4(href='#') How To Stake?
+                    .col-md-4(data-aos='fade-up', data-aos-duration='1000')
+                        .project-item
+                            .header
+                                img(src='images/dev/aleo.jpg', alt='')
+                                .details
+                                    h3 ALEO
+                                    .d-flex.flex-row
+                                        span.me-4 APR
+                                        span -99.99%
+                            .btn-group
+                                a.btn.btn-primary.with-arrow(href='#') Stake Now
+                                a.btn.btn-grey.with-chain.ms-4(href='#') How To Stake?
+                    .col-md-4(data-aos='fade-up', data-aos-duration='1000')
+                        .project-item
+                            .header
+                                img(src='images/dev/aleo.jpg', alt='')
+                                .details
+                                    h3 ALEO
+                                    .d-flex.flex-row
+                                        span.me-4 APR
+                                        span -99.99%
+                            .btn-group
+                                a.btn.btn-primary.with-arrow(href='#') Stake Now
+                                a.btn.btn-grey.with-chain.ms-4(href='#') How To Stake?
+                    .col-md-4(data-aos='fade-up', data-aos-duration='1000')
+                        .project-item
+                            .header
+                                img(src='images/dev/aleo.jpg', alt='')
+                                .details
+                                    h3 ALEO
+                                    .d-flex.flex-row
+                                        span.me-4 APR
+                                        span -99.99%
+                            .btn-group
+                                a.btn.btn-primary.with-arrow(href='#') Stake Now
+                                a.btn.btn-grey.with-chain.ms-4(href='#') How To Stake?
+        .shape-parent
+            .shape-fixed.justify-content-end.z-index-n1.halo.center-halo
+                img(src='images/halo2.png', alt='')
+            .container
+                .row.mt-60(data-aos='fade-up', data-aos-duration='1000')
+                    .col-md-5.text-center.text-md-start.d-flex.flex-column.pb-60.pe-5
+                        .mb-auto
+                            h2 Calculator
+                            p.mt-md-4 Simulate your earnings
+                        div
+                            p.mb-md-3 Your Additional Accumulation
+                            p
+                                | *The amount you will be awarded is calculated using daily interest. Your actual gain may
+                                | vary slightly from the numbers shown here. Please feel free to contact our team to learn
+                                | more.
+                    .col-md-7.calculator
+                        .py-3
+                            .dropdown
+                                button#dropdownMenuButton.btn.btn-secondary.dropdown-toggle.dropdownMenuButton(type='button', data-bs-toggle='dropdown', aria-expanded='false')
+                                ul#calcDropdown.dropdown-menu(aria-labelledby='dropdownMenuButton')
+                        p
+                            | How many
+                            span.token_name
+                            |  would you stake?
+                        .yearly_return_head.mt-4
+                            span Yearly return
+                            span.yearly_return_percentage +23%
+                        .input_area.mt-4
+                            .d-flex.flex-column.arrows
+                                button.arrow-up(type='button')
+                                    i.fa.fa-chevron-up
+                                button.arrow-down(type='button')
+                                    i.fa.fa-chevron-down
+                            .input-group
+                                input#range_input_txt.form-control(type='text')
+                            span.token_name
+                        .range_area
+                            span.range_min 0
+                            input.range(type='range', min='0', max='1000000')
+                            span.range_max max
+                        table.table.mt-60
+                            tbody
+                                tr
+                                    td Daily earnings
+                                    td#daily_earn_token_val Thornton
+                                    td#daily_earn_val $254.37
+                                tr
+                                    td Monthly earnings
+                                    td#monthly_earn_token_val 289.09 UMEE
+                                    td#monthly_earn_val $254.37
+                                tr
+                                    td Yearly earnings
+                                    td#yearly_earn_token_val Thornton
+                                    td#yearly_earn_val $254.37
+                        a.btn.btn-primary.with-network.align-self-end.mt-2(href='#') Get News
+        .pb-md-30.shape-parent.overflow-hidden
+            .container.pb-90
+                .row.mt-md-130.d-none.d-md-block(data-aos='fade-up', data-aos-duration='1000')
+                    .col-12
+                        h2.h1 Staking
+                    .col-6.me-auto
+                        p
+                            | It is quite easy and very profitable with node101 to stake on projects you choose and have a
+                            | passive-income. Just follow the three simple steps below!
+                .row.mt-md-60.staking.d-none.d-md-flex
+                    .col-4(data-aos='fade-up', data-aos-duration='1000')
+                        .d-flex.flex-row.justify-content-between
+                            h3 SEARCH &amp; DECIDE
+                            img(src='./images/stake/search_ic.png', alt='')
+                        p.mt-3
+                            | See the projects in which we have a validator and choose which projects you want to start with.
+                    .col-4(data-aos='fade-up', data-aos-duration='1300')
+                        .d-flex.flex-row.justify-content-between
+                            h3 stake your coin
+                            img(src='./images/stake/stake_ic.png', alt='')
+                        p.mt-3
+                            | Click &apos;How to Stake?&apos; link below the project you choose to learn how you should stake.
+                    .col-4(data-aos='fade-up', data-aos-duration='1600')
+                        .d-flex.flex-row.justify-content-between
+                            h3 earn regular
+                            img(src='./images/stake/earn_ic.png', alt='')
+                        p.mt-3
+                            | Now all you have to do is to wait and see how your capital grows day by day. It is a true
+                            | passive income!
+                .row.mt-130.mt-md-90.about-us
+                    .col-12.d-flex.flex-column.text-center.text-md-start(data-aos='fade-up', data-aos-duration='1000')
+                        h2.slide-in About Us
+                        p.mt-md-4
+                            | node101 describes promising projects in the blockchain ecosystem in a pure language. In
+                            | addition, it offers a service to users with products that provide financial returns such as
+                            | node, testnet, staking, and validation.
+                        p.mt-4
+                            | The node101 team, consisting of a group of young software developers and content producers
+                            | graduated from the world&apos;s leading schools such as the University of Michigan,
+                            | Ludwig-Maximillian, University of Sorbonne, and Bogazici University, provides solutions to the
+                            | accessibility and scalability problems in the industry.
+                        a.btn.btn-primary.with-message.align-self-center.align-self-md-end(href='#') Join Us
+                    .col-12.pt-130.members(data-aos='fade-up', data-aos-duration='1000')
+                        .member
+                            img(src='./images/members/mustafa.jpg', alt='')
+                            .information
+                                h3.name Mustafa Aks&ouml;z
+                                span Relationship
+                                .social
+                                    a.btn.btn-primary
+                                        i.fa.fa-linkedin(aria-hidden='true')
+                                    a.btn.btn-primary
+                                        i.fa.fa-github(aria-hidden='true')
+                                    a.btn.btn-primary
+                                        i.fa.fa-twitter(aria-hidden='true')
+                        .member
+                            img(src='./images/members/akin.jpg', alt='')
+                            .information
+                                h3.name Ak&imath;n Semih Pur
+                                span Strategy &amp; Research
+                                .social
+                                    a.btn.btn-primary
+                                        i.fa.fa-linkedin(aria-hidden='true')
+                                    a.btn.btn-primary
+                                        i.fa.fa-github(aria-hidden='true')
+                                    a.btn.btn-primary
+                                        i.fa.fa-twitter(aria-hidden='true')
+                        .member
+                            img(src='./images/members/mete.jpg', alt='')
+                            .information
+                                h3.name Mete Koray Gergin
+                                span Product
+                                .social
+                                    a.btn.btn-primary
+                                        i.fa.fa-linkedin(aria-hidden='true')
+                                    a.btn.btn-primary
+                                        i.fa.fa-github(aria-hidden='true')
+                                    a.btn.btn-primary
+                                        i.fa.fa-twitter(aria-hidden='true')
+                    .col-12.pt-md-60.members(data-aos='fade-up', data-aos-duration='1000')
+                        .member
+                            img(src='./images/members/alena.jpg', alt='')
+                            .information
+                                h3.name aleyna &ouml;zyurt
+                                span Designer &amp; Brand Creator
+                                .social
+                                    a.btn.btn-primary
+                                        i.fa.fa-linkedin(aria-hidden='true')
+                                    a.btn.btn-primary
+                                        i.fa.fa-github(aria-hidden='true')
+                                    a.btn.btn-primary
+                                        i.fa.fa-twitter(aria-hidden='true')
+                        .member
+                            img(src='./images/members/yasin.jpg', alt='')
+                            .information
+                                h3.name Yasin Berk
+                                span Global Relations
+                                .social
+                                    a.btn.btn-primary
+                                        i.fa.fa-linkedin(aria-hidden='true')
+                                    a.btn.btn-primary
+                                        i.fa.fa-github(aria-hidden='true')
+                                    a.btn.btn-primary
+                                        i.fa.fa-twitter(aria-hidden='true')
+                        .member
+                            img(src='./images/members/yunus.jpg', alt='')
+                            .information
+                                h3.name yunus g&uuml;rlek
+                                span Software Engineer
+                                .social
+                                    a.btn.btn-primary
+                                        i.fa.fa-linkedin(aria-hidden='true')
+                                    a.btn.btn-primary
+                                        i.fa.fa-github(aria-hidden='true')
+                                    a.btn.btn-primary
+                                        i.fa.fa-twitter(aria-hidden='true')
+                .row.pt-90.pt-md-160.pb-md-160.newsletter
+                    .col-12.col-md-10.mx-auto(data-aos='fade-up', data-aos-duration='1000')
+                        p
+                            | Stay up to date about important governance decisions, airdrops, and much more!
+                    .col-12.col-md-6.mt-40.mt-md-60.mx-auto(data-aos='fade-up', data-aos-duration='1000')
+                        .input-group.mb-3
+                            input.form-control(type='text', placeholder='Your Email address', aria-label='Your Email address')
+                            .input-group-append
+                                button.btn.btn-primary.with-network(type='button') Get News
+            .shape-fixed.justify-content-center.z-index-n1.halo.bottom-halo
+                img(src='images/halo3.png', alt='')
+        footer.bg-gr-dark.pt-130.shape-parent
+            //
+              <div class="halo3">
+              <span></span>
+              <span></span>
+              <span></span>
+              </div>
+            .container.footer-container
+                .row.justify-content-between.mb-20
+                    .col-12.col-md-3.d-flex.flex-column.justify-content-between
+                        a.order-0(href='/')
+                            img.logo(src='./images/logo.svg', alt='')
+                    .col-12.col-md-9
+                        .container
+                            .row
+                                .col-12.col-md-6.mt-60.mt-md-0
+                                    p.txt-18  Not an ordinary validator!
+                                    p.txt-14.lh-base.mt-4.mt-md-0
+                                        | node101 is a validator that describes promising projects and web3 terms in the
+                                        | blockchain
+                                        | ecosystem in a pure language.
+                            .row.px-0.mt-60
+                                .row.menu
+                                    .col-6.col-md
+                                        ul
+                                            li NODE101
+                                            li
+                                                a(href='#') Projects
+                                            li
+                                                a(href='#') Who are we?
+                                            li
+                                                a(href='#') Blog
+                                            li
+                                                a(href='#') Stake with us
+                                    .col-6.col-md
+                                        ul
+                                            li l&imath;brary.node101
+                                            li
+                                                a(href='#') Projects 101
+                                            li
+                                                a(href='#') WEB3 Terms 101
+                                    .col-6.col-md.mt-40.mt-md-0
+                                        ul
+                                            li COMMUNITY
+                                            li
+                                                a(href='#')
+                                                    i.fa.fa-telegram(aria-hidden='true')
+                                                    span.nav-link-name Telegram
+                                            li
+                                                a(href='#')
+                                                    i.fa.fa-twitter(aria-hidden='true')
+                                                    span.nav-link-name Twitter
+                                            li
+                                                a(href='#')
+                                                    i.fa.fa-youtube-play(aria-hidden='true')
+                                                    span.nav-link-name Youtube
+                                            li
+                                                a(href='#')
+                                                    i.fa.fa-github(aria-hidden='true')
+                                                    span.nav-link-name Github
+                                            li
+                                                a(href='#')
+                                                    i.fa.fa-spotify(aria-hidden='true')
+                                                    span.nav-link-name Spotify
+                                    .col-6.col-md.mt-40.mt-md-0
+                                        ul
+                                            li TESTNET.NODE101
+                                            li
+                                                a(href='#') Active Testnets
+                                            li
+                                                a(href='#') Archive
+                                    .col-12.col-md.mt-40.mt-md-0
+                                        ul
+                                            li STAKE.NODE101
+                                            li
+                                                a(href='#') Projects
+                                            li
+                                                a(href='#') Calculator
+                                            li
+                                                a(href='#') How can you stake?
+                .row.mt-130.mt-n-md-30.text-center.text-md-start
+                    p &copy; 2022 node101, Inc. All rights reserved.
+            .sub
+                .container.footer-container.sub
+                    .row.mt-md-60.pt-4.pt-md-3.pb-4.copywrite
+                        .col-12.d-flex.flex-row.justify-content-between
+                            span.txt-14
+                                | Design &amp;  develop by RED Flare
+                                br.d-block.d-md-none
+                                | DDA &copy; 2022
+                            img.red-logo(src='./images/RedFlareDDa.svg', alt='RedFlareDDA Team')

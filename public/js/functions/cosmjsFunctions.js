@@ -112,7 +112,7 @@ function getStake(delegatorAddress, validatorAddress, callback, i) {
 }
 
 function sendStake( currentChain, stakingValue, callback) {
-  print("are we here");
+  console.log("are we here");
   const currentChainInfo = JSON.parse(currentChain.chain_info);
   stakingValue = parseFloat(stakingValue) * (10 ** currentChainInfo.currencies[0].coinDecimals);
 

@@ -43,12 +43,7 @@ window.addEventListener('load',  async() => {
   }); 
 
   document.addEventListener('click', event => {
-    if (event.target.closest('.content-header-title')) {
-      console.log('clicked');
 
-      document.querySelector('.content-wrapper-info').style.display = 'none';
-      document.querySelector('.content-wrapper-portfolio-body').style.display = 'block';
-    }
     if (event.target.closest('.content-wrapper-info-body-larrow')) {
       const isLeft = true;
       carousel(isLeft);

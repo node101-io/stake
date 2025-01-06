@@ -17,26 +17,79 @@ function setDynamicValidatorUI(validatorList) {
 
     const buttonWrapper = document.querySelector('.content-wrapper-portfolio-body-buttons');
     buttonWrapper.classList.add('display-none');
+
+    const validatorContainer = document.querySelector('.content-wrapper-portfolio-body-validators-content-one-validator');
+    validatorContainer.classList.add('display-none');
+
+    const validatorListElement = document.querySelector('.content-wrapper-portfolio-body-validators');
+    validatorListElement.classList.remove('display-none');
+
+
+    const wrapperElement = document.querySelector('.content-wrapper-portfolio-body-validators-content');
+    wrapperElement.classList.add('display-none');
+
     
     return;
   };
 
   if (validatorList.length == 1 && validatorList[0].moniker == "node101") {
     console.log("Only node101");
+    const backgroundSpiral = document.querySelector('.content-wrapper-portfolio-body-validators-content-no-validator-background');
+    backgroundSpiral.classList.add('display-none');
+
+    const noValidator = document.querySelector('.content-wrapper-portfolio-body-validators-content-no-validator');
+    noValidator.classList.add('display-none');
+
+
     const reloadIcon = document.querySelector('.content-wrapper-portfolio-body-validators-reload');
     reloadIcon.classList.add('display-none');
 
+    const buttonWrapper = document.querySelector('.content-wrapper-portfolio-body-buttons');
+    buttonWrapper.classList.add('display-none');
+
+
+    const listValidator = document.querySelector('.content-wrapper-portfolio-body-validators-content');
+    listValidator.classList.add('display-none');
+
 
     const validatorContainer = document.querySelector('.content-wrapper-portfolio-body-validators-content-one-validator');
-    console.log(validatorContainer.classList);
     validatorContainer.classList.remove('display-none');
 
     const nodeValidatorContainer = document.querySelector('.content-wrapper-portfolio-body-validators');
     nodeValidatorContainer.classList.remove('display-none');
 
-    const buttonWrapper = document.querySelector('.content-wrapper-portfolio-body-buttons');
-    buttonWrapper.classList.remove('display-none');
+    const validatorListElement = document.querySelector('.content-wrapper-portfolio-body-validators');
+    validatorListElement.classList.remove('display-none');
+    
+  }  else {
+    console.log("More than one validator");
+    const backgroundSpiral = document.querySelector('.content-wrapper-portfolio-body-validators-content-no-validator-background');
+    backgroundSpiral.classList.add('display-none');
+
+    const noValidator = document.querySelector('.content-wrapper-portfolio-body-validators-content-no-validator');
+    noValidator.classList.add('display-none');
+
+
+    const validatorContainer = document.querySelector('.content-wrapper-portfolio-body-validators-content-one-validator');
+    validatorContainer.classList.add('display-none');
+
+    const nodeValidatorContainer = document.querySelector('.content-wrapper-portfolio-body-validators');
+    nodeValidatorContainer.classList.add('display-none');
+    
+    const listValidator = document.querySelector('.content-wrapper-portfolio-body-validators-content');
+    console.log(listValidator);
+
+    const validatorListElement = document.querySelector('.content-wrapper-portfolio-body-validators');
+    validatorListElement.classList.remove('display-none');
+
+    const wrapperElement = document.querySelector('.content-wrapper-portfolio-body-validators-content');
+    wrapperElement.classList.remove('display-none');
+
+
   }
+
+  
+  
 
 
   const reload = document.querySelector('.content-wrapper-portfolio-body-validators-reload');
@@ -45,6 +98,7 @@ function setDynamicValidatorUI(validatorList) {
   buttonWrapper.classList.remove('display-none');
 
   const validatorContainer = document.querySelector('.content-wrapper-portfolio-body-validators-content');
+  validatorContainer.innerHTML = '';
 
   const redelegateButton = document.createElement('div');
   redelegateButton.classList.add('content-wrapper-portfolio-body-validators-content-third');
@@ -172,6 +226,7 @@ function setDynamicValidatorUI(validatorList) {
     validatorParent.appendChild(validatorElementMoniker);
     validatorContainer.appendChild(validatorParent);
     validatorContainer.appendChild(redelegateButton);
+
 
     redelegateLabel.append(redelegateEach);
     redelegateInnerWrapper.appendChild(redelegateLabel);

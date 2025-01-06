@@ -418,6 +418,15 @@
   margin-top: 20px;
 }
 
+.content-wrapper-portfolio-body-validators-content-one-validator {
+  width: 100%;
+  min-width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  
+}
+
 .content-wrapper-portfolio-body-validators-content-third-arrow-no-validator {
   margin-left: 10px;
 }

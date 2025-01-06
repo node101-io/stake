@@ -108,11 +108,6 @@ window.addEventListener('load', () => {
   document.addEventListener('click', event => {
     if (event.target.closest('.content-header-title')) {
 
-      // if (globalAddress) {
-      //   return
-      // }
-
-
       currentChain = !currentChain ? JSON.parse(document.getElementById('chainInfoElement').value) : currentChain;
 
       if (!window.keplr) {
@@ -122,6 +117,9 @@ window.addEventListener('load', () => {
      
       addChainToKeplr(currentChain, (err) => {
         if (err) console.log(err);
+
+        document.querySelector('.content-wrapper-info').style.display = 'none';
+        document.querySelector('.content-wrapper-portfolio-body').style.display = 'block';  
       });
     }
   });

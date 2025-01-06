@@ -63,10 +63,19 @@ PriceHistorySchema.statics.get24hPriceHistory = function (chain_id, callback) {
       if (priceHistories.length == 0)
         return callback(null, null);
 
+      const idsToKeep = priceHistories.map(entry => entry._id);
+
+      PriceHistory.deleteMany({ 
+        chain_id: chain_id, 
+        _id: { $nin: idsToKeep } 
+      }, (deleteErr) => {
+        if (deleteErr) return callback('database_error')
+
       const priceAt24hAgo = priceHistories[priceHistories.length - 1].price;
 
       return callback(null, priceAt24hAgo);
     });
+  });
 };
 
 module.exports = mongoose.model('PriceHistory', PriceHistorySchema);

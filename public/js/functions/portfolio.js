@@ -1,9 +1,9 @@
 function setDynamicValidatorUI(validatorList) {  
-  validatorList =  validatorList.slice(0, 2);
-  //validatorList = validatorList.filter(validator => validator.operatorAddress == currentChain.validator_address);
-  //validatorList = validatorList.filter(validator => validator.operatorAddress != currentChain.validator_address);
-
   
+  node101validatorList = validatorList.filter(validator => validator.operatorAddress == currentChain.validator_address);
+  validatorList = validatorList.filter(validator => validator.operatorAddress != currentChain.validator_address);
+  validatorList =  validatorList.slice(0, 2);
+
   if (validatorList.length == 0) {
     console.log("No validators");
     const backgroundSpiral = document.querySelector('.content-wrapper-portfolio-body-validators-content-no-validator-background');
@@ -32,7 +32,7 @@ function setDynamicValidatorUI(validatorList) {
     return;
   };
 
-  if (validatorList.length == 1 && validatorList[0].moniker == "node101") {
+  if (node101validatorList.length == 1 && validatorList.length == 1) {
     console.log("Only node101");
     const backgroundSpiral = document.querySelector('.content-wrapper-portfolio-body-validators-content-no-validator-background');
     backgroundSpiral.classList.add('display-none');
@@ -278,8 +278,8 @@ window.addEventListener('load', () => {
   document.addEventListener('input', event => {
 
     if (event.target.closest('.redelegate-content-wrapper-stake-body-main-center-body-stake-amount')) {
-      console.log("Yes");
-      const redelegateAmount = event.target.value;
+      const redelegateAmount = event.target.value || 0;
+
       document.querySelector('.redelegate-content-wrapper-stake-body-main-center-body-stake-dollar').textContent = "$" + (parseFloat(redelegateAmount) * currentChain.price)?.toFixed(2);
     };
   });

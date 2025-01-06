@@ -105,7 +105,14 @@ async function sendPayForBlob(network, sender, proto, fee, blob) {
 }
 
 async function simulateMsgs(network, sender, proto, fee) {
-    const account = await fetchAccountInfo(network, sender);
+    const chainName = network.chainName.toLowerCase().replace(/\s/g, "");
+    // also trim out if there is a space inside the chain name
+
+    console.log(network);
+    const restUrl = `https://rest.cosmos.directory/${chainName}`;
+    const account = await fetchAccountInfo(restUrl, sender);
+   
+
 
     if (account) {
         const unsignedTx = TxRaw.encode({
@@ -139,7 +146,9 @@ async function simulateMsgs(network, sender, proto, fee) {
             signatures: [new Uint8Array(64)],
         }).finish();
 
-        const simulatedResult = await $fetch(`${network.rest}/cosmos/tx/v1beta1/simulate`, {
+        console.log(unsignedTx);
+
+        const simulatedResult = await fetch(`https://rest.cosmos.directory/${chainName}/cosmos/tx/v1beta1/simulate`, {
             method: "POST",
             headers: {
                 "content-type": "application/json",
@@ -148,7 +157,8 @@ async function simulateMsgs(network, sender, proto, fee) {
                 tx_bytes: Buffer.from(unsignedTx).toString("base64"),
             }),
         });
-
+        
+        console.log(simulatedResult.data);               
         const gasUsed = parseInt(simulatedResult.gas_info.gas_used);
         if (Number.isNaN(gasUsed)) {
             throw new Error(`Invalid integer gas: ${simulatedResult.gas_info.gas_used}`);
@@ -236,7 +246,6 @@ async function fetchAccountInfo(rest, address) {
   
     try {
         const uri = `${rest}/cosmos/auth/v1beta1/accounts/${address}`;
-        console.log(uri);
         const response = await fetch(uri);
         const data = await response.json();
         return data.account;

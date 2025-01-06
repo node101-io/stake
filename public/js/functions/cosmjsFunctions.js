@@ -1,6 +1,7 @@
 const GAS_FEE_ADJUSTMENT = 1.3;
 const TOKEN_DECIMALS = 18;
-function getValidatorList(callback) {
+function getValidatorList(callback, i) {
+  if (!i) i = 0;
   SigningStargateClient.connectWithSigner(currentChain.rpc_url)
     .then(client => client.queryClient.staking.delegatorValidators(globalAddress))
     .then((redelegations) => {
@@ -26,7 +27,10 @@ function getValidatorList(callback) {
           });
         }
     ).catch((err) => {
-      console.log(err);
+      if (i < 3)
+        return getValidatorList(callback, i + 1);
+      
+      return callback('document_not_found');
     });
 };
 
@@ -48,33 +52,43 @@ function getBalance(address, callback) {
   });
 }
 
-function getReward(delegatorAddress, validatorAddress, callback) {
+function getReward(delegatorAddress, validatorAddress, callback, i) {
   const currentChainInfo = JSON.parse(currentChain.chain_info);
   const stakingdenom = currentChainInfo.feeCurrencies[0].coinMinimalDenom;
   const rpc_url = currentChain.rpc_url;
 
+  if (!i) i = 0;
+
   Tendermint34Client.connect(rpc_url).then((tendermintClient) => {
     const queryClient = QueryClient.withExtensions(tendermintClient, setupDistributionExtension);
+
     queryClient.distribution.delegationRewards(delegatorAddress, validatorAddress)
       .then((rewardsResponse) => {
-        if (!rewardsResponse) return callback(null,'0');
+        if (!rewardsResponse) return callback(null, '0');
         
         const staked = (rewardsResponse.rewards).filter(reward => reward.denom == stakingdenom)[0];
         const stakedAmount =  `${Math.floor(staked.amount/ (10 ** TOKEN_DECIMALS))}`;
     
         return callback(null, stakedAmount);
       })
-
       .catch(err => {
+        if (i < 3)
+          return getRewardRecursively(delegatorAddress, validatorAddress, callback, i + 1);
+
         return callback('document_not_found');
       })
   }).catch(_ => {
+    if (i < 3)
+      return getRewardRecursively(delegatorAddress, validatorAddress, callback, i + 1);
+
     return callback('document_not_found');
   });
 }
 
-function getStake(delegatorAddress, validatorAddress, callback) {
+function getStake(delegatorAddress, validatorAddress, callback, i) {
   const rpc_url = currentChain.rpc_url;
+
+  if (!i) i = 0;
 
   Tendermint34Client.connect(rpc_url).then((tendermintClient) => {
     const queryClient = QueryClient.withExtensions(tendermintClient, setupStakingExtension);
@@ -84,21 +98,26 @@ function getStake(delegatorAddress, validatorAddress, callback) {
       const stakedAmount = `${delegationResponse.delegationResponse.balance.amount}`;
       return callback(null, stakedAmount);
     }).catch(err => {
-      console.log(err);
+      if (i < 3)
+        return getStake(delegatorAddress, validatorAddress, callback, i + 1);
+
       return callback('document_not_found');
     });
   }
   ).catch(_ => {
+    if (i < 3)
+      return getStake(delegatorAddress, validatorAddress, callback, i + 1);
     return callback('document_not_found');
   });
 }
 
 function sendStake( currentChain, stakingValue, callback) {
+  print("are we here");
   const currentChainInfo = JSON.parse(currentChain.chain_info);
   stakingValue = parseFloat(stakingValue) * (10 ** currentChainInfo.currencies[0].coinDecimals);
 
    keplr.getKey(currentChain.chain_id).then((key) => {
-   
+    console.log("key", key);
     TestStake(currentChainInfo,stakingValue, key, (err) => {
        if (err) return console.log(err);
      });
@@ -302,9 +321,13 @@ async function TestStake(network,amount, key,  callback) {
     ],
     gas: 200000,
   }
-  const txHash =  sendMsgs(network, key.bech32Address, proto, stdFee).then((txHash) => {
-    console.log("txHash", txHash);
-  })
-  console.log(await txHash);
+  
+  simulateMsgs(network, key.bech32Address, proto, [{ denom: coinDenom, amount: "1" }]).then((txFee) => {
+    console.log("txFee", txFee);
+    sendMsgs(network, key.bech32Address, proto, stdFee).then((txHash) => {
+      console.log("txHash", txHash);
+    });
+  });
+ 
   return callback(null);
 }

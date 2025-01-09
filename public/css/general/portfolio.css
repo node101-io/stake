@@ -816,9 +816,7 @@
 }
 
 
-.redelegate-content-wrapper-portfolio-body-validators-content-third {
 
-}
 
 .redelegate-content-wrapper-stake-body-main-center-body-stake-amount {
   height: auto;
@@ -847,6 +845,7 @@
 .redelegate-content-wrapper-portfolio-body-validators-content-third {
   width:  230px;
   height: 50px;
+  font-size: 14px;
   display: flex;
   align-items: center;
   flex-direction: row;

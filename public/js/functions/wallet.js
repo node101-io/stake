@@ -1,4 +1,3 @@
-
 function connect(network) {
     return new Promise(async (resolve, reject) => {
         try {
@@ -29,80 +28,6 @@ function getAccounts(network) {
     });
 }
 
-function buildPayForBlob(tx, blob) {
-    let blobTx = new proto.BlobTx();
-    blobTx.setTx(tx);
-    blobTx.setTypeId("BLOB");
-    blobTx.addBlobs(blob);
-    return blobTx.serializeBinary();
-}
-
-async function sendPayForBlob(network, sender, proto, fee, blob) {
-    const account = await fetchAccountInfo(network, sender);
-    const { pubKey } = await keplr.getKey(network.chainId);
-
-    const tx = TxBody.encode(
-        TxBody.fromPartial({
-            messages: proto,
-            memo: "Sent via Celenium.io",
-        }),
-    ).finish();
-
-    if (account) {
-        const signDoc = {
-            bodyBytes: tx,
-            authInfoBytes: AuthInfo.encode({
-                signerInfos: [
-                    {
-                        publicKey: {
-                            typeUrl: "/cosmos.crypto.secp256k1.PubKey",
-                            value: PubKey.encode({
-                                key: pubKey,
-                            }).finish(),
-                        },
-                        modeInfo: {
-                            single: {
-                                mode: SignMode.SIGN_MODE_DIRECT,
-                            },
-                            multi: undefined,
-                        },
-                        sequence: account.sequence,
-                    },
-                ],
-                fee: Fee.fromPartial({
-                    amount: fee.amount.map((coin) => {
-                        return {
-                            denom: coin.denom,
-                            amount: coin.amount.toString(),
-                        };
-                    }),
-                    gasLimit: fee.gas,
-                }),
-            }).finish(),
-            chainId: network.chainId,
-            accountNumber: Long.fromString(account.account_number),
-        };
-
-        const signed = await keplr.signDirect(network.chainId, sender, signDoc);
-
-        const body = buildPayForBlob(
-            TxRaw.encode({
-                bodyBytes: signed.signed.bodyBytes,
-                authInfoBytes: signed.signed.authInfoBytes,
-                signatures: [decodeSignature(signed.signature.signature)],
-            }).finish(),
-            blob,
-        );
-
-        const signedTx = {
-            tx: body,
-            signDoc: signed.signed,
-        };
-
-        const txHash = await broadcastTxSync(network.chainId, signedTx.tx);
-        return Buffer.from(txHash).toString("hex");
-    }
-}
 
 async function simulateMsgs(network, sender, proto, fee) {
     const chainName = network.chainName.toLowerCase().replace(/\s/g, "");

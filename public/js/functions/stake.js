@@ -116,7 +116,7 @@ window.addEventListener('load', () => {
         return;
       };
     
-        sendStake(currentChain, stakingValue, (err, res) => {
+        completeStake(currentChain, stakingValue, (err, res) => {
           if (err) {
             console.log(err);
             return;

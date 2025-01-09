@@ -11,17 +11,17 @@ function getValidatorList(callback, i) {
           });
 
           serverRequest('/keybase', 'POST', { keybaseIdList }, res => {
-
+               
                const validatorList = redelegations.validators.map((validator, index) => {
                 return {
                   operatorAddress: validator.operatorAddress,
                   moniker: validator.description.moniker,
                   identity: validator.description.identity,
-                  picture: res.validatorInfoList[index].image_url,
+                  picture: res.validatorInfoList[index].image_url
                 };
               });
               
-              console.log(validatorList);
+              
               setDynamicValidatorUI(validatorList); 
             
           });
@@ -37,14 +37,11 @@ function getValidatorList(callback, i) {
 function getBalance(address, callback) {  
 
   const rest_url= currentChain.rest_url;
-  console.log(`${rest_url}/cosmos/bank/v1beta1/balances/${address}`);
   fetch(`${rest_url}/cosmos/bank/v1beta1/balances/${address}`).
     then(response => response.json()).
     then(data => {
       if (data.error) return callback(data.error);
-      console.log(data);
       const balance = data.balances[0]?.amount || '0';
-      console.log(balance);
       return callback(null, balance);
     }
   ).catch(err => {
@@ -73,13 +70,13 @@ function getReward(delegatorAddress, validatorAddress, callback, i) {
       })
       .catch(err => {
         if (i < 3)
-          return getRewardRecursively(delegatorAddress, validatorAddress, callback, i + 1);
+          return getReward(delegatorAddress, validatorAddress, callback, i + 1);
 
         return callback('document_not_found');
       })
   }).catch(_ => {
     if (i < 3)
-      return getRewardRecursively(delegatorAddress, validatorAddress, callback, i + 1);
+      return getReward(delegatorAddress, validatorAddress, callback, i + 1);
 
     return callback('document_not_found');
   });
@@ -111,207 +108,147 @@ function getStake(delegatorAddress, validatorAddress, callback, i) {
   });
 }
 
-function sendStake( currentChain, stakingValue, callback) {
-  console.log("are we here");
-  const currentChainInfo = JSON.parse(currentChain.chain_info);
-  stakingValue = parseFloat(stakingValue) * (10 ** currentChainInfo.currencies[0].coinDecimals);
+function completeStake( currentChain, stakingValue, callback) {
 
-   keplr.getKey(currentChain.chain_id).then((key) => {
-    console.log("key", key);
-    TestStake(currentChainInfo,stakingValue, key, (err) => {
-       if (err) return console.log(err);
-     });
-   });
-  return callback(null);
-}; 
+  keplr.getKey(currentChain.chain_id).then((key) => {
 
-function completeRestake(offlineSigner, accounts, currentChain, callback) {
-  const currentChainInfo = JSON.parse(currentChain.chain_info);
-  const stakingdenom = currentChainInfo.feeCurrencies[0].coinMinimalDenom;
-  const rpc_url = currentChain.rpc_url;
-  const memo = "restake from node101 website";
-  const validatorAddress = currentChain.validator_address;
+    const currentChainInfo = JSON.parse(currentChain.chain_info);
+    stakingValue = parseFloat(stakingValue) * (10 ** currentChainInfo.currencies[0].coinDecimals);
+    const coinDenom = currentChainInfo.feeCurrencies[0].coinMinimalDenom;
 
-  getReward(accounts.address, validatorAddress, (err, data) => {
-    if (err) return callback(err);
-
-    const WithdrawRewardMsg = MsgWithdrawDelegatorReward.fromPartial({
-      delegatorAddress: accounts.address,
-      validatorAddress: validatorAddress
-    });
-
-    const WithdrawRewardTransaction = {
-      typeUrl: "/cosmos.distribution.v1beta1.MsgWithdrawDelegatorReward",
-      value: WithdrawRewardMsg,
-    };
-
-    const DelegateMsg = MsgDelegate.fromPartial({
-      delegatorAddress: accounts.address,
-      validatorAddress: validatorAddress,
-      amount: {
-        denom: stakingdenom,
-        amount: data
-      }
-    });
+    const myaddress = key.bech32Address;
+    const valiaddress = currentChain.validator_address;
 
     const DelegateTransaction = {
-      typeUrl: "/cosmos.staking.v1beta1.MsgDelegate",
-      value: DelegateMsg,
-    };
 
-    completeTransaction(offlineSigner, accounts, [WithdrawRewardTransaction, DelegateTransaction], rpc_url, stakingdenom, memo, (err,data) => {
+        typeUrl: "/cosmos.staking.v1beta1.MsgDelegate",
+        value: MsgDelegate.encode({
+          delegatorAddress: myaddress,
+          validatorAddress: valiaddress,
+          amount: {
+            denom: coinDenom,
+            amount: stakingValue.toString(),
+          },
+        }).finish(),
+    }
+
+    const proto = [DelegateTransaction];
+
+    completeTransaction(currentChainInfo, key, proto, coinDenom, (err) => {
+        if (err) return console.log(err);
+      });
+    });
+    return callback(null);
+}; 
+
+
+function completeRestake(currentChain, callback) {
+  keplr.getKey(currentChain.chain_id).then((key) => {
+    const currentChainInfo = JSON.parse(currentChain.chain_info);
+    const coinDenom = currentChainInfo.feeCurrencies[0].coinMinimalDenom;
+    const myaddress = key.bech32Address;
+    const valiaddress = currentChain.validator_address;
+
+    getReward(myaddress, valiaddress, (err, data) => {
       if (err) return callback(err);
-      return callback(null);
+
+      const WithdrawRewardTransaction =  {
+        typeUrl: "/cosmos.distribution.v1beta1.MsgWithdrawDelegatorReward",
+        value: MsgWithdrawDelegatorReward.encode({
+          delegatorAddress: myaddress,
+          validatorAddress: valiaddress,
+
+        }).finish(),
+      }
+
+      const DelegateTransaction = {
+        typeUrl: "/cosmos.staking.v1beta1.MsgDelegate",
+        value: MsgDelegate.encode({
+          delegatorAddress: myaddress,
+          validatorAddress: valiaddress,
+          amount: {
+            denom: coinDenom,
+            amount: data,
+          },
+        }).finish(),
+      };
+
+      proto = [WithdrawRewardTransaction, DelegateTransaction];
+
+      completeTransaction(currentChainInfo,key,proto,coinDenom, (err,data) => {
+        if (err) return callback(err);
+        
+        return callback(null);
+      });
     });
   });
 };
 
-function completeWithdraw(offlineSigner, accounts, currentChain, callback) {
-  const currentChainInfo = JSON.parse(currentChain.chain_info);
-  const stakingdenom = currentChainInfo.feeCurrencies[0].coinMinimalDenom;
-  const rpc_url = currentChain.rpc_url;
-  const memo = "withdraw stake from node101 website";
-  const validatorAddress = currentChain.validator_address;
+function completeWithdraw(currentChain, callback) {
+  keplr.getKey(currentChain.chain_id).then((key) => {
+    const currentChainInfo = JSON.parse(currentChain.chain_info);
+    const coinDenom = currentChainInfo.feeCurrencies[0].coinMinimalDenom;
+    const myaddress = key.bech32Address;
+    const valiaddress = currentChain.validator_address;
 
-  const WithdrawRewardMsg = MsgWithdrawDelegatorReward.fromPartial({
-    delegatorAddress: accounts.address,
-    validatorAddress: validatorAddress
-  });
+    getReward(myaddress, valiaddress, (err, data) => {
+      if (err) return callback(err);
 
-  const WithdrawRewardTransaction = {
-    typeUrl: "/cosmos.distribution.v1beta1.MsgWithdrawDelegatorReward",
-    value: WithdrawRewardMsg,
-  };
+      const WithdrawRewardTransaction =  {
+        typeUrl: "/cosmos.distribution.v1beta1.MsgWithdrawDelegatorReward",
+        value: MsgWithdrawDelegatorReward.encode({
+          delegatorAddress: myaddress,
+          validatorAddress: valiaddress,
 
-  completeTransaction(offlineSigner, accounts, [WithdrawRewardTransaction], rpc_url, stakingdenom, memo, (err,data) => {
-    if (err) return callback(err);
-    return callback(null);
+        }).finish(),
+      }
+
+      proto = [WithdrawRewardTransaction];
+
+      completeTransaction(currentChainInfo,key,proto,coinDenom, (err,data) => {
+  
+        if (err) return callback(err);
+        
+        return callback(null);
+      });
+    });
   });
 };  
 
-function completeUnstake(offlineSigner, accounts, currentChain, callback) {
-  const currentChainInfo = JSON.parse(currentChain.chain_info);
-  const stakingdenom = currentChainInfo.feeCurrencies[0].coinMinimalDenom;
-  const rpc_url = currentChain.rpc_url;
-  const memo = "unstake from node101 website";
-  const validatorAddress = currentChain.validator_address;
+function completeRedelegate(currentChain, validatorAddress, redelegateAmount, callback) {
 
-  getStake(accounts.address, validatorAddress, (err, data) => {
-    if (err) return callback(err);
+  keplr.getKey(currentChain.chain_id).then((key) => {
 
-    const UndelegateMsg = 
-      MsgUndelegate.fromPartial({
-        delegatorAddress: accounts.address,
-        validatorAddress: validatorAddress,
-        amount: {
-          denom: stakingdenom,
-          amount: data
-        }
-    })
+    const currentChainInfo = JSON.parse(currentChain.chain_info);
+    const coinDenom = currentChainInfo.feeCurrencies[0].coinMinimalDenom;
+    redelegateAmount = parseFloat(redelegateAmount) * (10 ** currentChainInfo.currencies[0].coinDecimals);
+    const myaddress = key.bech32Address;
 
-    const UndelegateTransaction = {
-      typeUrl: "/cosmos.staking.v1beta1.MsgUndelegate",
-      value: UndelegateMsg,
-    };
-
-    completeTransaction(offlineSigner, accounts, [UndelegateTransaction], rpc_url, stakingdenom, memo, (err,data) => {
-      if (err) return callback(err);
-      return callback(null);
-    });
-  });
-};
-
-function completeRedelegate(offlineSigner, accounts, currentChain, validatorAddress, redelegateAmount, callback) {
-  const currentChainInfo = JSON.parse(currentChain.chain_info);
-  const stakingdenom = currentChainInfo.feeCurrencies[0].coinMinimalDenom;
-  const rpc_url = currentChain.rpc_url;
-  const memo = "redelegate from node101 website";
-  redelegateAmount = parseFloat(redelegateAmount) * (10 ** currentChainInfo.currencies[0].coinDecimals);
-
-  getStake(accounts.address, validatorAddress, (err, reward) => {
-    if (err) {
-      return callback(err);
-    }
-
-    const RedelegateMsg = 
-      MsgBeginRedelegate.fromPartial({
-        delegatorAddress: accounts.address,
-        validatorSrcAddress: validatorAddress,
-        validatorDstAddress: currentChain.validator_address,
-      amount: {
-        denom: stakingdenom,
-        amount: redelegateAmount.toString(),
-      }
-    })
-
-    console.log(RedelegateMsg);
-
+ 
     const RedelegateTransaction = {
       typeUrl: "/cosmos.staking.v1beta1.MsgBeginRedelegate",
-      value: RedelegateMsg,
+      value: MsgBeginRedelegate.encode({
+        delegatorAddress: myaddress,
+        validatorSrcAddress: validatorAddress,
+        validatorDstAddress: currentChain.validator_address,
+        amount: {
+          denom: coinDenom,
+          amount: redelegateAmount.toString(),
+        },
+      }).finish(),
     };
-    console.log(RedelegateTransaction)
-    completeTransaction(offlineSigner, accounts, [RedelegateTransaction], rpc_url, stakingdenom, memo, (err,data) => {
+
+    const proto = [RedelegateTransaction];
+
+    completeTransaction(currentChainInfo,key,proto,coinDenom, (err,data) => {
       if (err) return callback(err);
       return callback(null);
     });
   });
 };
 
-function completeTransaction(offlineSigner, accounts, msgs, rpc_url, stakingdenom, memo, callback) {
-  
-  let globalSigningClient;
-  SigningStargateClient.connectWithSigner(rpc_url,offlineSigner)
-    .then((signingClient) => {
-      globalSigningClient = signingClient;
-      return signingClient.simulate(accounts.address, msgs);
-    }).then((gas)=> {
+function completeTransaction(network, key,proto, coinDenom, callback) {
 
-      const fee = {
-        amount: [
-          {
-            denom: stakingdenom,
-            amount: "0",
-          },  
-        ],
-        gas: Math.round(gas * GAS_FEE_ADJUSTMENT).toString(),
-      };
-
-      return globalSigningClient.signAndBroadcast(accounts.address, msgs, fee, memo);
-    }).then((gasUsed) => {
-      console.log("Gas used: ", gasUsed);
-      if (gasUsed.code === 0) {
-        alert("Transaction successful");
-        console.log(`https://www.mintscan.io/cosmos/tx/${gasUsed.transactionHash}`);
-      } else  {
-        alert("Transaction failed");
-      }
-      return callback(null);
-    }).catch((err) => {
-      return callback(err);
-  });
-};
-
-async function TestStake(network,amount, key,  callback) {
-  const myaddress = key.bech32Address;
-  const valiaddress = currentChain.validator_address;
-  const coinDenom = JSON.parse(currentChain.chain_info).currencies[0].coinMinimalDenom;
-
-  console.log("myaddress", myaddress);
-  console.log("valiaddress", valiaddress);
-  const proto = [
-    {
-      typeUrl: "/cosmos.staking.v1beta1.MsgDelegate",
-      value: MsgDelegate.encode({
-        delegatorAddress: myaddress,
-        validatorAddress: valiaddress,
-        amount: {
-          denom: coinDenom,
-          amount: amount.toString(),
-        },
-      }).finish(),
-    },
-  ]
   const stdFee = {
     amount: [
       {
@@ -319,15 +256,38 @@ async function TestStake(network,amount, key,  callback) {
         amount: 0,
       },
     ],
-    gas: 200000,
+    gas: 0,
   }
-  
+
   simulateMsgs(network, key.bech32Address, proto, [{ denom: coinDenom, amount: "1" }]).then((txFee) => {
-    console.log("txFee", txFee);
+    stdFee.gas = Math.ceil(txFee)
     sendMsgs(network, key.bech32Address, proto, stdFee).then((txHash) => {
+      alert("Transaction successful");
+      console.log(`https://www.mintscan.io/cosmos/tx/${gasUsed.transactionHash}`);
       console.log("txHash", txHash);
     });
   });
  
   return callback(null);
-}
+};
+
+
+// function completeUnstake(offlineSigner, accounts, currentChain, callback) {
+//   const currentChainInfo = JSON.parse(currentChain.chain_info);
+//   const stakingdenom = currentChainInfo.feeCurrencies[0].coinMinimalDenom;
+//   const rpc_url = currentChain.rpc_url;
+//   const memo = "unstake from node101 website";
+//   const validatorAddress = currentChain.validator_address;
+
+//   getStake(accounts.address, validatorAddress, (err, data) => {
+//     if (err) return callback(err);
+
+//     const UndelegateMsg = 
+//       MsgUndelegate.fromPartial({
+//         delegatorAddress: accounts.address,
+//         validatorAddress: validatorAddress,
+//         amount: {
+//           denom: stakingdenom,
+//           amount: data
+//         }
+//     })

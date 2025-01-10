@@ -32,8 +32,8 @@ module.exports = (req, res) => {
         chainInfo: chainInfo,
         listOfToken: listOfToken,
         currentChainKey: req.cookies?.currentChainKey || DEFAULT_CHAIN_ID,
-        globalAddressKey: req.cookies?.globalAddressKey,
-        globalBalanceKey: req.cookies?.globalBalanceKey,
+        globalAddressKey: req.cookies?.globalAddressKey ,
+        globalBalanceKey: req.cookies?.globalBalanceKey || 0,
         selected: 'home'
       });
     });

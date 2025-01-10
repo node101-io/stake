@@ -126,7 +126,7 @@ block main
                     | Total Wallet Value
                 .content-wrapper-portfolio-body-stat-chain-value-amount
                   .content-wrapper-portfolio-body-stat-chain-value-amount-token
-                    |#{globalBalanceKey} 
+                    |#{globalBalanceKey  + ' ' + listOfToken[currentChainKey].coin_denom} 
                   .content-wrapper-portfolio-body-stat-chain-value-amount-usd
                     - console.log(globalBalanceKey);
                     | $ #{(listOfToken[currentChainKey].price * parseFloat(globalBalanceKey)).toFixed(2)}

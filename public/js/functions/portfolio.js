@@ -272,16 +272,15 @@ window.addEventListener('load', () => {
     document.querySelector('.content-wrapper-portfolio-body-stat-balance-statusbar-3').style.background = `linear-gradient(90deg, #FFD3D3 ${width2}%, #E4E9FF ${width2}%)`;
   });
 
-  // getReward(globalAddress, currentChain.validator_address, (err, data) => {
-  //   if (err) console.log(err);
+  getReward(globalAddress, currentChain.validator_address, (err, data) => {
+    if (err) console.log(err);
+    if (!data) data = 0;
 
-  //   let balance = document.querySelector('.content-wrapper-portfolio-body-stat-chain-value-amount-token').innerText;
-  //   balance = parseFloat((balance.match(/\d+(\.\d+)?/) || [0])[0]) * 10 ** JSON.parse(currentChain.chain_info).currencies[0].coinDecimals;
-  //   const width = parseFloat(data)/(balance + parseFloat(data)) * 100;
+    let balance = document.querySelector('.content-wrapper-portfolio-body-stat-chain-value-amount-token').innerText;
+    balance = parseFloat((balance.match(/\d+(\.\d+)?/) || [0])[0]) * 10 ** JSON.parse(currentChain.chain_info).currencies[0].coinDecimals;
 
-  //   document.querySelector('.content-wrapper-portfolio-body-stat-balance-statusbar-3').style.background = `linear-gradient(90deg, #B1C7FF ${width}%, #E4E9FF ${width}%)`;
-  //   document.querySelector('.content-wrapper-portfolio-body-stat-balance-text-reward').textContent += " " + parseFloat(data) / 10 ** JSON.parse(currentChain.chain_info).currencies[0].coinDecimals + " " + JSON.parse(currentChain.chain_info).currencies[0].coinDenom;
-  // });
+    document.querySelector('.content-wrapper-portfolio-body-stat-balance-text-reward').textContent += " " + parseFloat(data) / 10 ** JSON.parse(currentChain.chain_info).currencies[0].coinDecimals + " " + JSON.parse(currentChain.chain_info).currencies[0].coinDenom;
+  });
 
   document.addEventListener('input', event => {
 

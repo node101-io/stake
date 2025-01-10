@@ -144,6 +144,7 @@ function setDynamicValidatorUI(validatorList) {
   redelegateButton.appendChild(redelegationArrow);
   
   const redelegatePopup = document.querySelector('.redelegate-content-wrapper-stake-body-main-center-body-chain-list-tile-wrapper');
+  
 
   const redelegateDropdownIcon = document.querySelector('img.redelegate-wrapper-content-dropdown-icon-img');
   redelegateDropdownIcon.src = validatorList[0]?.picture;
@@ -273,7 +274,7 @@ window.addEventListener('load', () => {
   });
 
   getReward(globalAddress, currentChain.validator_address, (err, data) => {
-    if (err) console.log(err);
+    if (err) data = 0;
     if (!data) data = 0;
 
     let balance = document.querySelector('.content-wrapper-portfolio-body-stat-chain-value-amount-token').innerText;

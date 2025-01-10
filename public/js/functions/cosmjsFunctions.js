@@ -35,13 +35,15 @@ function getValidatorList(callback, i) {
 };
 
 function getBalance(address, callback) {  
-
   const rest_url= currentChain.rest_url;
+  const coin_min_denom = JSON.parse(currentChain.chain_info).currencies[0].coinMinimalDenom
   fetch(`${rest_url}/cosmos/bank/v1beta1/balances/${address}`).
     then(response => response.json()).
     then(data => {
       if (data.error) return callback(data.error);
-      const balance = data.balances[0]?.amount || '0';
+      console.log(data);
+      
+      const balance = (data.balances.find(balance => balance.denom === coin_min_denom)).amount|| 0;
       return callback(null, balance);
     }
   ).catch(err => {

@@ -4,7 +4,9 @@ const DEFAULT_CHAIN_ID = 'celestia';
 
 module.exports = (req, res) => {
   const chain_id = req.cookies?.currentChainKey || DEFAULT_CHAIN_ID;
-  console.log('cookie', req.cookies);
+
+
+
 
   ChainInfo.getListOfToken({ is_active: true }, (err, listOfToken) => {
     if (err)
@@ -32,8 +34,8 @@ module.exports = (req, res) => {
         chainInfo: chainInfo,
         listOfToken: listOfToken,
         currentChainKey: req.cookies?.currentChainKey || DEFAULT_CHAIN_ID,
-        globalAddressKey: req.cookies?.globalAddressKey ,
-        globalBalanceKey: req.cookies?.globalBalanceKey || 0,
+        globalAddressKey: req.cookies?.globalAddressKey|| '',
+        globalBalanceKey: req.cookies?.globalBalanceKey || '', 
         selected: 'home'
       });
     });

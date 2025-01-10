@@ -1,11 +1,11 @@
 :root {
-  --sidebar-width: 94px;
+  --sidebar-width: 70px;
 
-  --sidebar-padding-horizontal: 20px;
+  --sidebar-padding: 10px 20px 10px 20px;
   --sidebar-margin-horizontal: 20px;
 
-  --sidebar-logo-width: 60px;
-  --sidebar-logo-height: 60px;
+  --sidebar-logo-width: 50px;
+  --sidebar-logo-height: 50px;
 
   --sidebar-menu-margin-top: 80px;
   --sidebar-menu-item-height: 50px;
@@ -26,7 +26,7 @@
   align-items: center;
   flex-direction: column;
   margin-right: var(--sidebar-margin-horizontal);
-  padding: var(--sidebar-padding-horizontal);
+  padding: var(--sidebar-padding);
   border-radius: var(--border-radius-big);
   background-color: var(--primary-background-light);
 }

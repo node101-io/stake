@@ -92,6 +92,7 @@ window.addEventListener('load', () => {
 
     if (event.target.closest('.content-wrapper-stake-body-main-center-body-chain-name')) {
       document.querySelector('.content-wrapper-stake-body-main-center-body-chain-list').classList.toggle('display-none');
+      document.querySelector('.content-wrapper-stake-body-main-center-body-chain-list-search-input').focus();
     };
 
     if (!event.target.closest('.content-wrapper-stake-body-main-center-body-chain-list-search-input') && !event.target.closest('.content-wrapper-stake-body-main-center-body-chain-name') && !document.querySelector('.content-wrapper-stake-body-main-center-body-chain-list').classList.contains('display-none')) {

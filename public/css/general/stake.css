@@ -89,8 +89,8 @@
 }
 
 .content-wrapper-stake {
-  height: var(--content-wrapper-stake-height);
-  min-height: var(--content-wrapper-stake-height);
+  height: fit-content;
+  min-height: fit-content;
   width: var(--content-wrapper-stake-width);
   min-width: var(--content-wrapper-stake-width);
   display: flex;
@@ -316,6 +316,7 @@
   align-items: flex-start;
   margin-left: var(--content-wrapper-stake-body-main-center-body-chain-margin-left);
   padding: var(--content-wrapper-stake-body-main-center-body-chain-padding-vertical) 0px;
+  cursor: pointer;
 }
 
 .content-wrapper-stake-body-main-center-body-chain-name {
@@ -415,18 +416,17 @@
 .content-wrapper-stake-body-main-content-stat-title {
   height: auto;
   min-height: auto;
-  width: auto;
-  min-width: auto;
+  width: var(--content-wrapper-stake-body-main-width);
+  min-width: var(--content-wrapper-stake-body-main-width);
   display: flex;  
   justify-content: space-between;
   font-family: 'Montserrat';
   font-size: var(--font-size-16);
   font-weight: 300;
   
- 
-  width: var(--content-wrapper-stake-body-main-width);
-  min-width: var(--content-wrapper-stake-body-main-width);
+
   padding: var(--content-wrapper-stake-body-main-content-stat-title-content-each-padding);
+  display: none;
 }
 
 
@@ -541,13 +541,14 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: auto;
+  margin: 20px auto;
   padding: var(--content-wrapper-stake-body-button-padding);
   border-radius: var(--content-wrapper-stake-body-button-border-radius);
   background-color: black;
   color: var(--primary-background-white);
   font-family: 'Montserrat';
   cursor: pointer;
+  cursor: not-allowed;
 }
 
 .content-wrapper-stake-body-button-text {
@@ -587,6 +588,7 @@
   align-items: center;
   justify-content: center;
   margin: var(--content-wrapper-stake-body-main-center-body-chain-list-search-padding);
+  cursor: text;
 }
 
 .content-wrapper-stake-body-main-center-body-chain-list-search-icon {
@@ -598,6 +600,7 @@
   width: var(--content-wrapper-stake-body-main-center-body-chain-list-search-icon-size);
   min-width: var(--content-wrapper-stake-body-main-center-body-chain-list-search-icon-size);
   color: #A0ABDA;
+  cursor: text;
 }
 
 .content-wrapper-stake-body-main-center-body-chain-list-search-input {
@@ -611,7 +614,7 @@
   border: 0px;
   outline: 0px;
   background: #DFE5FF80;
-  cursor: pointer;
+  cursor: text;
 }
 
 .content-wrapper-stake-body-main-center-body-chain-list-search-input::placeholder {

@@ -432,6 +432,7 @@
 }
 
 .content-wrapper-portfolio-body-validators-content-no-validator-text {
+  z-index: 10;
 }
 
 .content-wrapper-portfolio-body-validators-content-no-validator-button {

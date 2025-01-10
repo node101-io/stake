@@ -16,7 +16,7 @@ function addChainToKeplr(currentChain, callback) {
         balance = parseFloat(balance) / 10 ** JSON.parse(currentChain.chain_info).currencies[0].coinDecimals;
         console.log("This is balance",balance);
         balance = balance.toFixed(2);
-        
+        if (!balance) balance = 0;
 
         document.cookie = `globalBalanceKey=${balance}`;
 
@@ -47,8 +47,7 @@ function addChainToKeplr(currentChain, callback) {
         document.querySelector('.content-wrapper-portfolio-body-stat-chain-value-amount-token').textContent = balance + " " + JSON.parse(currentChain.chain_info).currencies[0].coinDenom;
         document.querySelector('.content-wrapper-portfolio-body-stat-chain-value-amount-usd').textContent = "$" + (balance * currentChain.price).toFixed(2);
         document.querySelector('.content-header-title-address').textContent = (key.bech32Address).slice(0, 10) + "..." 
-        console.log(document.querySelector('.content-header-title-address'));
-
+        
         document.querySelector('.content-wrapper-portfolio-body-stat-balance-statusbar-1').style.background = `linear-gradient(90deg, #CDEED3 ${width}%, #E4E9FF ${width}%)`;  
         document.querySelector('.content-wrapper-portfolio-body-stat-balance-statusbar-3').style.background = `linear-gradient(90deg, #FFD3D3 ${width2}%, #E4E9FF ${width2}%)`;
       });
@@ -57,9 +56,9 @@ function addChainToKeplr(currentChain, callback) {
         if (err) console.log(err);
         if (!data) data = 0;
     
-        document.querySelector('.content-wrapper-portfolio-body-stat-balance-text-reward').textContent = " " + parseFloat(data) / 10 ** JSON.parse(currentChain.chain_info).currencies[0].coinDecimals + " " + JSON.parse(currentChain.chain_info).currencies[0].coinDenom;
+       
       });
-
+      
       return callback(null);
       });
     });
@@ -85,6 +84,9 @@ function setTokenUI(currentChain) {
   const tokenImage = document.querySelector('.content-wrapper-stake-body-main-center-body-icon-img');
   const tokenName = document.querySelector('.content-wrapper-stake-body-main-center-body-chain-token');
   const chainName = document.querySelector('.content-wrapper-stake-body-main-center-body-chain-name-network');
+  chainName.textContent = JSON.parse(currentChain.chain_info).chainName;
+
+  
   const tokenSymbol = document.querySelectorAll('.content-wrapper-stake-body-main-content-stat-title-content-each-value-token');
   const tokenApr = document.querySelectorAll('.content-wrapper-stake-body-main-content-stat-title-content-each-time-percent');
   const globalAddressElement = document.querySelector('.content-header-title-address');
@@ -108,7 +110,7 @@ function setTokenUI(currentChain) {
 
   tokenImage.src = currentChain.img_url;
   tokenName.textContent = JSON.parse(currentChain.chain_info).currencies[0].coinDenom;
-  chainName.textContent = JSON.parse(currentChain.chain_info).chainName;
+  
 
 };
 
@@ -127,6 +129,11 @@ window.addEventListener('load', () => {
 
   document.addEventListener('click', event => {
     if (event.target.closest('.content-header-title')) {
+
+      if (getCookieValue('globalAddressKey')) {
+        
+        return;
+      }
 
       currentChain = !currentChain ? JSON.parse(document.getElementById('chainInfoElement').value) : currentChain;
 

@@ -15,6 +15,21 @@ window.addEventListener('load', () => {
     
     if (event.target.closest('.content-wrapper-stake-body-main-center-body-stake-amount')) {
       const stakingValue = event.target.value;
+      let balance = document.querySelector('.content-wrapper-stake-body-main-center-title-amount').innerText;
+      balance = parseFloat((balance.match(/\d+(\.\d+)?/) || [0])[0]) 
+      const inputWrapper = document.querySelector('.content-wrapper-stake-body-main-center-body');
+      const buttonWrapper = document.querySelector('.content-wrapper-stake-body-button');
+
+
+      if (stakingValue > balance) {
+        console.log("You don't have enough balance");
+        inputWrapper.style.border = "1px solid red";
+        buttonWrapper.style.opacity = "0.6";
+        buttonWrapper.style.cursor = "not-allowed";
+      } else {
+        inputWrapper.style.border = "1px solid #E8E8E8";
+        buttonWrapper.style.cursor = "pointer";
+      }
       setAmountUI(stakingValue);
     }
 

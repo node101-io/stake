@@ -241,6 +241,9 @@ function setDynamicValidatorUI(validatorList) {
     redelegateInnerWrapper.appendChild(redelegateLabel);
     redelegateWrapper.appendChild(redelegateInnerWrapper);
     redelegatePopup.appendChild(redelegateWrapper);
+
+    const redelegateIcon = document.querySelector('.content-wrapper-stake-body-main-center-body-icon-img');
+    console.log("redelegated", redelegateIcon);
   });
 });
 };
@@ -254,13 +257,14 @@ window.addEventListener('load', () => {
   }); 
 
   getStake(globalAddress, currentChain.validator_address, (err, data) => {
-    console.log(globalAddress);
-    console.log(currentChain.validator_address);
-    if (err) data = 0;
     
+    if (err) data = 0;
 
-    let balance = document.querySelector('.content-wrapper-portfolio-body-stat-chain-value-amount-token').innerText;
+    let balance = document.querySelector('.content-wrapper-stake-body-main-center-title-amount').innerText;
+
     balance = parseFloat((balance.match(/\d+(\.\d+)?/) || [0])[0]) * 10 ** JSON.parse(currentChain.chain_info).currencies[0].coinDecimals;
+
+    if (!balance || isNaN(balance)) balance = "0";
     let width = (parseFloat(data)/(balance + parseFloat(data))) * 100;
     let width2 = 100 - width;
 
@@ -271,16 +275,12 @@ window.addEventListener('load', () => {
 
     document.querySelector('.content-wrapper-portfolio-body-stat-balance-statusbar-1').style.background = `linear-gradient(90deg, #CDEED3 ${width}%, #E4E9FF ${width}%)`;  
     document.querySelector('.content-wrapper-portfolio-body-stat-balance-statusbar-3').style.background = `linear-gradient(90deg, #FFD3D3 ${width2}%, #E4E9FF ${width2}%)`;
-
     document.querySelector('.content-wrapper-portfolio-body-stat-balance-text-amount-1').textContent =(parseFloat(data)/ (10 ** JSON.parse(currentChain.chain_info).currencies[0].coinDecimals)).toFixed(2) + " " + JSON.parse(currentChain.chain_info).currencies[0].coinDenom;
   });
 
   getReward(globalAddress, currentChain.validator_address, (err, data) => {
     if (err) data = 0;
     if (!data) data = 0;
-
-    let balance = document.querySelector('.content-wrapper-portfolio-body-stat-chain-value-amount-token').innerText;
-    balance = parseFloat((balance.match(/\d+(\.\d+)?/) || [0])[0]) * 10 ** JSON.parse(currentChain.chain_info).currencies[0].coinDecimals;
 
     document.querySelector('.content-wrapper-portfolio-body-stat-balance-text-reward').textContent += " " + parseFloat(data) / 10 ** JSON.parse(currentChain.chain_info).currencies[0].coinDecimals + " " + JSON.parse(currentChain.chain_info).currencies[0].coinDenom;
   });
@@ -289,6 +289,17 @@ window.addEventListener('load', () => {
 
     if (event.target.closest('.redelegate-content-wrapper-stake-body-main-center-body-stake-amount')) {
       const redelegateAmount = event.target.value || 0;
+      let balance = document.querySelector('.redelegate-content-wrapper-stake-body-main-center-title-amount').innerText;
+      balance = parseFloat((balance.match(/\d+(\.\d+)?/) || [0])[0]) 
+      console.log("balance red", balance);
+
+      if (balance < redelegateAmount) {
+        console.log("You don't have enough balance");
+        document.querySelectorAll('.content-wrapper-stake-body-main-center-body')[1].style.border = "1px solid red";
+        document.querySelector('.redelegate-content-wrapper-portfolio-body-validators-content-third').style.opacity = "0.6";
+        document.querySelector('.redelegate-content-wrapper-portfolio-body-validators-content-third').style.cursor = "not-allowed";
+      } 
+
 
       document.querySelector('.redelegate-content-wrapper-stake-body-main-center-body-stake-dollar').textContent = "$" + (parseFloat(redelegateAmount) * currentChain.price)?.toFixed(2);
     };
@@ -330,7 +341,13 @@ window.addEventListener('load', () => {
 
     if (event.target.closest('.redelegate-content-wrapper-stake-body-main-center-body-chain-list-tile-inner')) {
       document.querySelector('.redelegate-wrapper-content-validators').classList.toggle('display-none');
-      
+    };
+
+    if (!event.target.closest('.redelegate-content-wrapper-stake-body-main-center-body-chain-list-tile-inner')) {
+      if (document.querySelector('.redelegate-wrapper-content-validators').classList.contains('display-none')) {
+        document.querySelector('.redelegate-wrapper-content-validators').classList.toggle('display-none');
+      }
+      document.querySelector('.redelegate-wrapper-content-validators').classList.toggle('display-none');
     };
 
     if (event.target.closest('.redelegate-wrapper-content-dropdown')) {

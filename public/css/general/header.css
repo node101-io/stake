@@ -57,6 +57,10 @@
   cursor: pointer;
 }
 
+.content-header-title:hover {
+  cursor: pointer;
+}
+
 .content-header-title-address {
   font-size: 18px;
 }

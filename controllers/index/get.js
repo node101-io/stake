@@ -5,6 +5,10 @@ const DEFAULT_CHAIN_ID = 'celestia';
 module.exports = (req, res) => {
   const chain_id = req.cookies?.currentChainKey || DEFAULT_CHAIN_ID;
 
+  if (isNaN(req.cookies.globalBalanceKey)) {
+    
+  }
+
 
 
 

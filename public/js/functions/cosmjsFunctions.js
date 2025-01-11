@@ -41,9 +41,10 @@ function getBalance(address, callback) {
     then(response => response.json()).
     then(data => {
       if (data.error) return callback(data.error);
-      console.log(data);
+     
       
       const balance = (data.balances.find(balance => balance.denom === coin_min_denom)).amount|| 0;
+      console.log(balance);
       return callback(null, balance);
     }
   ).catch(err => {

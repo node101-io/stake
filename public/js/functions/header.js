@@ -10,9 +10,11 @@ function addChainToKeplr(currentChain, callback) {
       globalAddress = key.bech32Address;
       document.cookie = `currentChainKey=${currentChain.chain_id}`;
       document.cookie = `globalAddressKey=${globalAddress}`;
+      console.log("This is globalAddress",globalAddress);
       getBalance(globalAddress, (err, balance) => {
         if (err)  console.log(err);
         widthBalance = balance;
+        console.log("This is widthBalance",widthBalance);
         balance = parseFloat(balance) / 10 ** JSON.parse(currentChain.chain_info).currencies[0].coinDecimals;
         console.log("This is balance",balance);
         balance = balance.toFixed(2);
@@ -131,7 +133,6 @@ window.addEventListener('load', () => {
     if (event.target.closest('.content-header-title')) {
 
       if (getCookieValue('globalAddressKey')) {
-        
         return;
       }
 

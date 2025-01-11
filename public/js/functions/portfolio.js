@@ -271,6 +271,8 @@ window.addEventListener('load', () => {
 
     document.querySelector('.content-wrapper-portfolio-body-stat-balance-statusbar-1').style.background = `linear-gradient(90deg, #CDEED3 ${width}%, #E4E9FF ${width}%)`;  
     document.querySelector('.content-wrapper-portfolio-body-stat-balance-statusbar-3').style.background = `linear-gradient(90deg, #FFD3D3 ${width2}%, #E4E9FF ${width2}%)`;
+
+    document.querySelector('.content-wrapper-portfolio-body-stat-balance-text-amount-1').textContent =(parseFloat(data)/ (10 ** JSON.parse(currentChain.chain_info).currencies[0].coinDecimals)).toFixed(2) + " " + JSON.parse(currentChain.chain_info).currencies[0].coinDenom;
   });
 
   getReward(globalAddress, currentChain.validator_address, (err, data) => {

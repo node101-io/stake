@@ -313,6 +313,9 @@
 }
 
 .content-wrapper-portfolio-body-stat-balance-text {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   font-weight: 300;
   font-family: 'Montserrat';
   font-size: var(--font-size-14);

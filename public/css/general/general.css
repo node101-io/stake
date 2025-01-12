@@ -172,6 +172,7 @@ body {
   max-width: 100%;
   display: flex;
   justify-content: space-evenly;
+  align-items: center;
   margin: auto 0px;
 }
 

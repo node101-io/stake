@@ -97,7 +97,6 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  margin-top: 80px;
   border-radius: var(--border-radius-big);
   background-color: var(--primary-background-white);
 }

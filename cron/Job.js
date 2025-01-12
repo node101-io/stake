@@ -14,7 +14,7 @@ const getTokenPrice = require('../models/PriceHistory/functions/getTokenPrice');
 
 const Job = {
   start: () => {
-    // Cron('0 */1 * * * *', () => { 
+    Cron('0 */30 * * * *', () => { 
       ChainInfo.findChainInfoByFilters({ is_active:true }, (err, chainInfos) => { 
         if (err)
           return console.error(err);
@@ -66,8 +66,8 @@ const Job = {
             });
           });
         }); 
-      // }),
-    // Cron('0 */1 * * * *', () => {
+     }),
+     Cron('0 0 */24 * * *', () => {
       ChainInfo.findChainInfoByFilters({ is_active:true }, (err, chainInfos) => { 
         if (err)
           return console.error(err);
@@ -95,7 +95,7 @@ const Job = {
           });
         });
       });
-    // });
+    });
   }
 };
 

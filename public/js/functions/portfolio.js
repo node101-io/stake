@@ -2,7 +2,9 @@
 
 
 function setDynamicValidatorUI(validatorList) {  
-  
+  const validatorListDropdown = validatorList.filter(validator => validator.operatorAddress != currentChain.validator_address);
+  validatorList = validatorList.filter(validator => validator.operatorAddress != currentChain.validator_address);
+  validatorList =  validatorList.slice(0, 2);
   node101validatorList = validatorList.filter(validator => validator.operatorAddress == currentChain.validator_address);
 
 
@@ -34,7 +36,7 @@ function setDynamicValidatorUI(validatorList) {
     return;
   };
 
-  if (node101validatorList.length == 1 && validatorList.length == 1) {
+  if (node101validatorList.length == 1 && validatorList.length == 0) {
     console.log("Only node101");
     const backgroundSpiral = document.querySelector('.content-wrapper-portfolio-body-validators-content-no-validator-background');
     backgroundSpiral.classList.add('display-none');
@@ -65,8 +67,7 @@ function setDynamicValidatorUI(validatorList) {
     
   }  else {
 
-    validatorList = validatorList.filter(validator => validator.operatorAddress != currentChain.validator_address);
-    validatorList =  validatorList.slice(0, 2);
+    
     console.log("More than one validator");
     const backgroundSpiral = document.querySelector('.content-wrapper-portfolio-body-validators-content-no-validator-background');
     backgroundSpiral.classList.add('display-none');
@@ -162,7 +163,7 @@ function setDynamicValidatorUI(validatorList) {
     const availableAmount = document.querySelector('.redelegate-content-wrapper-stake-body-main-center-title-amount');
     availableAmount.textContent = data / 10 ** currency + " " + JSON.parse(currentChain.chain_info).currencies[0].coinDenom;
 
-  validatorList.forEach(validator => {
+  validatorListDropdown.forEach(validator => {
 
     const redelegateRadio = document.createElement('input');
     redelegateRadio.type = 'radio';
@@ -220,7 +221,6 @@ function setDynamicValidatorUI(validatorList) {
     validatorElementImgParent.classList.add('content-wrapper-portfolio-body-validators-content-first-icon');
 
     const validatorElementImg = document.createElement('img');
-    // make the image circular
     
     validatorElementImg.src = validator.picture;
 
@@ -233,7 +233,10 @@ function setDynamicValidatorUI(validatorList) {
 
     validatorParent.appendChild(validatorElementImgParent);
     validatorParent.appendChild(validatorElementMoniker);
-    validatorContainer.appendChild(validatorParent);
+    if (validatorListDropdown.indexOf(validator) < 2) {
+      validatorContainer.appendChild(validatorParent);
+    }
+  
     validatorContainer.appendChild(redelegateButton);
 
 

@@ -28,7 +28,7 @@ window.addEventListener('load',  async() => {
       if (!stop) {
         carousel(false); 
       }
-    }, 6000); 
+    }, 5000); 
       
   document.addEventListener('mouseover', event => {
       if (event.target.closest('.content-wrapper-info-body-wrapper-each')) {
@@ -57,12 +57,18 @@ window.addEventListener('load',  async() => {
     if (event.target.closest('.content-wrapper-info-footer-each')) {
       const currentCounter = counter;
       counter = carouselBall.indexOf(event.target.closest('.content-wrapper-info-footer-each'));
-
-      carouselElement[currentCounter % carouselElement.length].style.zIndex = 0;
-      carouselElement[counter % carouselElement.length].style.zIndex = 500;
+      console.log(counter);
+     
 
       carouselBall[currentCounter % carouselBall.length].style.backgroundColor = "#FFFFFF";
       carouselBall[counter % carouselBall.length].style.backgroundColor = "#C4CDF4";
+
+      carouselElement[currentCounter % carouselElement.length].style.zIndex = 0;
+      carouselElement[currentCounter % carouselElement.length].style.opacity = 0;
+      
+      carouselElement[counter % carouselElement.length].style.zIndex = 500;
+      carouselElement[counter % carouselElement.length].style.opacity = 1;
+    
     }
   });
 });

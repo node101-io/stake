@@ -4,7 +4,6 @@ const DEFAULT_CHAIN_ID = 'celestia';
 
 module.exports = (req, res) => {
   const chain_id =  req.cookies?.currentChainKey  || DEFAULT_CHAIN_ID;
-  console.log('cookie', req.cookies);
 
   ChainInfo.getListOfToken({ is_active: true }, (err, listOfToken) => {
     if (err)

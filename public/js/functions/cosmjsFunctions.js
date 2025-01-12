@@ -44,7 +44,6 @@ function getBalance(address, callback) {
      
       
       const balance = (data.balances.find(balance => balance.denom === coin_min_denom)).amount|| 0;
-      console.log(balance);
       return callback(null, balance);
     }
   ).catch(err => {
@@ -142,7 +141,6 @@ function completeStake( currentChain, stakingValue, callback) {
 
     completeTransaction(currentChainInfo, key, proto, coinDenom, (err) => {
         if (err) return console.log(err);
-        console.log("Transaction successful started configuring ui");
         setUICurrentChain(key.bech32Address);
       });
     });

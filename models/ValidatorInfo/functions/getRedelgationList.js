@@ -26,7 +26,6 @@ module.exports = (delegatorAddress, rpcEndpoint, stakingDenom, callback)  => {
               if (validatorList.length === redelegations.validators.length) {
                 return callback(null, validatorList);
               }
-              console.log(validatorList);
 
             }
           });

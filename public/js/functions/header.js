@@ -6,11 +6,9 @@ function addChainToKeplr(currentChain, callback) {
     .then(() => keplr.enable(currentChain.chain_id))
     .then(() => keplr.getKey(currentChain.chain_id))
     .then(key => {
-      console.log("key", key.bech32Address);
       globalAddress = key.bech32Address;
       document.cookie = `currentChainKey=${currentChain.chain_id}`;
       document.cookie = `globalAddressKey=${globalAddress}`;
-      console.log("This is globalAddress",globalAddress);
 
       setUICurrentChain(globalAddress);
       callback(null);
@@ -25,12 +23,8 @@ function setUICurrentChain(globalAddress) {
 
     getValidatorList((err, data) => {
     if (err) console.log(err);
-    console.log(currentChain);
     
-    console.log("What is this", currentChain.img_url);
-    console.log(redelegateIcon);
     redelegateIcon.src = currentChain.img_url;
-
   }); 
 
   getBalance(globalAddress, (err, balance) => {
@@ -47,8 +41,6 @@ function setUICurrentChain(globalAddress) {
     document.cookie = `globalBalanceKey=${balance1}`;
 
     getStake(globalAddress, currentChain.validator_address, (err, data) => {
-      console.log(globalAddress);
-      console.log(currentChain.validator_address);
       if (err) data = 0;
 
       document.querySelector('.content-wrapper-stake-body-main-center-title-amount').textContent = balance1 + " " + JSON.parse(currentChain.chain_info).currencies[0].coinDenom;
@@ -73,7 +65,6 @@ function setUICurrentChain(globalAddress) {
     getReward(globalAddress, currentChain.validator_address, (err, data) => {
       if (err) data = 0;
       if (!data) data = 0;
-      console.log("get reward",data);
       document.querySelector('.content-wrapper-portfolio-body-stat-balance-text-reward').textContent = " " + parseFloat(data) / 10 ** JSON.parse(currentChain.chain_info).currencies[0].coinDecimals + " " + JSON.parse(currentChain.chain_info).currencies[0].coinDenom;
 
       

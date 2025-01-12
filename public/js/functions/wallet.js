@@ -83,7 +83,7 @@ async function simulateMsgs(network, sender, proto, fee) {
             }),
         });
         const simulatedResultJson = await simulatedResult.json();
-        console.log(simulatedResult.data);               
+              
         const gasUsed = parseInt(simulatedResultJson.gas_info.gas_used);
         if (Number.isNaN(gasUsed)) {
             throw new Error(`Invalid integer gas: ${simulatedResultJson.gas_info.gas_used}`);

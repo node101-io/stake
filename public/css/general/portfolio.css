@@ -33,9 +33,9 @@
   --content-wrapper-portfolio-body-buttons-height: 165px;
   --content-wrapper-portfolio-body-buttons-margin-top: 20px;
   --content-wrapper-portfolio-body-buttons-spiral-side: 50px;
-  --content-wrapper-portfolio-body-buttons-each-width: 240px;
+  --content-wrapper-portfolio-body-buttons-each-width: 230px;
   --content-wrapper-portfolio-body-buttons-each-height: 40px;
-  --content-wrapper-portfolio-body-buttons-each-margin:  110px 10px 10px 10px; 
+  --content-wrapper-portfolio-body-buttons-each-margin:  110px 10px 0px 0px; 
 }
 
 .content-wrapper-portfolio-body {
@@ -560,7 +560,6 @@
   justify-content: center;
 }
 .content-wrapper-portfolio-body-buttons {
-  position: relative;
   width: var(--content-wrapper-portfolio-body-each-width);
   min-width: var(--content-wrapper-portfolio-body-each-width);
   height: var(--content-wrapper-portfolio-body-buttons-height);
@@ -587,20 +586,40 @@
 }
 
 .content-wrapper-portfolio-body-buttons-each {
-  width: var(--content-wrapper-portfolio-body-buttons-each-width);
+  width: 100%;
   height: var(--content-wrapper-portfolio-body-buttons-each-height);
   display: flex;
   align-items: center;
   justify-content: space-around;
-  color: #F1F1F1;
+  
   font-weight: 400;
   font-family: 'Montserrat';
   font-size: var(--font-size-14);
-  border-radius: var(--border-radius-medium);
-  background-color: var(--primary-text-black);
+  
   margin: var(--content-wrapper-portfolio-body-buttons-each-margin);
   z-index: 10;
+}
 
+.content-wrapper-portfolio-body-buttons-each-collect {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: var(--content-wrapper-portfolio-body-buttons-each-width);
+  height: var(--content-wrapper-portfolio-body-buttons-each-height);
+  background-color: var(--primary-text-black);
+  border-radius: var(--border-radius-medium);
+  color: #F1F1F1;
+}
+
+.content-wrapper-portfolio-body-buttons-each-restake {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;;
+  width: var(--content-wrapper-portfolio-body-buttons-each-width);
+  height: var(--content-wrapper-portfolio-body-buttons-each-height);
+  background-color: var(--primary-text-black);
+  border-radius: var(--border-radius-medium);
+  color: #F1F1F1;
 }
 
 .content-wrapper-portfolio-body-buttons-each-text {
@@ -910,7 +929,7 @@
 @media only screen and (min-width: 1300px) and (max-width: 1400px) {
  
   .content-wrapper-portfolio-body {
-    --content-wrapper-portfolio-body-width: 450px;
+    --content-wrapper-portfolio-body-width: 480px;
   }
 
   .content-wrapper-portfolio-body-stat { 
@@ -922,8 +941,33 @@
     --content-wrapper-portfolio-body-each-width: 480px;
   }
 
-  .content-wrapper-portfolio-body-buttons {
-   --content-wrapper-portfolio-body-buttons-width: 480px;
+  .content-wrapper-portfolio-body-buttons-each-collect,
+  .content-wrapper-portfolio-body-buttons-each-restake {
+    width: 210px;
+  }
+
+  .content-wrapper-portfolio-body-buttons-each-text {
+    font-size: 15px;
+  }
+
+  .content-wrapper-portfolio-body-buttons-each {
+    width: 85%;
+  } 
+
+  .content-wrapper-portfolio-body-validators-content-first-icon img{
+    width: 20px;
+    height: 20px;
+  }
+
+  .content-wrapper-portfolio-body-validators-content-first-text {
+    margin-left: 4px;
+  }
+
+  .content-wrapper-portfolio-body-validators-content-third {
+    justify-content: space-around;
+    width: 180px;
+    height: 35px;
+    padding: 5px;
   }
 }
 
@@ -940,13 +984,46 @@
     --content-wrapper-portfolio-body-each-width: 450px;
   }
 
-  .content-wrapper-portfolio-body-buttons {
-   --content-wrapper-portfolio-body-buttons-width: 450px;
+  .content-wrapper-portfolio-body-buttons-each-collect,
+  .content-wrapper-portfolio-body-buttons-each-restake {
+    width: 200px;
+  }
+
+  .content-wrapper-portfolio-body-buttons-each-text {
+    font-size: 16px;
+  }
+
+  .content-wrapper-portfolio-body-buttons-each-arrow{
+    display: none;
   }
 
 
   .content-wrapper-portfolio-body-stat-chain-value-amount-token {
     font-size: 20px;
+  }
+
+  .content-wrapper-portfolio-body-buttons-each {
+    width: 80%;
+  } 
+
+  .content-wrapper-portfolio-body-validators-content-first-icon img{
+    width: 15px;
+    height: 15px;
+  }
+
+  .content-wrapper-portfolio-body-validators-content-first-text {
+    font-size: 14px;
+  }
+
+  .content-wrapper-portfolio-body-validators-content-first-text {
+    margin-left: 4px;
+  }
+
+  .content-wrapper-portfolio-body-validators-content-third {
+    justify-content: space-around;
+    width: 180px;
+    height: 40px;
+    padding: 5px;
   }
 }
   
@@ -964,13 +1041,50 @@
     --content-wrapper-portfolio-body-each-width: 425px;
   }
 
-  .content-wrapper-portfolio-body-buttons {
+  /* .content-wrapper-portfolio-body-buttons {
    --content-wrapper-portfolio-body-buttons-width: 425px;
+  } */
+
+  .content-wrapper-portfolio-body-buttons-each-collect,
+  .content-wrapper-portfolio-body-buttons-each-restake {
+    width: 180px;
+  }
+
+  .content-wrapper-portfolio-body-buttons-each-text {
+    font-size: 14px;
+  }
+
+  .content-wrapper-portfolio-body-buttons-each-arrow{
+    display: none;
   }
 
 
   .content-wrapper-portfolio-body-stat-chain-value-amount-token {
     font-size: 16px;
+  }
+
+  .content-wrapper-portfolio-body-buttons-each {
+    width: 80%;
+  } 
+
+  .content-wrapper-portfolio-body-validators-content-first-icon img{
+    width: 15px;
+    height: 15px;
+  }
+
+  .content-wrapper-portfolio-body-validators-content-first-text {
+    font-size: 14px;
+  }
+
+  .content-wrapper-portfolio-body-validators-content-first-text {
+    margin-left: 4px;
+  }
+
+  .content-wrapper-portfolio-body-validators-content-third {
+    justify-content: space-around;
+    width: 170px;
+    height: 35px;
+    padding: 5px;
   }
 }
 
@@ -986,18 +1100,22 @@
   .content-wrapper-portfolio-body-validators {
     --content-wrapper-portfolio-body-each-width: 425px;
   }
-
+/* 
   .content-wrapper-portfolio-body-buttons {
    --content-wrapper-portfolio-body-buttons-width: 425px;
-  }
+  } */
 
   .content-wrapper-portfolio-body-stat-chain-value-amount-token {
     font-size: 16px;
   }
 
-  .content-wrapper-portfolio-body-buttons-each, 
+  .content-wrapper-portfolio-body-buttons-each{
+    width: 80%;
+  }
+
+  .content-wrapper-portfolio-body-buttons-each-collect,
   .content-wrapper-portfolio-body-buttons-each-restake {
-    width: 150px;
+    width: 180px;
   }
 
   .content-wrapper-portfolio-body-buttons-each-text {
@@ -1008,9 +1126,22 @@
     display: none;
   }
 
-  .content-wrapper-portfolio-body-buttons {
+  /* .content-wrapper-portfolio-body-buttons {
     width: 200px !important;
-    justify-content: space-between;
+  } */
+  .content-wrapper-portfolio-body-validators-content-first-text {
+    font-size: 14px;
+  }
+
+  .content-wrapper-portfolio-body-validators-content-first-text {
+    margin-left: 4px;
+  }
+
+  .content-wrapper-portfolio-body-validators-content-third {
+    justify-content: space-around;
+    width: 160px;
+    height: 35px;
+    padding: 5px;
   }
 }
 
@@ -1029,7 +1160,26 @@
     --content-wrapper-portfolio-body-each-width: 415px;
   }
 
-  .content-wrapper-portfolio-body-buttons {
-   --content-wrapper-portfolio-body-buttons-width: 415px;
+
+  .content-wrapper-portfolio-body-buttons-each {
+    width: 75%;
+  } 
+
+  .content-wrapper-portfolio-body-buttons-each-arrow{
+    display: none;
+  }
+  .content-wrapper-portfolio-body-validators-content-first-text {
+    font-size: 14px;
+  }
+
+  .content-wrapper-portfolio-body-validators-content-first-text {
+    margin-left: 4px;
+  }
+
+  .content-wrapper-portfolio-body-validators-content-third {
+    justify-content: space-around;
+    width: 170px;
+    height: 35px;
+    padding: 5px;
   }
 }

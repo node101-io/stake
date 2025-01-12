@@ -251,39 +251,7 @@ function setDynamicValidatorUI(validatorList) {
 window.addEventListener('load', () => {
   console.log(currentChain);
 
-  getValidatorList((err, data) => {
-    if (err) console.log(err);
-    console.log(currentChain);
-  }); 
-
-  getStake(globalAddress, currentChain.validator_address, (err, data) => {
-    
-    if (err) data = 0;
-
-    let balance = document.querySelector('.content-wrapper-stake-body-main-center-title-amount').innerText;
-
-    balance = parseFloat((balance.match(/\d+(\.\d+)?/) || [0])[0]) * 10 ** JSON.parse(currentChain.chain_info).currencies[0].coinDecimals;
-
-    if (!balance || isNaN(balance)) balance = "0";
-    let width = (parseFloat(data)/(balance + parseFloat(data))) * 100;
-    let width2 = 100 - width;
-
-    if (balance == 0) {
-      width = 0;
-      width2 = 0;
-    }
-
-    document.querySelector('.content-wrapper-portfolio-body-stat-balance-statusbar-1').style.background = `linear-gradient(90deg, #CDEED3 ${width}%, #E4E9FF ${width}%)`;  
-    document.querySelector('.content-wrapper-portfolio-body-stat-balance-statusbar-3').style.background = `linear-gradient(90deg, #FFD3D3 ${width2}%, #E4E9FF ${width2}%)`;
-    document.querySelector('.content-wrapper-portfolio-body-stat-balance-text-amount-1').textContent =(parseFloat(data)/ (10 ** JSON.parse(currentChain.chain_info).currencies[0].coinDecimals)).toFixed(2) + " " + JSON.parse(currentChain.chain_info).currencies[0].coinDenom;
-  });
-
-  getReward(globalAddress, currentChain.validator_address, (err, data) => {
-    if (err) data = 0;
-    if (!data) data = 0;
-
-    document.querySelector('.content-wrapper-portfolio-body-stat-balance-text-reward').textContent += " " + parseFloat(data) / 10 ** JSON.parse(currentChain.chain_info).currencies[0].coinDecimals + " " + JSON.parse(currentChain.chain_info).currencies[0].coinDenom;
-  });
+  setUICurrentChain(globalAddress);
 
   document.addEventListener('input', event => {
 

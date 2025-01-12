@@ -53,6 +53,7 @@ function getBalance(address, callback) {
 }
 
 function getReward(delegatorAddress, validatorAddress, callback, i) {
+  
   const currentChainInfo = JSON.parse(currentChain.chain_info);
   const stakingdenom = currentChainInfo.feeCurrencies[0].coinMinimalDenom;
   const rpc_url = currentChain.rpc_url;
@@ -60,15 +61,17 @@ function getReward(delegatorAddress, validatorAddress, callback, i) {
   if (!i) i = 0;
 
   Tendermint34Client.connect(rpc_url).then((tendermintClient) => {
+    
     const queryClient = QueryClient.withExtensions(tendermintClient, setupDistributionExtension);
-
+    
     queryClient.distribution.delegationRewards(delegatorAddress, validatorAddress)
       .then((rewardsResponse) => {
-        if (!rewardsResponse) return callback(null, '0');
         
+        if (!rewardsResponse) return callback(null, '0');
+       
         const staked = (rewardsResponse.rewards).filter(reward => reward.denom == stakingdenom)[0];
         const stakedAmount =  `${Math.floor(staked.amount/ (10 ** TOKEN_DECIMALS))}`;
-    
+        
         return callback(null, stakedAmount);
       })
       .catch(err => {
@@ -139,6 +142,8 @@ function completeStake( currentChain, stakingValue, callback) {
 
     completeTransaction(currentChainInfo, key, proto, coinDenom, (err) => {
         if (err) return console.log(err);
+        console.log("Transaction successful started configuring ui");
+        setUICurrentChain(key.bech32Address);
       });
     });
     return callback(null);
@@ -266,11 +271,13 @@ function completeTransaction(network, key,proto, coinDenom, callback) {
     stdFee.gas = Math.ceil(txFee)
     sendMsgs(network, key.bech32Address, proto, stdFee).then((txHash) => {
       alert("Transaction successful");
-      console.log(`https://www.mintscan.io/cosmos/tx/${gasUsed.transactionHash}`);
+      console.log(`https://www.mintscan.io/cosmos/tx/${txHash}`);
       console.log("txHash", txHash);
+     
     });
   });
- 
+  
+
   return callback(null);
 };
 

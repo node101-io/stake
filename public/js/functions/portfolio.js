@@ -370,18 +370,10 @@ window.addEventListener('load', () => {
         console.log("Keplr extension not installed");
         return;
       };
-      const offlineSigner = keplr.getOfflineSigner(currentChain.chain_id);
-      offlineSigner.getAccounts().
-      then((accounts) => {
-        completeWithdraw(offlineSigner, accounts[0], currentChain, (err,data) => {
-          if (err) console.log(err);
+      completeWithdraw(currentChain, (err, data) => {
+        if (err) console.log(err);
       });
-      
-      }).catch((err) => {
-        console.log(err);
-        return;
-      }); 
-    }; 
+    };
 
     if (event.target.closest('.content-wrapper-portfolio-body-buttons-each-restake')) {
 

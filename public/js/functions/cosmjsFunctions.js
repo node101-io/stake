@@ -224,7 +224,7 @@ function completeWithdraw(currentChain, callback) {
 function completeRedelegate(currentChain, validatorAddress, redelegateAmount, callback) {
 
   keplr.getKey(currentChain.chain_id).then((key) => {
-
+    console.log("key", validatorAddress);
     const currentChainInfo = JSON.parse(currentChain.chain_info);
     const coinDenom = currentChainInfo.feeCurrencies[0].coinMinimalDenom;
     redelegateAmount = parseFloat(redelegateAmount) * (10 ** currentChainInfo.currencies[0].coinDecimals);

@@ -246,7 +246,7 @@ function setDynamicValidatorUI(validatorList) {
     redelegatePopup.appendChild(redelegateWrapper);
 
     const redelegateIcon = document.querySelector('.content-wrapper-stake-body-main-center-body-icon-img');
-    console.log("redelegated", redelegateIcon);
+    
   });
 });
 };
@@ -255,6 +255,9 @@ window.addEventListener('load', () => {
   console.log(currentChain);
 
   setUICurrentChain(globalAddress);
+  if (!globalAddress) {
+    document.querySelector('.content-header-title-address').textContent = "Connect Wallet"; 
+  };
 
   document.addEventListener('input', event => {
 
@@ -311,6 +314,11 @@ window.addEventListener('load', () => {
     }
 
     if (event.target.closest('.redelegate-content-wrapper-stake-body-main-center-body-chain-list-tile-inner')) {
+      
+      const validatorAddress = event.target.closest('.redelegate-content-wrapper-stake-body-main-center-body-chain-list-tile').querySelector('.redelegate-content-wrapper-stake-body-main-center-body-chain-list-each-token').textContent;
+      
+      document.querySelector('.redelegate-wrapper-content-dropdown-text').setAttribute('data-operator-address', validatorAddress);
+
       document.querySelector('.redelegate-wrapper-content-validators').classList.toggle('display-none');
     };
 

@@ -285,8 +285,11 @@ window.addEventListener('load', () => {
       const chain_id = event.target.closest('.content-wrapper-stake-body-main-center-body-chain-list-each').querySelector('.content-wrapper-stake-body-main-center-body-chain-list-each-id').textContent;
       const listOfTokens = JSON.parse(document.getElementById('listOfTokensElement').value);
 
-      document.querySelector('img.content-wrapper-portfolio-body-stat-chain-name-icon').src = listOfTokens[chain_id].img_url;
+      document.querySelector('.content-wrapper-stake-body-main-center-body-icon-img').src = listOfTokens[chain_id].img_url;
       document.querySelector('.content-wrapper-portfolio-body-stat-chain-name-token-name').innerHTML = listOfTokens[chain_id].coin_denom;
+
+      document.querySelector('.content-wrapper-stake-body-main-center-body-chain-name-network').textContent = listOfTokens[chain_id].chain_name;
+      document.querySelector('.content-wrapper-stake-body-main-center-body-chain-token').textContent = listOfTokens[chain_id].coin_denom;
 
       document.querySelector('.content-wrapper-portfolio-body-stat-timeline-percent-text').textContent = "$" + (listOfTokens[chain_id].price).toFixed(2);
       document.querySelector('.content-wrapper-portfolio-body-stat-timeline-percent-text-change').textContent = (listOfTokens[chain_id].price_change_24h).toFixed(2) + "%";

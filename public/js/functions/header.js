@@ -46,7 +46,8 @@ function setUICurrentChain(globalAddress) {
       document.querySelector('.content-wrapper-stake-body-main-center-title-amount').textContent = balance1 + " " + JSON.parse(currentChain.chain_info).currencies[0].coinDenom;
       document.querySelector('.content-wrapper-portfolio-body-stat-chain-value-amount-token').textContent = balance1 + " " + JSON.parse(currentChain.chain_info).currencies[0].coinDenom;
       document.querySelector('.content-wrapper-portfolio-body-stat-chain-value-amount-usd').textContent = "$" + (balance1 * currentChain.price).toFixed(2);
-      document.querySelector('.content-header-title-address').textContent = (globalAddress).slice(0, 10) + "..." 
+      if (!globalAddress)  document.querySelector('.content-header-title-address').textContent = "Connect Wallet";
+      else document.querySelector('.content-header-title-address').textContent = (globalAddress).slice(0, 10) + "..." 
       
       let width = (parseFloat(data)/(parseFloat(balance) + parseFloat(data))) * 100;
       let width2 = 100 - width;
